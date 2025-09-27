@@ -26,7 +26,7 @@ class Budget < ApplicationRecord
     def budget_date_valid?(date, family:)
       beginning_of_month = date.beginning_of_month
 
-      beginning_of_month >= oldest_valid_budget_date(family) && beginning_of_month <= Date.current.end_of_month
+      beginning_of_month >= oldest_valid_budget_date(family) && beginning_of_month <= Date.current.next_month
     end
 
     def find_or_bootstrap(family, start_date:)
