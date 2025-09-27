@@ -6,7 +6,7 @@
 # --------
 #
 # This file is an example Docker Compose configuration for self hosting
-# Sure on your local machine or on a cloud VPS.
+# Maybe on your local machine or on a cloud VPS.
 #
 # The configuration below is a "standard" setup that works out of the box,
 # but if you're running this outside of a local network, it is recommended
@@ -43,9 +43,9 @@
 #
 
 x-db-env: &db_env
-  POSTGRES_USER: ${POSTGRES_USER:-sure_user}
-  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sure_password}
-  POSTGRES_DB: ${POSTGRES_DB:-sure_production}
+  POSTGRES_USER: ${POSTGRES_USER:-maybe_user}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-maybe_password}
+  POSTGRES_DB: ${POSTGRES_DB:-maybe_production}
 
 x-rails-env: &rails_env
   <<: *db_env
@@ -80,7 +80,7 @@ x-rails-env: &rails_env
 
 services:
   web:
-    image: ghcr.io/we-promise/sure:stable
+    image: ghcr.io/hvckdev/maybe:latest
     volumes:
       - app-storage:/rails/storage
     ports:
@@ -102,7 +102,7 @@ services:
       - 8.8.8.8
       - 1.1.1.1
     networks:
-      - sure_net
+      - maybe_net
 
   worker:
     image: ghcr.io/we-promise/sure:stable
@@ -121,7 +121,7 @@ services:
     environment:
       <<: *rails_env
     networks:
-      - sure_net
+      - maybe_net
 
   db:
     image: postgres:16
@@ -136,7 +136,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - sure_net
+      - maybe_net
 
   backup:
     profiles:
@@ -183,7 +183,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - sure_net
+      - maybe_net
 
 volumes:
   app-storage:
@@ -191,5 +191,5 @@ volumes:
   redis-data:
 
 networks:
-  sure_net:
+  maybe_net:
     driver: bridge
