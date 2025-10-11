@@ -60,12 +60,6 @@
         </ul>
 
         <div class="pl-2 mt-auto mx-auto flex flex-col gap-2">
-          <%= render DS::Button.new(
-            variant: "icon",
-            icon: "message-circle-question",
-            data: { action: "intercom#show" }
-          ) %>
-
           <%= render "users/user_menu", user: Current.user %>
         </div>
       </nav>

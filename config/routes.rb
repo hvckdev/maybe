@@ -30,9 +30,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get "changelog", to: "pages#changelog"
-  get "feedback", to: "pages#feedback"
-
   resource :current_session, only: %i[update]
 
   resource :registration, only: %i[new create]

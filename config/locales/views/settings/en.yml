@@ -73,7 +73,6 @@ en:
       api_key_label: API Key
       billing_label: Billing
       categories_label: Categories
-      feedback_label: Feedback
       general_section_title: General
       imports_label: Imports
       logout: Logout
@@ -86,7 +85,6 @@ en:
       self_hosting_label: Self hosting
       tags_label: Tags
       transactions_section_title: Transactions
-      whats_new_label: What's new
     settings_nav_link_large:
       next: Next
       previous: Back
