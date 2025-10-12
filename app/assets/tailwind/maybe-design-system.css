@@ -269,6 +269,7 @@
   html {
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
+    background-color: #0b0b0b;
   }
 
   button {
