@@ -6,6 +6,11 @@ ru:
         cancellation: Ваш вклад заканчивается %{date}.
         renewal: Ваш вклад продолжается %{date}.
   settings:
+    billings:
+      show:
+        page_title: Оплата
+        subscription_subtitle: Обновите свою подписку и платёжные данные
+        subscription_title: Управление подпиской
     ai_prompts:
       show:
         disable_ai: Отключить AI Ассистента
