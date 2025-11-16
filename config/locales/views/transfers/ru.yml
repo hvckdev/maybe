@@ -7,9 +7,12 @@ ru:
       success: Перевод удалён
     form:
       amount: Сумма
+      bank_charges: Банковские комиссии
+      outgoing_fee: Комиссия исходящего перевода
+      incoming_fee: Комиссия входящего перевода
       date: Дата
-      destination_amount: Сумма на счёт назначения
-      destination_amount_display: 'Сумма на счёт назначения: %{amount}'
+      destination_amount: Сумма на счёте назначения
+      destination_amount_display: 'Сумма на счёте назначения: %{amount}'
       exchange_rate_display: 'Курс валют: %{rate}'
       expense: Расход
       from: Откуда
@@ -22,23 +25,26 @@ ru:
     new:
       title: Новый перевод
     show:
-      amount: Сумма
-      category: Категория
-      date: Дата
       delete: Удалить перевод
       delete_subtitle: Это удалит перевод. Это не удалит связанные операции.
       delete_title: Удалить перевод?
       details: Подробности
-      from: Откуда
       mark_recurring: Отметить как регулярный
-      mark_recurring_subtitle: Отслеживайте этот перевод как регулярный в ленте и
-        на странице регулярных операций.
+      mark_recurring_subtitle: Отслеживайте этот перевод как регулярный в ленте предстоящих и на странице регулярных операций.
       mark_recurring_title: Отметить перевод как регулярный
       note_label: Заметки
       note_placeholder: Добавьте заметку к этому переводу
       overview: Обзор
       settings: Настройки
+      from: Откуда
       to: Куда
+      date: Дата
+      transfer_amount: Сумма перевода
+      total: Итого
+      bank_charges: Банковские комиссии
+      source_fee: Комиссия источника
+      destination_fee: Комиссия назначения
+      category: Категория
       uncategorized: Без категории
     update:
       success: Перевод обновлён
