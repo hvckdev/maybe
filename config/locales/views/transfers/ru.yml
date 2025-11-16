@@ -11,8 +11,8 @@ ru:
     form:
       amount: Сумма
       date: Дата
-      destination_amount: Сумма на счёт назначения
-      destination_amount_display: 'Сумма на счёт назначения: %{amount}'
+      destination_amount: Сумма на счёте назначения
+      destination_amount_display: 'Сумма на счёте назначения: %{amount}'
       exchange_rate_display: 'Курс валют: %{rate}'
       expense: Расход
       from: Откуда
@@ -41,8 +41,7 @@ ru:
         конвертации денег в другую валюту.
       investment_contribution_title: Инвестиционный взнос
       mark_recurring: Отметить как регулярный
-      mark_recurring_subtitle: Отслеживайте этот перевод как регулярный в ленте и
-        на странице регулярных операций.
+      mark_recurring_subtitle: Отслеживайте этот перевод как регулярный в ленте предстоящих и на странице регулярных операций.
       mark_recurring_title: Отметить перевод как регулярный
       note_label: Заметки
       note_placeholder: Добавьте заметку к этому переводу
