@@ -1,29 +1,29 @@
 ru:
   budgets:
-    header:
+    budget_header:
       categories: Категории
       edit: Редактировать
       today: Сегодня
-    tabs:
+    show:
       budgeted: Запланировано
       actual: Фактическое
-    summary:
+    actuals_summary:
       income: Доходы
       expenses: Расходы
-    categories:
+    budget_categories:
       title: Категории
       amount: Сумма
-    overview:
+    budgeted_summary:
       expected_income: Ожидаемый доход
       earned: заработано
       over: превышено
       left: осталось
       budgeted: Запланировано
       spent: потрачено
-    warnings:
+    over_allocation_warning:
       over_allocated: "Вы превысили бюджет. Пожалуйста, исправьте распределение."
       fix_allocations: "Исправить распределение"
-    setup:
+    edit:
       title: "Настроить бюджет"
       subtitle: "Введите ваши ежемесячные доходы и планируемые расходы для настройки бюджета."
       budgeted_spending: "Планируемые расходы"
@@ -31,7 +31,7 @@ ru:
       autosuggest_title: "Автоматический расчет доходов и расходов"
       autosuggest_description: "Основано на истории транзакций. AI может ошибаться, проверьте перед продолжением."
       continue: "Продолжить"
-    donut_chart:
+    budget_donut:
       spent: "Потрачено"
       of: "из %{amount}"
       new_budget: "Новый бюджет"
