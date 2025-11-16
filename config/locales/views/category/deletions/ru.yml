@@ -6,11 +6,8 @@ ru:
         success: Категория операций успешно удалена
       new:
         category: Категория
-        delete_and_leave_uncategorized: Удалить "%{category_name}" и оставить без
-          категории
-        delete_and_recategorize: Удалить "%{category_name}" и назначить новую категорию
+        delete_and_leave_uncategorized: Удалить «%{category_name}» и оставить без категории
+        delete_and_recategorize: Удалить «%{category_name}» и назначить новую категорию
         delete_category: Удалить категорию?
-        explanation: При удалении этой категории, каждая операция с категорией "%{category_name}"
-          останется без категории. Вместо этого, вы можете назначить новую категорию
-          ниже.
+        explanation: При удалении этой категории все операции с категорией «%{category_name}» останутся без категории. Вместо этого вы можете назначить им новую категорию ниже.
         replacement_category_prompt: Выберите категорию
