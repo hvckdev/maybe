@@ -7,7 +7,7 @@
         variant: "icon",
         icon: "chevron-left",
         href: budget_path(budget.previous_budget_param),
-      ) %>
+        ) %>
     <% else %>
       <span class="text-subdued">
         <%= icon "chevron-left", color: "current" %>
@@ -19,7 +19,7 @@
         variant: "icon",
         icon: "chevron-right",
         href: budget_path(budget.next_budget_param),
-      ) %>
+        ) %>
     <% else %>
       <span class="text-subdued">
         <%= icon "chevron-right", color: "current" %>
@@ -40,9 +40,9 @@
 
   <div class="ml-auto">
     <%= render DS::Link.new(
-        text: "Today",
-        variant: "outline",
-        href: budget_path(Budget.date_to_param(Date.current)),
-    ) %>
+      text: t("budgets.header.today"),
+      variant: "outline",
+      href: budget_path(Budget.date_to_param(Date.current)),
+      ) %>
   </div>
 </div>

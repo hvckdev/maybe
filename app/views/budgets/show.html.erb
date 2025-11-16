@@ -1,9 +1,9 @@
 <div class="pb-12">
   <%= render "budgets/budget_header",
-            budget: @budget,
-            previous_budget: @previous_budget,
-            next_budget: @next_budget,
-            latest_budget: @latest_budget %>
+             budget: @budget,
+             previous_budget: @previous_budget,
+             next_budget: @next_budget,
+             latest_budget: @latest_budget %>
 
   <div class="flex flex-col items-start gap-4 md:flex-row">
     <div class="w-full md:max-w-[300px] space-y-4">
@@ -16,12 +16,11 @@
       </div>
 
       <div>
-
         <% if @budget.initialized? && @budget.available_to_allocate.positive? %>
           <%= render DS::Tabs.new(active_tab: params[:tab].presence || "budgeted") do |tabs| %>
             <% tabs.with_nav do |nav| %>
-              <% nav.with_btn(id: "budgeted", label: "Budgeted") %>
-              <% nav.with_btn(id: "actuals", label: "Actual") %>
+              <% nav.with_btn(id: "budgeted", label: t("budgets.tabs.budgeted")) %>
+              <% nav.with_btn(id: "actuals", label: t("budgets.tabs.actual")) %>
             <% end %>
 
             <% tabs.with_panel(tab_id: "budgeted") do %>
@@ -46,11 +45,11 @@
 
     <div class="w-full grow bg-container rounded-xl shadow-border-xs p-4">
       <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-medium">Categories</h2>
+        <h2 class="text-lg font-medium"><%= t("budgets.header.categories") %></h2>
 
         <% if @budget.initialized? %>
           <%= render DS::Link.new(
-            text: "Edit",
+            text: t("budgets.header.edit"),
             variant: "secondary",
             icon: "settings-2",
             href: budget_budget_categories_path(@budget)
