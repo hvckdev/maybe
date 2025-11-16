@@ -1,16 +1,16 @@
 en:
   budgets:
-    header:
+    budget_header:
       categories: Categories
       edit: Edit
       today: Today
-    tabs:
+    show:
       budgeted: Budgeted
       actual: Actual
-    summary:
+    actuals_summary:
       income: Income
       expenses: Expenses
-    categories:
+    budget_categories:
       title: Categories
       amount: Amount
     overview:
@@ -20,10 +20,10 @@ en:
       left: left
       budgeted: Budgeted
       spent: spent
-    warnings:
+    over_allocation_warning:
       over_allocated: "You have over-allocated your budget. Please fix your allocations."
       fix_allocations: "Fix allocations"
-    setup:
+    edit:
       title: "Setup your budget"
       subtitle: "Enter your monthly earnings and planned spending below to setup your budget."
       budgeted_spending: "Budgeted spending"
@@ -31,7 +31,7 @@ en:
       autosuggest_title: "Autosuggest income & spending budget"
       autosuggest_description: "This will be based on transaction history. AI can make mistakes, verify before continuing."
       continue: "Continue"
-    donut_chart:
+    budget_donut:
       spent: "Spent"
       of: "of %{amount}"
       new_budget: "New budget"
