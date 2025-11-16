@@ -1,0 +1,91 @@
+ru:
+  settings:
+    billings:
+      show:
+        page_title: Оплата
+        subscription_subtitle: Обновите свою подписку и платёжные данные
+        subscription_title: Управление подпиской
+    preferences:
+      show:
+        country: Страна
+        currency: Валюта
+        date_format: Формат даты
+        general_subtitle: Настройте свои предпочтения
+        general_title: Общие
+        default_period: Период по умолчанию
+        language: Язык
+        page_title: Предпочтения
+        theme_dark: Тёмная
+        theme_light: Светлая
+        theme_subtitle: Выберите предпочитаемую тему для приложения
+        theme_system: Системная
+        theme_title: Тема
+        timezone: Часовой пояс
+    profiles:
+      destroy:
+        cannot_remove_self: Вы не можете удалить сами себя из аккаунта.
+        member_removal_failed: Произошла ошибка при удалении участника.
+        member_removed: Участник успешно удалён.
+        not_authorized: У вас нет прав для удаления участников.
+      show:
+        confirm_delete:
+          body: Вы уверены, что хотите навсегда удалить свой аккаунт? Это действие необратимо.
+          title: Удалить аккаунт?
+        confirm_reset:
+          body: Вы уверены, что хотите сбросить свой аккаунт? Это удалит все ваши счета, категории, продавцов, теги и другие данные. Это действие нельзя отменить.
+          title: Сбросить аккаунт?
+        confirm_remove_invitation:
+          body: Вы уверены, что хотите удалить приглашение для %{email}?
+          title: Удалить приглашение
+        confirm_remove_member:
+          body: Вы уверены, что хотите удалить %{name} из вашего аккаунта?
+          title: Удалить участника
+        danger_zone_title: Опасная зона
+        delete_account: Удалить аккаунт
+        delete_account_warning: Удаление аккаунта навсегда удалит все ваши данные и не может быть отменено.
+        reset_account: Сбросить аккаунт
+        reset_account_warning: Сброс аккаунта удалит все ваши счета, категории, продавцов, теги и другие данные, но сохранит ваш пользовательский профиль.
+        email: Email
+        first_name: Имя
+        household_form_input_placeholder: Введите название домохозяйства
+        household_form_label: Название домохозяйства
+        household_subtitle: Пригласите членов семьи, партнёров и других людей. Приглашённые смогут войти в ваше домохозяйство и получить доступ к общим счетам.
+        household_title: Домохозяйство
+        invitation_link: Ссылка-приглашение
+        invite_member: Добавить участника
+        last_name: Фамилия
+        page_title: Аккаунт
+        pending: Ожидает
+        profile_subtitle: Настройте, как вы отображаетесь в Maybe
+        profile_title: Профиль
+        remove_invitation: Удалить приглашение
+        remove_member: Удалить участника
+        save: Сохранить
+    securities:
+      show:
+        page_title: Безопасность
+    settings_nav:
+      accounts_label: Счета
+      api_key_label: API-ключ
+      billing_label: Оплата
+      categories_label: Категории
+      general_section_title: Общие
+      imports_label: Импорт
+      logout: Выйти
+      merchants_label: Продавцы
+      other_section_title: Дополнительно
+      preferences_label: Предпочтения
+      profile_label: Аккаунт
+      rules_label: Правила
+      security_label: Безопасность
+      self_hosting_label: Самостоятельный хостинг
+      tags_label: Теги
+      transactions_section_title: Транзакции
+    settings_nav_link_large:
+      next: Далее
+      previous: Назад
+    user_avatar_field:
+      accepted_formats: JPG или PNG. Максимум 5MB.
+      choose: Загрузить фото
+      choose_label: (необязательно)
+      change: Изменить фото

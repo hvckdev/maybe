@@ -1,0 +1,81 @@
+ru:
+  transactions:
+    form:
+      account: Счёт
+      account_prompt: Выберите счёт
+      amount: Сумма
+      category: Категория
+      category_prompt: Выберите категорию
+      date: Дата
+      description: Описание
+      description_placeholder: Опишите транзакцию
+      expense: Расход
+      income: Доход
+      none: (нет)
+      note_label: Заметки
+      note_placeholder: Введите заметку
+      submit: Добавить транзакцию
+      tags_label: Теги
+      transfer: Перевод
+    new:
+      new_transaction: Новая транзакция
+    show:
+      account_label: Счёт
+      amount: Сумма
+      category_label: Категория
+      date_label: Дата
+      delete: Удалить
+      delete_subtitle: Это навсегда удалит транзакцию, повлияет на историю балансов и не может быть отменено.
+      delete_title: Удалить транзакцию
+      details: Детали
+      merchant_label: Продавец
+      name_label: Название
+      nature: Тип
+      none: "(нет)"
+      note_label: Заметки
+      note_placeholder: Введите заметку
+      overview: Обзор
+      settings: Настройки
+      tags_label: Теги
+      uncategorized: "(без категории)"
+    header:
+      edit_categories: Редактировать категории
+      edit_imports: Редактировать импорты
+      edit_merchants: Редактировать продавцов
+      edit_tags: Редактировать теги
+      import: Импорт
+    index:
+      transaction: транзакция
+      transactions: транзакции
+    searches:
+      filters:
+        amount_filter:
+          equal_to: Равно
+          greater_than: Больше чем
+          less_than: Меньше чем
+          placeholder: '0'
+        badge:
+          expense: Расход
+          income: Доход
+          on_or_after: не раньше %{date}
+          on_or_before: не позже %{date}
+          transfer: Перевод
+        type_filter:
+          expense: Расход
+          income: Доход
+          transfer: Перевод
+      menu:
+        account_filter: Счёт
+        amount_filter: Сумма
+        apply: Применить
+        cancel: Отмена
+        category_filter: Категория
+        clear_filters: Сбросить фильтры
+        date_filter: Дата
+        merchant_filter: Продавец
+        tag_filter: Тег
+        type_filter: Тип
+      search:
+        equal_to: равно
+        greater_than: больше чем
+        less_than: меньше чем

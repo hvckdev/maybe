@@ -1,0 +1,60 @@
+ru:
+  accounts:
+    account:
+      troubleshoot: Устранение неполадок
+    chart:
+      data_not_available: Данные за выбранный период недоступны
+    create:
+      success: "Счёт %{type} создан"
+    destroy:
+      success: "Счёт %{type} запланирован на удаление"
+    empty:
+      empty_message: Добавьте счёт через подключение, импорт или вручную.
+      new_account: Новый счёт
+      no_accounts: Счётов пока нет
+    form:
+      balance: Текущий баланс
+      name_label: Название счёта
+      name_placeholder: Пример названия счёта
+    index:
+      accounts: Счета
+      manual_accounts:
+        other_accounts: Другие счета
+      new_account: Новый счёт
+      sync: Синхронизировать все
+    new:
+      import_accounts: Импортировать счета
+      method_selector:
+        connected_entry: Подключить счёт
+        connected_entry_eu: Подключить счёт ЕС
+        manual_entry: Ввести баланс счёта
+        title: Как вы хотите добавить счёт?
+      title: Что вы хотите добавить?
+    show:
+      activity:
+        amount: Сумма
+        balance: Баланс
+        date: Дата
+        entries: записи
+        entry: запись
+        new: Новая
+        new_balance: Новый баланс
+        new_transaction: Новая транзакция
+        no_entries: Записи не найдены
+        title: Активность
+      chart:
+        balance: Баланс
+        owed: Задолженность
+      menu:
+        confirm_accept: Удалить "%{name}"
+        confirm_body_html: "<p>При удалении этого счёта вы удалите всю историю его значений, что повлияет на различные аспекты вашего общего счёта. Это действие напрямую отразится на расчётах вашего чистого капитала и графиках счетов.</p><br /> <p>После удаления восстановить информацию о счёте будет невозможно, вам придётся добавить его как новый счёт.</p>"
+        confirm_title: Удалить счёт?
+        edit: Редактировать
+        import: Импорт транзакций
+        manage: Управление счетами
+    update:
+      success: "Счёт %{type} обновлён"
+  email_confirmations:
+    new:
+      invalid_token: Недействительная или истёкшая ссылка подтверждения.
+      success_login: Ваш email подтверждён. Пожалуйста, войдите с использованием нового адреса электронной почты.
