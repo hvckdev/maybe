@@ -1,0 +1,12 @@
+ru:
+  pages:
+    dashboard:
+      welcome_back: "С возвращением, %{name}"
+      overview: "Вот что происходит с вашими финансами"
+      new_account: "Новый"
+      balance_sheet:
+        name: "Название"
+        weight: "Вес"
+        value: "Сумма"
+        no_accounts: "Нет %{classification}"
+        add_accounts: "Добавьте ваши счета %{classification}, чтобы увидеть полную разбивку"

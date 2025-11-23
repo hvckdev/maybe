@@ -2,15 +2,15 @@
 <div id="cashflow-sankey-chart">
   <div class="flex justify-between items-center gap-4 px-4 mb-4">
     <h2 class="text-lg font-medium inline-flex items-center gap-1.5">
-      Cashflow
+      <%= t(".title") %>
     </h2>
 
     <%= form_with url: root_path, method: :get, data: { controller: "auto-submit-form", turbo_frame: "cashflow_sankey_section" } do |form| %>
       <%= form.select :cashflow_period,
-                Period.as_options,
-                { selected: period.key },
-                data: { "auto-submit-form-target": "auto" },
-                class: "bg-container border border-secondary font-medium rounded-lg px-3 py-2 text-sm pr-7 cursor-pointer text-primary focus:outline-hidden focus:ring-0" %>
+                      Period.as_options,
+                      { selected: period.key },
+                      data: { "auto-submit-form-target": "auto" },
+                      class: "bg-container border border-secondary font-medium rounded-lg px-3 py-2 text-sm pr-7 cursor-pointer text-primary focus:outline-hidden focus:ring-0" %>
     <% end %>
   </div>
 
@@ -27,13 +27,14 @@
       <div class="space-y-3 text-center flex flex-col items-center">
         <%= render DS::FilledIcon.new(
           variant: :container,
-          icon: "activity" # cashflow placeholder icon
+          icon: "activity"
         ) %>
 
-        <p class="text-sm font-medium text-primary">No cash flow data for this time period</p>
-        <p class="text-secondary text-sm">Add transactions to display cash flow data or expand the time period</p>
+        <p class="text-sm font-medium text-primary"><%= t(".no_data") %></p>
+        <p class="text-secondary text-sm"><%= t(".add_transactions") %></p>
+
         <%= render DS::Link.new(
-          text: "Add transaction",
+          text: t(".add_transaction_button"),
           icon: "plus",
           href: new_transaction_path,
           frame: :modal

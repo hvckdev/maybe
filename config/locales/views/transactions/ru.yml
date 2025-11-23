@@ -10,7 +10,7 @@ ru:
       description: Описание
       description_placeholder: Опишите транзакцию
       expense: Расход
-      income: Доход
+      income: Доходы
       none: (нет)
       note_label: Заметки
       note_placeholder: Введите заметку
@@ -28,7 +28,7 @@ ru:
       new_transaction: Новая транзакция
     summary:
       total_transactions: "Всего транзакций"
-      income: "Доход"
+      income: "Доходы"
       expenses: "Расходы"
     show:
       account_label: Счёт
@@ -78,13 +78,13 @@ ru:
           placeholder: '0'
         badge:
           expense: Расход
-          income: Доход
+          income: Доходы
           on_or_after: не раньше %{date}
           on_or_before: не позже %{date}
           transfer: Перевод
         type_filter:
           expense: Расход
-          income: Доход
+          income: Доходы
           transfer: Перевод
       menu:
         account_filter: Счёт

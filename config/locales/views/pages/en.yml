@@ -7,6 +7,20 @@ en:
       net_worth_chart:
         data_not_available: Data not available for the selected period
         title: Net Worth
+      welcome_back: "Welcome back, %{name}"
+      overview: "Here's what's happening with your finances"
+      new_account: "New"
+      balance_sheet:
+        name: "Name"
+        weight: "Weight"
+        value: "Value"
+        no_accounts: "No %{classification} yet"
+        add_accounts: "Add your %{classification} accounts to see a full breakdown"
+      cashflow_sankey:
+        title: "Cashflow"
+        no_data: "No cash flow data for this time period"
+        add_transactions: "Add transactions to display cash flow data or expand the time period"
+        add_transaction_button: "Add transaction"
       no_account_empty_state:
         new_account: New account
         no_account_subtitle: Since no accounts have been added, there's no data to

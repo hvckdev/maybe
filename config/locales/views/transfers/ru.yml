@@ -9,7 +9,7 @@ ru:
       date: Дата
       expense: Расход
       from: Откуда
-      income: Доход
+      income: Доходы
       select_account: Выберите счёт
       submit: Создать перевод
       to: Куда

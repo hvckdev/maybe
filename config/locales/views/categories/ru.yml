@@ -20,7 +20,7 @@ ru:
       name: "Название"
       parent_category: "Родительская категория (необязательно)"
       unassigned: "(не назначена)"
-      income: "Доход"
+      income: "Доходы"
       expense: "Расход"
       placeholder: "Введите название категории"
     index:
