@@ -1,12 +1,26 @@
 ru:
   pages:
+    changelog:
+      title: "Что нового"
     dashboard:
+      net_worth_chart:
+        data_not_available: "Данные недоступны для выбранного периода"
+        title: "Собственный капитал"
       welcome_back: "С возвращением, %{name}"
       overview: "Вот что происходит с вашими финансами"
       new_account: "Новый"
       balance_sheet:
         name: "Название"
-        weight: "Вес"
+        weight: "Доля"
         value: "Сумма"
-        no_accounts: "Нет %{classification}"
-        add_accounts: "Добавьте ваши счета %{classification}, чтобы увидеть полную разбивку"
+        no_accounts: "Пока нет %{classification}"
+        add_accounts: "Добавьте ваши %{classification}, чтобы увидеть полную картину"
+      cashflow_sankey:
+        title: "Денежный поток"
+        no_data: "Нет данных по денежному потоку за этот период"
+        add_transactions: "Добавьте транзакции, чтобы отобразить денежный поток или расширьте период"
+        add_transaction_button: "Добавить транзакцию"
+      no_account_empty_state:
+        new_account: "Новый аккаунт"
+        no_account_subtitle: "Поскольку аккаунты еще не добавлены, отображать данные нечего. Добавьте первые аккаунты, чтобы начать просмотр информации на панели."
+        no_account_title: "Пока нет аккаунтов"
