@@ -367,6 +367,16 @@ ru:
       split: Разделить
       split_child_tooltip: Часть разделенной операции
       split_tooltip: Эта операция была разделена на несколько записей
+    transfer_match:
+      auto_matched: Автоматически сопоставлено
+      auto_matched_short: А/С
+      confirm_match: Подтвердить сопоставление
+      confirmed_title: "%{type} подтверждён"
+      payment: Платёж
+      payment_confirmed: Платёж подтверждён
+      reject_match: Отклонить сопоставление
+      transfer: Перевод
+      transfer_confirmed: Перевод подтверждён
     unknown_name: Неизвестная операция
     update:
       updated: Операция обновлена
