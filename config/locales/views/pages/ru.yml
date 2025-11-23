@@ -4,6 +4,27 @@ ru:
     changelog:
       title: Что нового
     dashboard:
+      welcome: С возвращением, %{name}
+      subtitle: Вот что происходит с вашими финансами
+      new: Новое
+      sections_aria_label: Разделы панели
+      drag_to_reorder: Перетащите для изменения порядка
+      toggle_section: Показать/скрыть раздел
+      widget_size:
+        auto: Авто
+        compact: Компактный
+        full: Полный
+        half: Половина
+        height_label: Высота
+        label: Размер
+        tall: Высокий
+        width_label: Ширина
+      net_worth_chart:
+        data_not_available: Данные недоступны для выбранного периода
+        title: Собственный капитал
+      welcome_back: С возвращением, %{name}
+      overview: Вот что происходит с вашими финансами
+      new_account: Новый
       cashflow_preview:
         node_labels:
           cash_flow: "Денежный поток"
@@ -22,9 +43,16 @@ ru:
         feedback_privacy: Ваш ответ отправляется в PostHog. Опишите проблему, не указывая номера счетов, балансы и другие личные финансовые данные.
         feedback_submit: Отправить отзыв
       balance_sheet:
-        add_accounts: Добавьте счета %{name}, чтобы увидеть разбивку
-        add_asset_accounts: Добавьте счета активов
-        add_liability_accounts: Добавьте счета обязательств
+        title: Баланс
+        no_items: Пока нет %{name}
+        add_accounts: Добавьте счета категории «%{name}», чтобы увидеть полную разбивку
+        no_asset: Пока нет активов
+        no_liability: Пока нет обязательств
+        add_asset_accounts: Добавьте счета активов, чтобы увидеть полную разбивку
+        add_liability_accounts: Добавьте счета обязательств, чтобы увидеть полную разбивку
+        name: Название
+        weight: Доля
+        value: Сумма
         classifications:
           asset: Активы
           liability: Обязательства
@@ -39,9 +67,6 @@ ru:
         expand_all: Развернуть все
         collapse_all: Свернуть все
       cashflow_sankey:
-        add_transaction: Добавить операцию
-        no_data_description: Добавьте операции или измените период
-        no_data_title: Нет данных за период
         title: Денежный поток
         zoom_out: Показать весь поток
         loading: Загрузка денежного потока…
