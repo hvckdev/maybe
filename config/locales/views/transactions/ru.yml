@@ -17,8 +17,19 @@ ru:
       submit: Добавить транзакцию
       tags_label: Теги
       transfer: Перевод
+    transfer_match:
+      confirmed_title: "%{type} подтвержден"
+      payment: "Платеж"
+      transfer: "Перевод"
+      auto_matched: "Авто-сопоставлено"
+      confirm_match: "Подтвердить совпадение"
+      reject_match: "Отклонить совпадение"
     new:
       new_transaction: Новая транзакция
+    summary:
+      total_transactions: "Всего транзакций"
+      income: "Доход"
+      expenses: "Расходы"
     show:
       account_label: Счёт
       amount: Сумма
@@ -45,8 +56,19 @@ ru:
       edit_tags: Редактировать теги
       import: Импорт
     index:
-      transaction: транзакция
-      transactions: транзакции
+      transactions: "Транзакции"
+      new_rule: "Новое правило"
+      edit_rules: "Редактировать правила"
+      edit_categories: "Редактировать категории"
+      edit_tags: "Редактировать теги"
+      edit_merchants: "Редактировать магазины"
+      edit_imports: "Редактировать импорты"
+      import: "Импорт"
+      new_transaction: "Новая транзакция"
+      transaction: "транзакция"
+      transactions_plural: "транзакции"
+      category: "категория"
+      amount: "сумма"
     searches:
       filters:
         amount_filter:

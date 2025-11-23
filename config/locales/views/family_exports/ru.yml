@@ -1,0 +1,20 @@
+ru:
+  family_exports:
+    list:
+      export_from: "Экспорт от %{date}"
+      exporting: "Экспортируется..."
+      download: "Скачать"
+      failed: "Не удалось"
+      no_exports_yet: "Экспортов пока нет"
+    new:
+      export_your_data: "Экспорт данных"
+      download_all_your_financial_data: "Скачать все ваши финансовые данные"
+      whats_included: "Что включено:"
+      all_accounts_and_balances: "Все счета и их балансы"
+      transaction_history: "История транзакций"
+      investment_trades: "Инвестиционные сделки"
+      categories_and_tags: "Категории и теги"
+      note: "Примечание"
+      export_note: "Этот экспорт включает все ваши данные, но только часть данных может быть импортирована обратно в Maybe через CSV. Поддерживаются импорты счетов, транзакций (с категориями и тегами) и сделок. Другие данные счета предназначены только для ваших записей."
+      cancel: "Отмена"
+      export_data: "Экспортировать данные"

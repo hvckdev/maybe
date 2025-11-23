@@ -1,0 +1,25 @@
+ru:
+  credit_cards:
+    edit:
+      edit: "Редактировать %{account}"
+    form:
+      annual_fee: "Годовая комиссия"
+      annual_fee_placeholder: "99"
+      apr: "Годовая ставка (APR)"
+      apr_placeholder: "15.99"
+      available_credit: "Доступный кредит"
+      available_credit_placeholder: "10000"
+      expiration_date: "Срок действия"
+      minimum_payment: "Минимальный платёж"
+      minimum_payment_placeholder: "100"
+    new:
+      title: "Введите данные кредитной карты"
+    overview:
+      amount_owed: "Задолженность"
+      available_credit: "Доступный кредит"
+      minimum_payment: "Минимальный платёж"
+      apr: "Годовая ставка (APR)"
+      expiration_date: "Срок действия"
+      annual_fee: "Годовая комиссия"
+      unknown: "Неизвестно"
+      edit_account_details: "Редактировать данные счёта"

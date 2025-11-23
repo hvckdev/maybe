@@ -20,6 +20,17 @@ en:
       transfer: Transfer
     new:
       new_transaction: New transaction
+    summary:
+      total_transactions: "Total transactions"
+      income: "Income"
+      expenses: "Expenses"
+    transfer_match:
+      confirmed_title: "%{type} is confirmed"
+      payment: "Payment"
+      transfer: "Transfer"
+      auto_matched: "Auto-matched"
+      confirm_match: "Confirm match"
+      reject_match: "Reject match"
     show:
       account_label: Account
       amount: Amount
@@ -47,8 +58,19 @@ en:
       edit_tags: Edit tags
       import: Import
     index:
-      transaction: transaction
-      transactions: transactions
+      transactions: "Transactions"
+      new_rule: "New rule"
+      edit_rules: "Edit rules"
+      edit_categories: "Edit categories"
+      edit_tags: "Edit tags"
+      edit_merchants: "Edit merchants"
+      edit_imports: "Edit imports"
+      import: "Import"
+      new_transaction: "New transaction"
+      transaction: "transaction"
+      transactions_plural: "transactions"
+      category: "category"
+      amount: "amount"
     searches:
       filters:
         amount_filter:

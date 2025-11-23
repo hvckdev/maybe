@@ -16,10 +16,11 @@ en:
     new:
       title: Enter credit card details
     overview:
-      amount_owed: Amount Owed
-      annual_fee: Annual Fee
-      apr: APR
-      available_credit: Available Credit
-      expiration_date: Expiration Date
-      minimum_payment: Minimum Payment
-      unknown: Unknown
+      amount_owed: "Amount Owed"
+      available_credit: "Available Credit"
+      minimum_payment: "Minimum Payment"
+      apr: "APR"
+      expiration_date: "Expiration Date"
+      annual_fee: "Annual Fee"
+      unknown: "Unknown"
+      edit_account_details: "Edit account details"

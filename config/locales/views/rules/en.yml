@@ -1,0 +1,31 @@
+en:
+  rules:
+    category_rule_cta:
+      updated_to: "Updated to %{category_name}"
+      auto_categorize_hint: "You can create a rule to automatically categorize transactions like this one"
+      dont_show_again: "Don't show this again"
+      dismiss: "Dismiss"
+      create_rule: "Create rule"
+    form:
+      rule_name_optional: "Rule name (optional)"
+      rule_name_placeholder: "Enter a name for this rule"
+      if: "IF"
+      then: "THEN"
+      for: "FOR"
+      add_condition: "Add condition"
+      add_condition_group: "Add condition group"
+      add_action: "Add action"
+      all_past_and_future: "All past and future %{resource_type}s"
+      starting_from: "Starting from"
+    rule:
+      if: "IF"
+      then: "THEN"
+      for: "FOR"
+      to: "to"
+      and_more_conditions: "and %{count} more %{count, plural, one {condition} other {conditions}}"
+      and_more_actions: "and %{count} more %{count, plural, one {action} other {actions}}"
+      all_past_and_future: "All past and future %{resource_type}"
+      on_or_after: "%{resource_type} on or after %{date}"
+      edit: "Edit"
+      reapply: "Re-apply rule"
+      delete: "Delete"

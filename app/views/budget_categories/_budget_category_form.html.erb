@@ -8,8 +8,13 @@
   <div class="text-sm mr-3">
     <p class="text-primary font-medium mb-0.5"><%= budget_category.category.name %></p>
 
-    <p class="text-secondary"><%= budget_category.median_monthly_expense_money.format(precision: 0) %>/m avg</p>
-    <p class="text-secondary"><%= budget_category.actual_spending_money.format(precision: 0) %>/m this month</p>
+    <p class="text-secondary">
+      <%= budget_category.median_monthly_expense_money.format(precision: 0) %>/m <%= t(".avg") %>
+    </p>
+
+    <p class="text-secondary">
+      <%= budget_category.actual_spending_money.format(precision: 0) %>/m <%= t(".this_month") %>
+    </p>
   </div>
 
   <div class="ml-auto">
@@ -17,14 +22,15 @@
       <div class="form-field w-[120px]">
         <div class="flex items-center">
           <span class="text-secondary text-sm mr-2"><%= currency.symbol %></span>
+
           <%= f.number_field :budgeted_spending,
-                            class: "form-field__input text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
-                            placeholder: "0",
-                            step: currency.step,
-                            id: dom_id(budget_category, :budgeted_spending),
-                            min: 0,
-                            max: budget_category.max_allocation,
-                            data: { auto_submit_form_target: "auto" } %>
+                             class: "form-field__input text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
+                             placeholder: "0",
+                             step: currency.step,
+                             id: dom_id(budget_category, :budgeted_spending),
+                             min: 0,
+                             max: budget_category.max_allocation,
+                             data: { auto_submit_form_target: "auto" } %>
         </div>
       </div>
     <% end %>

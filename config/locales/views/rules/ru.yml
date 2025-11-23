@@ -1,0 +1,31 @@
+ru:
+  rules:
+    category_rule_cta:
+      updated_to: "Обновлено на %{category_name}"
+      auto_categorize_hint: "Вы можете создать правило для автоматической категоризации подобных транзакций"
+      dont_show_again: "Больше не показывать"
+      dismiss: "Закрыть"
+      create_rule: "Создать правило"
+    form:
+      rule_name_optional: "Название правила (необязательно)"
+      rule_name_placeholder: "Введите название для этого правила"
+      if: "if"
+      then: "then"
+      for: "for"
+      add_condition: "Добавить условие"
+      add_condition_group: "Добавить группу условий"
+      add_action: "Добавить действие"
+      all_past_and_future: "Все прошлые и будущие %{resource_type}"
+      starting_from: "Начиная с"
+    rule:
+      if: "if"
+      then: "then"
+      for: "for"
+      to: "to"
+      and_more_conditions: "и ещё %{count} %{count, plural, one {условие} other {условия}}"
+      and_more_actions: "и ещё %{count} %{count, plural, one {действие} other {действия}}"
+      all_past_and_future: "Все прошлые и будущие %{resource_type}"
+      on_or_after: "%{resource_type} начиная с %{date}"
+      edit: "Редактировать"
+      reapply: "Применить снова"
+      delete: "Удалить"
