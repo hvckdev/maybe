@@ -2,6 +2,11 @@
 ru:
   layouts:
     application:
+      insights: Идеи
+      privacy_mode: Переключить режим конфиденциальности
+      resize_left_sidebar: Изменить ширину боковой панели счетов
+      resize_right_sidebar: Изменить ширину боковой панели ассистента
+      skip_to_main: Перейти к основному содержимому
       nav:
         assistant: Ассистент
         budgets: Бюджеты
@@ -25,6 +30,9 @@ ru:
       sign_in: Войти
       sign_up: Создать аккаунт
     shared:
+      footer:
+        privacy_policy: Политика конфиденциальности
+        terms_of_service: Условия использования
       confirm_dialog:
         are_you_sure: Вы уверены?
         cannot_be_undone: Это действие нельзя отменить.

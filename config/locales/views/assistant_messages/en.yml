@@ -1,0 +1,6 @@
+en:
+  messages:
+    tool_calls:
+      title: "Tool Calls"
+      function: "Function:"
+      arguments: "Arguments:"
