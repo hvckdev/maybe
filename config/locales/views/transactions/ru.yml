@@ -168,7 +168,37 @@ ru:
       description_placeholder: Опишите операцию
       details: Детали
       expense: Расход
-      income: Доход
+      income: Доходы
+      merchant_label: Продавец
+      none: "(нет)"
+      note_label: Заметки
+      note_placeholder: Введите заметку
+      submit: Добавить операцию
+      tag_search_placeholder: Найти или создать тег
+      tags_label: Теги
+      transfer: Перевод
+    transfer_match:
+      confirmed_title: "%{type} подтверждён"
+      payment: Платёж
+      transfer: Перевод
+      auto_matched: Авто-сопоставлено
+      confirm_match: Подтвердить совпадение
+      reject_match: Отклонить совпадение
+    new:
+      new_transaction: Новая операция
+    summary:
+      total_transactions: Всего операций
+      income: Доходы
+      expenses: Расходы
+    show:
+      account_label: Счёт
+      amount: Сумма
+      category_label: Категория
+      date_label: Дата
+      delete: Удалить
+      delete_subtitle: Это навсегда удалит операцию, повлияет на историю балансов и не может быть отменено.
+      delete_title: Удалить операцию
+      details: Детали
       merchant_label: Продавец
       none: "(нет)"
       note_label: Заметки
@@ -251,7 +281,7 @@ ru:
         badge:
           confirmed: Подтверждено
           expense: Расход
-          income: Доход
+          income: Доходы
           on_or_after: не ранее %{date}
           on_or_before: не позднее %{date}
           pending: В ожидании
@@ -270,7 +300,7 @@ ru:
           filter_tags: Фильтр по тегам
         type_filter:
           expense: Расход
-          income: Доход
+          income: Доходы
           transfer: Перевод
       form:
         filter: Фильтр

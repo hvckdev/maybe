@@ -15,14 +15,19 @@ ru:
     edit:
       edit: Редактировать категорию
     form:
-      auto_adjust: авто-настройка.
+      auto_adjust: автоматически исправить.
+      classification: Классификация
       trigger_label: Выбрать цвет и иконку
       color: Цвет
+      expense: Расход
       icon: Иконка
+      income: Доходы
+      name: Название
       name_label: Название
+      parent_category: Родительская категория (необязательно)
       parent_category_label: Родительская категория (необязательно)
-      placeholder: Название категории
-      poor_contrast: Плохой контраст, выберите более тёмный цвет или
+      placeholder: Введите название категории
+      poor_contrast: Слабый контраст, выберите более тёмный цвет или
       unassigned: "(не назначено)"
     index:
       bootstrap: Использовать категории по умолчанию (рекомендуется)

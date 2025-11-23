@@ -12,6 +12,7 @@ ru:
           asset: Активы
           liability: Обязательства
         name: Название
+        no_accounts: Нет %{classification}
         no_asset: Пока нет активов
         no_items: Пока нет %{name}
         no_liability: Пока нет обязательств
@@ -60,6 +61,9 @@ ru:
       subtitle: Вот что происходит с вашими финансами
       toggle_section: Показать/скрыть раздел
       welcome: С возвращением, %{name}
+      welcome_back: С возвращением, %{name}
+      overview: Вот что происходит с вашими финансами
+      new_account: Новое
       widget_size:
         auto: Авто
         compact: Компактный

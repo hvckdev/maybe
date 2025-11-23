@@ -16,7 +16,7 @@ ru:
       exchange_rate_display: 'Курс валют: %{rate}'
       expense: Расход
       from: Откуда
-      income: Доход
+      income: Доходы
       select_account: Выберите счёт
       source_amount: Сумма со счёта отправления
       submit: Создать перевод
