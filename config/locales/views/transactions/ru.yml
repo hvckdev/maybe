@@ -200,6 +200,9 @@ ru:
       title: Операции
       transaction: операция
       transactions: операции
+      transactions_plural: операции
+      category: категория
+      amount: сумма
     keep_both: Нет, оставить обе
     list:
       drag_drop_subtitle: Загрузите операции напрямую
@@ -381,9 +384,12 @@ ru:
       auto_matched: Автоматически сопоставлено
       auto_matched_short: А/С
       confirm_match: Подтвердить сопоставление
-      payment_confirmed: Платеж подтвержден
+      confirmed_title: "%{type} подтверждён"
+      payment: Платёж
+      payment_confirmed: Платёж подтверждён
       reject_match: Отклонить сопоставление
-      transfer_confirmed: Перевод подтвержден
+      transfer: Перевод
+      transfer_confirmed: Перевод подтверждён
     unknown_name: Неизвестная операция
     update:
       updated: Операция обновлена
