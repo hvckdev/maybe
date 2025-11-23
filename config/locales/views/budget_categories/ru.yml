@@ -1,0 +1,38 @@
+ru:
+  budget_categories:
+    allocation_progress:
+      over_100_set: "> 100% установлено"
+      set: "установлено"
+      budget_exceeded_by: "Бюджет превышен на"
+      left_to_allocate: "осталось распределить"
+    budget_category:
+      over: "превышено"
+      left: "осталось"
+      avg: "в среднем"
+      from: "из"
+    budget_category_form:
+      avg: "в среднем"
+      this_month: "в этом месяце"
+    confirm_button:
+      confirm: "Подтвердить"
+    no_categories:
+      oops: "Упс!"
+      no_categories: "Вы еще не создали и не назначили категории расходов для своих транзакций."
+      use_defaults: "Использовать стандартные (рекомендуется)"
+      new_category: "Создать категорию"
+    index:
+      title: "Редактируйте бюджет категорий"
+      subtitle: "Настройте бюджеты категорий, чтобы определить лимиты расходов. Неиспользованные средства будут автоматически отнесены к некатегоризированным."
+    show:
+      category: "Категория"
+      overview: "Обзор"
+      spending: "Расходы"
+      status: "Статус"
+      overspent: "превышено"
+      left: "осталось"
+      budgeted: "Запланировано"
+      monthly_avg: "Среднемесячные расходы"
+      monthly_median: "Медианные расходы"
+      recent_transactions: "Последние транзакции"
+      view_all_transactions: "Смотреть все транзакции категории"
+      no_transactions: "Транзакции за этот период не найдены"
