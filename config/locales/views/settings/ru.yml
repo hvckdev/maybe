@@ -80,7 +80,7 @@ ru:
       security_label: Безопасность
       self_hosting_label: Самостоятельный хостинг
       tags_label: Теги
-      transactions_section_title: Транзакции
+      transactions_section_title: Траты
     settings_nav_link_large:
       next: Далее
       previous: Назад

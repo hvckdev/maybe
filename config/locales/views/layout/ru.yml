@@ -1,0 +1,20 @@
+ru:
+  layouts:
+    auth:
+      existing_account: "Уже есть аккаунт?"
+      no_account: "Новый пользователь Maybe?"
+      sign_in: "Войти"
+      sign_up: "Создать аккаунт"
+      your_account: "Ваш аккаунт"
+    shared:
+      footer:
+        privacy_policy: "Политика конфиденциальности"
+        terms_of_service: "Условия использования"
+    application:
+      home: "Главная"
+      transactions: "Траты"
+      budgets: "Бюджеты"
+      assistant: "Ассистент"
+      free_trial: "Бесплатный пробный период"
+      days_remaining: "дней осталось"
+      upgrade: "Обновить"

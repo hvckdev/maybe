@@ -9,7 +9,7 @@ ru:
               must_be_from_different_accounts: Перевод должен выполняться между разными счетами
               must_be_from_same_family: Перевод должен выполняться внутри одного домохозяйства
               must_be_within_date_range: Даты транзакций перевода должны быть в пределах 4 дней друг от друга
-              must_have_opposite_amounts: Транзакции перевода должны иметь противоположные суммы
+              must_have_opposite_amounts: Траты перевода должны иметь противоположные суммы
               must_have_single_currency: Перевод должен быть в одной валюте
               outflow_cannot_be_in_multiple_transfers: Транзакция расхода не может быть частью нескольких переводов
   transfer:

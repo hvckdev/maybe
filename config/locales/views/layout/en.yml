@@ -11,3 +11,11 @@ en:
       footer:
         privacy_policy: Privacy Policy
         terms_of_service: Terms of Service
+    application:
+      home: "Home"
+      transactions: "Transactions"
+      budgets: "Budgets"
+      assistant: "Assistant"
+      free_trial: "Free trial"
+      days_remaining: "days remaining"
+      upgrade: "Upgrade"

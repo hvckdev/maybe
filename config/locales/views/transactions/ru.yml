@@ -56,7 +56,7 @@ ru:
       edit_tags: Редактировать теги
       import: Импорт
     index:
-      transactions: "Транзакции"
+      transactions: "Траты"
       new_rule: "Новое правило"
       edit_rules: "Редактировать правила"
       edit_categories: "Редактировать категории"
@@ -66,7 +66,7 @@ ru:
       import: "Импорт"
       new_transaction: "Новая транзакция"
       transaction: "транзакция"
-      transactions_plural: "транзакции"
+      transactions_plural: "траты"
       category: "категория"
       amount: "сумма"
     searches:
