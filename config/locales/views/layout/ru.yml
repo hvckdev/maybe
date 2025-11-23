@@ -2,7 +2,7 @@
 ru:
   layouts:
     application:
-      insights: Аналитика
+      insights: Идеи
       privacy_mode: Переключить режим конфиденциальности
       resize_left_sidebar: Изменить ширину боковой панели счетов
       resize_right_sidebar: Изменить ширину боковой панели ассистента
