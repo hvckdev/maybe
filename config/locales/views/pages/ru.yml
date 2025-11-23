@@ -4,28 +4,63 @@ ru:
     changelog:
       title: Что нового
     dashboard:
+      welcome: С возвращением, %{name}
+      subtitle: Вот что происходит с вашими финансами
+      new: Новое
+      sections_aria_label: Разделы панели
+      drag_to_reorder: Перетащите для изменения порядка
+      toggle_section: Показать/скрыть раздел
+      widget_size:
+        auto: Авто
+        compact: Компактный
+        full: Полный
+        half: Половина
+        height_label: Высота
+        label: Размер
+        tall: Высокий
+        width_label: Ширина
+      net_worth_chart:
+        data_not_available: Данные недоступны для выбранного периода
+        title: Собственный капитал
+      welcome_back: С возвращением, %{name}
+      overview: Вот что происходит с вашими финансами
+      new_account: Новый
       balance_sheet:
-        add_accounts: Добавьте счета %{name}, чтобы увидеть разбивку
-        add_asset_accounts: Добавьте счета активов
-        add_liability_accounts: Добавьте счета обязательств
+        title: Баланс
+        no_items: Пока нет %{name}
+        add_accounts: Добавьте счета категории «%{name}», чтобы увидеть полную разбивку
+        no_asset: Пока нет активов
+        no_liability: Пока нет обязательств
+        add_asset_accounts: Добавьте счета активов, чтобы увидеть полную разбивку
+        add_liability_accounts: Добавьте счета обязательств, чтобы увидеть полную разбивку
+        name: Название
+        weight: Доля
+        value: Сумма
         classifications:
           asset: Активы
           liability: Обязательства
-        name: Название
-        no_accounts: Нет %{classification}
-        no_asset: Пока нет активов
-        no_items: Пока нет %{name}
-        no_liability: Пока нет обязательств
-        title: Баланс
-        value: Сумма
-        weight: Доля
+      insights_feed:
+        title: Инсайты
       cashflow_sankey:
-        add_transaction: Добавить операцию
-        no_data_description: Добавьте операции или измените период
-        no_data_title: Нет данных за период
         title: Денежный поток
         zoom_out: Показать весь поток
-      drag_to_reorder: Перетащите для изменения порядка
+        no_data_title: Нет данных по денежному потоку за этот период
+        no_data_description: Добавьте операции, чтобы отобразить денежный поток, или расширьте период
+        add_transaction: Добавить операцию
+      no_account_empty_state:
+        new_account: Новый счёт
+        no_account_subtitle: Поскольку счета ещё не добавлены, отображать данные нечего. Добавьте первые счета, чтобы начать просмотр данных на панели.
+        no_account_title: Пока нет счетов
+      no_accounts:
+        add_account: Добавить счёт
+        description: Добавьте счета, чтобы увидеть данные о собственном капитале
+        title: Пока нет счетов
+      outflows_donut:
+        categories: Категории
+        title: Расходы
+        total_outflows: Всего расходов
+        value: Сумма
+        weight: Доля
       investment_summary:
         add_investment: Добавьте инвестиционный счёт для отслеживания портфеля
         contributions: Пополнения
@@ -39,40 +74,6 @@ ru:
         value: Сумма
         weight: Доля
         withdrawals: Выводы
-      net_worth_chart:
-        data_not_available: Нет данных за выбранный период
-        title: Свободные средства
-      new: Новое
-      no_account_empty_state:
-        new_account: Новый счёт
-        no_account_subtitle: Добавьте счета, чтобы увидеть данные на панели.
-        no_account_title: Пока нет счетов
-      no_accounts:
-        add_account: Добавить счёт
-        description: Добавьте счета, чтобы увидеть чистую стоимость
-        title: Пока нет счетов
-      outflows_donut:
-        categories: Категории
-        title: Расходы
-        total_outflows: Всего расходов
-        value: Сумма
-        weight: Доля
-      sections_aria_label: Разделы панели
-      subtitle: Вот что происходит с вашими финансами
-      toggle_section: Показать/скрыть раздел
-      welcome: С возвращением, %{name}
-      welcome_back: С возвращением, %{name}
-      overview: Вот что происходит с вашими финансами
-      new_account: Новое
-      widget_size:
-        auto: Авто
-        compact: Компактный
-        full: Полный
-        half: Половина
-        height_label: Высота
-        label: Размер
-        tall: Высокий
-        width_label: Ширина
     feedback:
       bug_report: Сообщить об ошибке
       description: Сообщите нам, если у вас есть замечания. Можно приложить ссылки
