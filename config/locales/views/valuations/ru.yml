@@ -14,8 +14,7 @@ ru:
       loan_balance: баланс по кредиту
       'on': на
       property_value: стоимость недвижимости
-      recalculate_notice: Все будущие операции и балансы будут пересчитаны на основе
-        этого %{change_or_update}.
+      recalculate_notice: Все будущие операции и балансы будут пересчитаны на основе этого %{change_or_update}.
       this_will: Это %{action_verb} стоимость счёта на
       to: до
       to_colon: 'до:'

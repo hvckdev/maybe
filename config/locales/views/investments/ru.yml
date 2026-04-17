@@ -114,8 +114,7 @@ ru:
         long: Регулярный депозит
         short: RD
       resp:
-        long: Зарегистрированный образовательный сберегательный план (Registered Education
-          Savings Plan)
+        long: Зарегистрированный образовательный сберегательный план (Registered Education Savings Plan)
         short: RESP
       retirement:
         long: Пенсионный счёт
@@ -130,12 +129,10 @@ ru:
         long: Roth IRA
         short: Roth IRA
       rrif:
-        long: Зарегистрированный пенсионный фонд доходов (Registered Retirement Income
-          Fund)
+        long: Зарегистрированный пенсионный фонд доходов (Registered Retirement Income Fund)
         short: RRIF
       rrsp:
-        long: Зарегистрированный пенсионный сберегательный план (Registered Retirement
-          Savings Plan)
+        long: Зарегистрированный пенсионный сберегательный план (Registered Retirement Savings Plan)
         short: RRSP
       scss:
         long: Схема сбережений для пожилых граждан (Senior Citizens' Savings Scheme)
@@ -189,5 +186,4 @@ ru:
       cash: Наличные
       holdings: Активы
       total: Баланс портфеля
-      total_value_tooltip: Общий баланс портфеля — это сумма наличных средств в брокерском
-        счёте (доступных для торговли) и текущей рыночной стоимости ваших активов.
+      total_value_tooltip: Общий баланс портфеля — это сумма наличных средств в брокерском счёте (доступных для торговли) и текущей рыночной стоимости ваших активов.

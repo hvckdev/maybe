@@ -1,5 +1,6 @@
+---
 ru:
-  assistant_messages:
+  messages:
     tool_calls:
       title: "Вызовы инструментов"
       function: "Функция:"

@@ -76,17 +76,14 @@ ru:
         withdrawals: Выводы
     feedback:
       bug_report: Сообщить об ошибке
-      description: Сообщите нам, если у вас есть замечания. Можно приложить ссылки
-        на видео или скриншоты.
+      description: Сообщите нам, если у вас есть замечания. Можно приложить ссылки на видео или скриншоты.
       discuss: Обсудите %{product} с другими
       feature_request: Предложить функцию
       heading: Оставьте отзыв
       title: Обратная связь
     intro:
       coming_soon: Скоро появится
-      description: Мы создаём более продуманный онбординг, чтобы узнать о ваших целях
-        и потребностях. Пока перейдите в чат с Sure и расскажите о своей финансовой
-        ситуации.
+      description: Мы создаём более продуманный онбординг, чтобы узнать о ваших целях и потребностях. Пока перейдите в чат с Sure и расскажите о своей финансовой ситуации.
       not_authorized: Раздел доступен только для гостей.
       start_chatting: Начать чат
       welcome: Добро пожаловать!
@@ -99,17 +96,13 @@ ru:
       page_title: Требуется настройка Redis — Sure
       refresh_hint: После настройки Redis обновите страницу.
       refresh_page: Обновить
-      setup_guide_hint: Следуйте руководству по настройке Docker для конфигурации
-        Redis
+      setup_guide_hint: Следуйте руководству по настройке Docker для конфигурации Redis
       subheading: Для self-hosted версии Sure необходимо настроить Redis.
       view_setup_guide: Открыть руководство
-      why_required_body: Sure использует Redis для фоновых задач Sidekiq — синхронизации
-        счетов, обработки импорта и других операций, поддерживающих актуальность данных.
+      why_required_body: Sure использует Redis для фоновых задач Sidekiq — синхронизации счетов, обработки импорта и других операций, поддерживающих актуальность данных.
       why_required_title: Зачем нужен Redis?
     release_notes_unavailable:
-      body_html: "<p>Не удалось получить последние заметки о выпуске. Пожалуйста,
-        попробуйте позже или посетите <a href='https://github.com/we-promise/sure/releases'
-        target='_blank' rel='noopener noreferrer'>страницу релизов на GitHub</a>.</p>"
+      body_html: "<p>Не удалось получить последние заметки о выпуске. Пожалуйста, попробуйте позже или посетите <a href='https://github.com/we-promise/sure/releases' target='_blank' rel='noopener noreferrer'>страницу релизов на GitHub</a>.</p>"
       name: Заметки о выпуске недоступны
     terms:
       heading: Условия использования

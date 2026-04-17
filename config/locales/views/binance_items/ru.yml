@@ -10,8 +10,7 @@ ru:
       calculating_balances: Расчёт балансов...
       checking_configuration: Проверка конфигурации подключения...
       checking_credentials: Проверка данных...
-      credentials_invalid: Недействительные API-данные. Пожалуйста, проверьте ваш
-        API-ключ и секрет.
+      credentials_invalid: Недействительные API-данные. Пожалуйста, проверьте ваш API-ключ и секрет.
       importing_accounts: Импортирование счетов из Binance...
       processing_accounts: Обработка данных счёта...
   binance_items:
@@ -26,8 +25,7 @@ ru:
       setup_action: Импортировать счёт
       setup_description: Выберите, какие портфели Binance вы хотите отслеживать.
       setup_needed: Счёт готов к импорту
-      stale_rate_warning: Баланс приблизительный — точный курс обмена на %{date} недоступен.
-        Обновится при следующей синхронизации.
+      stale_rate_warning: Баланс приблизительный — точный курс обмена на %{date} недоступен. Обновится при следующей синхронизации.
       status: Последняя синхронизация %{timestamp} назад
       status_never: Никогда не синхронизировалось
       status_with_summary: Последняя синхронизация %{timestamp} назад - %{summary}
@@ -38,8 +36,7 @@ ru:
           one: Синхронизирован %{count} счёт
           other: Синхронизированы %{count} счёта
         no_accounts: Счета не найдены
-        partial_sync: "%{linked_count} синхронизировано, %{unlinked_count} требуют
-          настройки"
+        partial_sync: "%{linked_count} синхронизировано, %{unlinked_count} требуют настройки"
       syncing: Синхронизация...
       update_credentials: Обновить данные
     complete_account_setup:
@@ -78,8 +75,7 @@ ru:
       creating: Импортирование...
       historical_import: Исторический импорт
       import_selected: Импортировать выбранные
-      instructions: Выберите портфели Binance, которые хотите импортировать. Показаны
-        только портфели с балансами.
+      instructions: Выберите портфели Binance, которые хотите импортировать. Показаны только портфели с балансами.
       no_accounts: Все счета импортированы.
       select_all: Выбрать все
       subtitle: Выберите портфели для отслеживания
