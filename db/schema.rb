@@ -2519,7 +2519,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_25_220151) do
   end
 
   create_table "sophtron_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-
     t.string "access_key", null: false
     t.string "base_url"
     t.datetime "created_at", null: false
