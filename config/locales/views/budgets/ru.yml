@@ -2,73 +2,73 @@
 ru:
   budgets:
     actuals_summary:
-      expenses: "Расходы"
-      income: "Доходы"
+      expenses: Расходы
+      income: Доходы
     budget_donut:
-      new_budget: "Новый бюджет"
-      of_budget: "из %{amount}"
-      spent: "Потрачено"
-      unused: "Неиспользовано"
+      new_budget: Новый бюджет
+      of_budget: из %{amount}
+      spent: Потрачено
+      unused: Неиспользовано
     budget_header:
-      today: "Сегодня"
+      today: Сегодня
     budget_nav:
-      categories: "Категории"
-      setup: "Настройка"
+      categories: Категории
+      setup: Настройка
     budgeted_summary:
-      budgeted: "Запланировано"
+      budgeted: Запланировано
       earned: "%{amount} заработано"
-      expected_income: "Ожидаемый доход"
+      expected_income: Ожидаемый доход
       left: "%{amount} осталось"
       over: "%{amount} превышено"
       spent: "%{amount} потрачено"
       planned: "%{amount} ожидается"
     copy_previous:
-      already_initialized: "Этот бюджет уже настроен"
-      no_source: "Не найден предыдущий бюджет для копирования"
-      success: "Бюджет скопирован из %{source_name}"
+      already_initialized: Этот бюджет уже настроен
+      no_source: Не найден предыдущий бюджет для копирования
+      success: Бюджет скопирован из %{source_name}
     copy_previous_prompt:
-      copy_button: "Копировать из %{source_name}"
-      description: "Вы можете скопировать бюджет из %{source_name} или начать с нуля."
-      fresh_button: "Начать с нуля"
-      title: "Настройте бюджет"
+      copy_button: Копировать из %{source_name}
+      description: Вы можете скопировать бюджет из %{source_name} или начать с нуля.
+      fresh_button: Начать с нуля
+      title: Настройте бюджет
     edit:
-      autosuggest_description: "Основано на истории операций. ИИ может ошибаться, проверьте перед продолжением."
-      autosuggest_title: "Автоматический расчет доходов и расходов"
-      budgeted_spending: "Планируемые расходы"
-      continue: "Продолжить"
-      expected_income: "Ожидаемый доход"
-      setup_description: "Введите ваши ежемесячные доходы и планируемые расходы для настройки бюджета."
-      setup_title: "Настройка бюджета"
+      autosuggest_description: Основано на истории операций. ИИ может ошибаться, проверьте перед продолжением.
+      autosuggest_title: Автоматический расчет доходов и расходов
+      budgeted_spending: Планируемые расходы
+      continue: Продолжить
+      expected_income: Ожидаемый доход
+      setup_description: Введите ваши ежемесячные доходы и планируемые расходы для настройки бюджета.
+      setup_title: Настройка бюджета
     name:
       custom_range: "%{start} — %{end_date}"
       month_year: "%{month}"
     over_allocation_warning:
-      fix_allocations: "Исправить распределение"
-      over_allocated_message: "Вы превысили бюджет. Пожалуйста, исправьте распределение."
+      fix_allocations: Исправить распределение
+      over_allocated_message: Вы превысили бюджет. Пожалуйста, исправьте распределение.
     show:
       planned_spending: "Ожидается: %{amount}"
       categories:
-        amount: "Сумма"
-        edit: "Редактировать"
-        title: "Категории"
+        amount: Сумма
+        edit: Редактировать
+        title: Категории
       filter:
-        all: "Все"
-        aria_label: "Фильтр категорий бюджета"
-        on_track: "В рамках бюджета"
-        over_budget: "Превышен бюджет"
+        all: Все
+        aria_label: Фильтр категорий бюджета
+        on_track: В рамках бюджета
+        over_budget: Превышен бюджет
       on_track_categories:
-        short_title: "В рамках бюджета"
-        title: "В рамках бюджета"
+        short_title: В рамках бюджета
+        title: В рамках бюджета
       over_budget_categories:
-        short_title: "Превышен бюджет"
-        title: "Превышен бюджет"
+        short_title: Превышен бюджет
+        title: Превышен бюджет
       tabs:
-        actual: "Фактическое"
-        budgeted: "Запланировано"
+        actual: Фактическое
+        budgeted: Запланировано
   budget_categories:
     allocation_progress:
-      budget_exceeded_html: 'Бюджет превышен на <span class="text-destructive privacy-sensitive">%{amount}</span>'
-      left_to_allocate: "осталось распределить"
+      budget_exceeded_html: Бюджет превышен на <span class="text-destructive privacy-sensitive">%{amount}</span>
+      left_to_allocate: осталось распределить
       over_set: "> 100% распределено"
       percent_set: "%{percent} распределено"
     budget_category_form:
@@ -77,25 +77,25 @@ ru:
       shared_placeholder: "Общий"
       shared_title: "Оставьте пустым, чтобы использовать бюджет родительской категории"
     confirm_button:
-      confirm: "Подтвердить"
+      confirm: Подтвердить
     index:
-      description: "Настройте бюджеты категорий для установки лимитов расходов. Нераспределенные средства будут автоматически назначены как некатегоризированные."
-      title: "Редактировать бюджеты категорий"
+      description: Настройте бюджеты категорий для установки лимитов расходов. Нераспределенные средства будут автоматически назначены как некатегоризированные.
+      title: Редактировать бюджеты категорий
     no_categories:
-      new_category: "Новая категория"
-      no_categories_message: "Вы еще не создали и не назначили категории расходов для ваших операций."
-      oops: "Упс!"
-      use_defaults: "Использовать стандартные (рекомендуется)"
+      new_category: Новая категория
+      no_categories_message: Вы еще не создали и не назначили категории расходов для ваших операций.
+      oops: Упс!
+      use_defaults: Использовать стандартные (рекомендуется)
     show:
-      budgeted: "Запланировано"
-      category: "Категория"
-      left: "осталось"
-      monthly_average_spending: "Среднемесячные расходы"
-      monthly_median_spending: "Медианные месячные расходы"
-      no_transactions: "Операции за этот бюджетный период не найдены."
-      overspent: "превышены"
-      overview: "Обзор"
-      recent_transactions: "Последние операции"
-      spending: "Расходы за %{date}"
-      status: "Статус"
-      view_all_transactions: "Все операции категории"
+      budgeted: Запланировано
+      category: Категория
+      left: осталось
+      monthly_average_spending: Среднемесячные расходы
+      monthly_median_spending: Медианные месячные расходы
+      no_transactions: Операции за этот бюджетный период не найдены.
+      overspent: превышены
+      overview: Обзор
+      recent_transactions: Последние операции
+      spending: Расходы за %{date}
+      status: Статус
+      view_all_transactions: Все операции категории
