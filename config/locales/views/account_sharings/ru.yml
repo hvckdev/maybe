@@ -3,8 +3,7 @@ ru:
   account_sharings:
     show:
       exclude_from_finances: Исключить из моих бюджетов и отчётов
-      finance_toggle_description: Учитывать этот счёт в вашей чистой стоимости, бюджетах
-        и отчётах
+      finance_toggle_description: Учитывать этот счёт в вашей чистой стоимости, бюджетах и отчётах
       include_in_finances: Включить в мои бюджеты и отчёты
       member: Участник
       no_members: Нет других участников в вашем %{moniker} для совместного использования

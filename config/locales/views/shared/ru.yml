@@ -2,8 +2,7 @@
 ru:
   concerns:
     self_hostable:
-      redis_configured: Redis теперь настроен правильно! Вы можете настроить своё
-        приложение Sure.
+      redis_configured: Redis теперь настроен правильно! Вы можете настроить своё приложение Sure.
   shared:
     dot_separator: "·"
     cancel: Отмена

@@ -21,19 +21,6 @@ ru:
       start: Начать
     logout:
       sign_out: Выйти
-    preferences:
-      color_theme: Цветовая тема
-      currency: Валюта
-      date_format: Формат даты
-      example: Пример счёта
-      locale: Язык
-      preview: Предварительный просмотр отображения данных на основе предпочтений.
-      submit: Завершить
-      subtitle: Давайте настроим ваши предпочтения.
-      theme_dark: Тёмная
-      theme_light: Светлая
-      theme_system: Системная
-      title: Настройте ваши предпочтения
     show:
       country: Страна
       first_name: Имя
@@ -50,6 +37,19 @@ ru:
       submit: Продолжить
       subtitle: Сначала давайте настроим ваш профиль.
       title: Давайте настроим ваш счёт
+    preferences:
+      color_theme: Цветовая тема
+      currency: Валюта
+      date_format: Формат даты
+      example: Пример счёта
+      locale: Язык
+      preview: Предварительный просмотр отображения данных на основе предпочтений.
+      submit: Завершить
+      subtitle: Давайте настроим ваши предпочтения.
+      theme_dark: Тёмная
+      theme_light: Светлая
+      theme_system: Системная
+      title: Настройте ваши предпочтения
     trial:
       continue_trial: Продолжить пробный период
       data_deletion: Данные будут удалены после этого

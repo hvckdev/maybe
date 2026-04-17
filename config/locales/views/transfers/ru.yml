@@ -22,6 +22,10 @@ ru:
       submit: Создать перевод
       to: Куда
       transfer: Перевод
+      calculate_rate_tab: Рассчитать обменный курс
+      convert_tab: Конвертировать по обменному курсу
+      exchange_rate: Обменный курс
+      exchange_rate_help: Выберите способ ввода суммы перевода.
     new:
       title: Новый перевод
     show:

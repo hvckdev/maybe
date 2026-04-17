@@ -40,10 +40,8 @@ ru:
       link_failed: Не удалось связать счета
       no_accounts_selected: Пожалуйста, выберите хотя бы один счёт
       no_api_key: Не настроен API-ключ
-      partial_invalid: Успешно связаны %{created_count} счёт(а), %{already_linked_count}
-        уже были связаны, %{invalid_count} счёт(а) имели недопустимые имена
-      partial_success: 'Успешно связаны %{created_count} счёт(а). %{already_linked_count}
-        счёт(а) уже были связаны: %{already_linked_names}'
+      partial_invalid: Успешно связаны %{created_count} счёт(а), %{already_linked_count} уже были связаны, %{invalid_count} счёт(а) имели недопустимые имена
+      partial_success: 'Успешно связаны %{created_count} счёт(а). %{already_linked_count} счёт(а) уже были связаны: %{already_linked_names}'
       success:
         few: Успешно связаны %{count} счёта
         many: Успешно связано %{count} счетов
@@ -69,8 +67,7 @@ ru:
       no_accounts_description: Это подключение пока не имеет связанных счетов.
       no_accounts_title: Нет счетов
       setup_action: Настроить новые счета
-      setup_description: "%{linked} из %{total} счетов связаны. Выберите типы счетов
-        для ваших новых импортированных счетов Lunch Flow."
+      setup_description: "%{linked} из %{total} счетов связаны. Выберите типы счетов для ваших новых импортированных счетов Lunch Flow."
       setup_needed: Новые счета готовы к настройке
       status: Синхронизировано %{timestamp} назад
       status_never: Никогда не синхронизировалось
@@ -82,15 +79,12 @@ ru:
       accounts_selected: счетов выбрано
       api_error: 'Ошибка API: %{message}'
       cancel: Отмена
-      configure_name_in_lunchflow: Невозможно импортировать - пожалуйста, настройте
-        имя счёта в Lunch Flow
+      configure_name_in_lunchflow: Невозможно импортировать - пожалуйста, настройте имя счёта в Lunch Flow
       description: Выберите счета, которые вы хотите связать с вашим счётом %{product_name}.
       link_accounts: Связать выбранные счета
-      no_accounts_found: Счета не найдены. Пожалуйста, проверьте конфигурацию вашего
-        API-ключа.
+      no_accounts_found: Счета не найдены. Пожалуйста, проверьте конфигурацию вашего API-ключа.
       no_api_key: API-ключ Lunch Flow не настроен. Пожалуйста, настройте его в Настройках.
-      no_credentials_configured: Сначала настройте API-ключ Lunch Flow в настройках
-        провайдеров.
+      no_credentials_configured: Сначала настройте API-ключ Lunch Flow в настройках провайдеров.
       no_name_placeholder: "(Без имени)"
       title: Выберите счета Lunch Flow
     select_existing_account:
@@ -98,17 +92,13 @@ ru:
       all_accounts_already_linked: Все счета Lunch Flow уже связаны
       api_error: 'Ошибка API: %{message}'
       cancel: Отмена
-      configure_name_in_lunchflow: Невозможно импортировать - пожалуйста, настройте
-        имя счёта в Lunchflow
-      description: Выберите счёт Lunch Flow для связи с этим счётом. Операции будут
-        синхронизированы и дубли удалены автоматически.
+      configure_name_in_lunchflow: Невозможно импортировать - пожалуйста, настройте имя счёта в Lunchflow
+      description: Выберите счёт Lunch Flow для связи с этим счётом. Операции будут синхронизированы и дубли удалены автоматически.
       link_account: Связать счёт
       no_account_specified: Счёт не указан
-      no_accounts_found: Счета Lunch Flow не найдены. Пожалуйста, проверьте конфигурацию
-        вашего API-ключа.
+      no_accounts_found: Счета Lunch Flow не найдены. Пожалуйста, проверьте конфигурацию вашего API-ключа.
       no_api_key: API-ключ Lunch Flow не настроен. Пожалуйста, настройте его в Настройках.
-      no_credentials_configured: Сначала настройте API-ключ Lunch Flow в настройках
-        провайдеров.
+      no_credentials_configured: Сначала настройте API-ключ Lunch Flow в настройках провайдеров.
       no_name_placeholder: "(Без имени)"
       title: Связать %{account_name} с Lunch Flow
     setup_accounts:
@@ -124,15 +114,13 @@ ru:
       api_error: 'Ошибка API: %{message}'
       balance: Баланс
       cancel: Отмена
-      choose_account_type: 'Выберите правильный тип счёта для каждого счёта Lunch
-        Flow:'
+      choose_account_type: 'Выберите правильный тип счёта для каждого счёта Lunch Flow:'
       create_accounts: Создать счета
       creating_accounts: Создание счетов...
       fetch_failed: Не удалось получить счета
       historical_data_range: 'Диапазон исторических данных:'
       no_accounts_to_setup: Нет счетов для настройки
-      no_api_key: API-ключ Lunch Flow не настроен. Пожалуйста, проверьте настройки
-        подключения.
+      no_api_key: API-ключ Lunch Flow не настроен. Пожалуйста, проверьте настройки подключения.
       subtitle: Выберите правильные типы счетов для ваших импортированных счетов
       subtype_labels:
         credit_card: ''
@@ -169,13 +157,11 @@ ru:
           mortgage: Ипотека
           other: Другой кредит
           student: Студенческий кредит
-      sync_start_date_help: Выберите, насколько далеко назад вы хотите синхронизировать
-        историю операций. Максимум доступно 3 года истории.
+      sync_start_date_help: Выберите, насколько далеко назад вы хотите синхронизировать историю операций. Максимум доступно 3 года истории.
       sync_start_date_label: 'Начать синхронизацию операций с:'
       title: Настройте ваши счета Lunch Flow
     setup_required:
-      api_key_description: Прежде чем вы сможете связать счета Lunch Flow, вам нужно
-        настроить ваш API-ключ Lunch Flow.
+      api_key_description: Прежде чем вы сможете связать счета Lunch Flow, вам нужно настроить ваш API-ключ Lunch Flow.
       api_key_not_configured: API-ключ не настроен
       go_to_provider_settings: Перейти к настройкам провайдера
       setup_step_1_html: Перейдите в <strong>Настройки → Провайдеры</strong>

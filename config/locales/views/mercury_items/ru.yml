@@ -6,8 +6,7 @@ ru:
       common_issues: 'Возможные проблемы:'
       expired_credentials_desc: Создайте новый API токен в Mercury
       expired_credentials_label: Истекшие учетные данные
-      insufficient_permissions_desc: Убедитесь, что ваш токен имеет доступ только
-        для чтения
+      insufficient_permissions_desc: Убедитесь, что ваш токен имеет доступ только для чтения
       insufficient_permissions_label: Недостаточно прав
       invalid_api_token_desc: Проверьте ваш API токен в настройках провайдера
       invalid_api_token_label: Неверный API токен
@@ -42,12 +41,9 @@ ru:
         other: Невозможно связать %{count} счёта с пустыми именами
       link_failed: Не удалось связать счета
       no_accounts_selected: Пожалуйста, выберите хотя бы один счёт
-      no_api_token: API токен Mercury не найден. Пожалуйста, настройте его в настройках
-        провайдера.
-      partial_invalid: Успешно связано %{created_count} счёт(ов), %{already_linked_count}
-        уже были связаны, %{invalid_count} счёт(ов) имели недопустимые имена
-      partial_success: 'Успешно связано %{created_count} счёт(ов). %{already_linked_count}
-        счёт(ов) уже были связаны: %{already_linked_names}'
+      no_api_token: API токен Mercury не найден. Пожалуйста, настройте его в настройках провайдера.
+      partial_invalid: Успешно связано %{created_count} счёт(ов), %{already_linked_count} уже были связаны, %{invalid_count} счёт(ов) имели недопустимые имена
+      partial_success: 'Успешно связано %{created_count} счёт(ов). %{already_linked_count} счёт(ов) уже были связаны: %{already_linked_names}'
       select_connection: Выберите подключение к Mercury перед связыванием счетов.
       success:
         few: Успешно связаны %{count} счёта
@@ -61,8 +57,7 @@ ru:
       mercury_account_already_linked: Этот счёт Mercury уже связан с другим счётом
       mercury_account_not_found: Счёт Mercury не найден
       missing_parameters: Отсутствуют необходимые параметры
-      no_api_token: API токен Mercury не найден. Пожалуйста, настройте его в настройках
-        провайдера.
+      no_api_token: API токен Mercury не найден. Пожалуйста, настройте его в настройках провайдера.
       select_connection: Выберите подключение к Mercury перед связыванием счетов.
       success: Успешно связан %{account_name} с Mercury
     loading:
@@ -76,8 +71,7 @@ ru:
       no_accounts_description: Это подключение пока не имеет связанных счетов.
       no_accounts_title: Нет счетов
       setup_action: Настроить новые счета
-      setup_description: "%{linked} из %{total} счетов связаны. Выберите типы счетов
-        для ваших новых импортированных счетов Mercury."
+      setup_description: "%{linked} из %{total} счетов связаны. Выберите типы счетов для ваших новых импортированных счетов Mercury."
       setup_needed: Новые счета готовы к настройке
       status: Синхронизировано %{timestamp} назад
       status_never: Никогда не синхронизировалось
@@ -101,19 +95,13 @@ ru:
       default_connection_name: Подключение Mercury
       disconnect_confirm: Отключить %{name}?
       instructions:
-        copy_token_html: Скопируйте <strong>полный токен</strong> (включая префикс
-          <code>secret-token:</code>) и добавьте его как именованное подключение ниже
+        copy_token_html: Скопируйте <strong>полный токен</strong> (включая префикс <code>secret-token:</code>) и добавьте его как именованное подключение ниже
         create_token: Создайте новый API токен с доступом "Только для чтения"
         open_tokens: Перейдите в Настройки > Разработчик > API токены
         sign_in_html: Посетите %{link} и войдите в аккаунт, который хотите подключить
-        whitelist_ip_html: "<strong>Важно:</strong> Добавьте IP-адрес вашего сервера
-          в белый список токена"
+        whitelist_ip_html: "<strong>Важно:</strong> Добавьте IP-адрес вашего сервера в белый список токена"
       keep_token_placeholder: Оставьте пустым, чтобы сохранить текущий токен
-      sandbox_note_html: Используйте отдельное именованное подключение для каждого
-        входа в Mercury/API токена, который вы хотите синхронизировать. Для тестирования
-        в песочнице используйте <code>https://api-sandbox.mercury.com/api/v1</code>
-        в качестве базового URL. Mercury требует добавления IP в белый список - убедитесь,
-        что ваш IP добавлен в панели управления Mercury.
+      sandbox_note_html: Используйте отдельное именованное подключение для каждого входа в Mercury/API токена, который вы хотите синхронизировать. Для тестирования в песочнице используйте <code>https://api-sandbox.mercury.com/api/v1</code> в качестве базового URL. Mercury требует добавления IP в белый список - убедитесь, что ваш IP добавлен в панели управления Mercury.
       setup_accounts: Настроить счета
       setup_title: 'Инструкции по настройке:'
       sync: Синхронизировать
@@ -121,22 +109,18 @@ ru:
       token_placeholder: Вставьте токен здесь
       update_connection: Обновить подключение
     render_mercury_item_selection_failure:
-      no_credentials_configured: Пожалуйста, сначала настройте ваш API токен Mercury
-        в настройках провайдера.
+      no_credentials_configured: Пожалуйста, сначала настройте ваш API токен Mercury в настройках провайдера.
       select_connection: Выберите подключение к Mercury в настройках провайдера.
     select_accounts:
       accounts_selected: счета выбраны
       api_error: 'Ошибка API: %{message}'
       cancel: Отмена
-      configure_name_in_mercury: Невозможно импортировать - пожалуйста, настройте
-        имя счёта в Mercury
+      configure_name_in_mercury: Невозможно импортировать - пожалуйста, настройте имя счёта в Mercury
       description: Выберите счета, которые вы хотите связать с вашим счётом %{product_name}.
       link_accounts: Связать выбранные счета
-      no_accounts_found: Счета не найдены. Пожалуйста, проверьте конфигурацию вашего
-        API токена.
+      no_accounts_found: Счета не найдены. Пожалуйста, проверьте конфигурацию вашего API токена.
       no_api_token: API токен Mercury не настроен. Пожалуйста, настройте его в Настройках.
-      no_credentials_configured: Пожалуйста, сначала настройте ваш API токен Mercury
-        в настройках провайдера.
+      no_credentials_configured: Пожалуйста, сначала настройте ваш API токен Mercury в настройках провайдера.
       no_name_placeholder: "(Без имени)"
       select_connection: Выберите подключение к Mercury в настройках провайдера.
       title: Выберите счета Mercury
@@ -145,17 +129,13 @@ ru:
       all_accounts_already_linked: Все счета Mercury уже связаны
       api_error: 'Ошибка API: %{message}'
       cancel: Отмена
-      configure_name_in_mercury: Невозможно импортировать - пожалуйста, настройте
-        имя счёта в Mercury
-      description: Выберите счёт Mercury для связывания с этим счётом. Операции будут
-        синхронизированы и дубли удалены автоматически.
+      configure_name_in_mercury: Невозможно импортировать - пожалуйста, настройте имя счёта в Mercury
+      description: Выберите счёт Mercury для связывания с этим счётом. Операции будут синхронизированы и дубли удалены автоматически.
       link_account: Связать счёт
       no_account_specified: Счёт не указан
-      no_accounts_found: Счета Mercury не найдены. Пожалуйста, проверьте конфигурацию
-        вашего API токена.
+      no_accounts_found: Счета Mercury не найдены. Пожалуйста, проверьте конфигурацию вашего API токена.
       no_api_token: API токен Mercury не настроен. Пожалуйста, настройте его в Настройках.
-      no_credentials_configured: Пожалуйста, сначала настройте ваш API токен Mercury
-        в настройках провайдера.
+      no_credentials_configured: Пожалуйста, сначала настройте ваш API токен Mercury в настройках провайдера.
       no_name_placeholder: "(Без имени)"
       select_connection: Выберите подключение к Mercury в настройках провайдера.
       title: Связать %{account_name} с Mercury
@@ -178,8 +158,7 @@ ru:
       fetch_failed: Не удалось получить счета
       historical_data_range: 'Диапазон исторических данных:'
       no_accounts_to_setup: Нет счетов для настройки
-      no_api_token: API токен Mercury не настроен. Пожалуйста, проверьте настройки
-        подключения.
+      no_api_token: API токен Mercury не настроен. Пожалуйста, проверьте настройки подключения.
       subtitle: Выберите правильные типы счетов для ваших импортированных счетов
       subtype_labels:
         credit_card: ''
@@ -188,8 +167,7 @@ ru:
         loan: 'Тип кредита:'
         other_asset: ''
       subtype_messages:
-        credit_card: Кредитные карты будут автоматически настроены как счета кредитных
-          карт.
+        credit_card: Кредитные карты будут автоматически настроены как счета кредитных карт.
         other_asset: Дополнительные параметры для других активов не требуются.
       subtypes:
         depository:
@@ -217,13 +195,11 @@ ru:
           mortgage: Ипотека
           other: Другой кредит
           student: Студенческий кредит
-      sync_start_date_help: Выберите, насколько далеко назад вы хотите синхронизировать
-        историю операций. Максимум доступно 3 года истории.
+      sync_start_date_help: Выберите, насколько далеко назад вы хотите синхронизировать историю операций. Максимум доступно 3 года истории.
       sync_start_date_label: 'Начать синхронизацию операций с:'
       title: Настройте ваши счета Mercury
     setup_required:
-      api_token_description: Прежде чем связать счета Mercury, вам нужно настроить
-        ваш API токен Mercury.
+      api_token_description: Прежде чем связать счета Mercury, вам нужно настроить ваш API токен Mercury.
       api_token_not_configured: API токен не настроен
       go_to_provider_settings: Перейти в настройки провайдера
       setup_step_1_html: Перейдите в <strong>Настройки > Провайдеры</strong>
