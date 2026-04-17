@@ -62,7 +62,7 @@ ru:
         categorized:
           few: "%{count} операции категоризированы"
           many: "%{count} операций категоризировано"
-          one: '%{count} операция категоризирована'
+          one: "%{count} операция категоризирована"
           other: "%{count} операции категоризированы"
         rule_creation_failed: Операции категоризированы, но правило не удалось создать
           (возможно, оно уже существует).
@@ -92,7 +92,7 @@ ru:
         transaction_count:
           few: "%{count} операции"
           many: "%{count} операций"
-          one: '%{count} операция'
+          one: "%{count} операция"
           other: "%{count} операции"
         transactions_hint: Снимите галочку, чтобы исключить операцию, или назначьте
           ей другую категорию прямо в её строке.
@@ -178,41 +178,91 @@ ru:
       tags_label: Теги
       transfer: Перевод
     transfer_match:
+      auto_matched: Автоматически сопоставлено
+      auto_matched_short: А/С
+      confirm_match: Подтвердить сопоставление
       confirmed_title: "%{type} подтверждён"
       payment: Платёж
+      payment_confirmed: Платёж подтверждён
+      reject_match: Отклонить сопоставление
       transfer: Перевод
-      auto_matched: Авто-сопоставлено
-      confirm_match: Подтвердить совпадение
-      reject_match: Отклонить совпадение
+      transfer_confirmed: Перевод подтверждён
     new:
       new_transaction: Новая операция
     summary:
-      total_transactions: Всего операций
-      income: Доходы
       expenses: Расходы
+      income: Доход
+      inflow: Поступления
+      outflow: Отток
+      total_transactions: Всего операций
     show:
       account_label: Счёт
+      activity_type: Тип активности
+      activity_type_description: Тип инвестиционной активности (Покупка, Продажа,
+        Дивиденды и т.д.). Автоматически определяется или устанавливается вручную.
+      additional_details: Дополнительные детали
       amount: Сумма
+      attachments: Вложения
       category_label: Категория
+      convert: Преобразовать
+      convert_to_trade_button: Преобразовать в сделку
+      convert_to_trade_description: Преобразуйте эту операцию в покупку или продажу
+        ценной бумаги для отслеживания портфеля.
+      convert_to_trade_title: Преобразовать в сделку с ценными бумагами
       date_label: Дата
       delete: Удалить
-      delete_subtitle: Это навсегда удалит операцию, повлияет на историю балансов и не может быть отменено.
+      delete_subtitle: Это навсегда удалит операцию, повлияет на ваши исторические
+        балансы и не может быть отменено.
       delete_title: Удалить операцию
+      description: Описание
       details: Детали
+      exclude: Исключить
+      exclude_description: Исключённые операции не будут учитываться в расчётах бюджета
+        и отчётах.
+      keep_both: Нет, оставить обе
+      loan_payment: Платеж по кредиту
+      mark_recurring: Отметить как регулярную
+      mark_recurring_subtitle: Отслеживайте это как регулярную операцию. Разница в
+        сумме автоматически рассчитывается на основе последних 6 месяцев аналогичных
+        операций.
+      mark_recurring_title: Регулярная операция
+      memo: Заметка
       merchant_label: Продавец
+      merge_duplicate: Да, объединить их
+      name_label: Название
+      nature: Тип
       none: "(нет)"
       note_label: Заметки
       note_placeholder: Введите заметку
-      submit: Добавить операцию
-      tag_search_placeholder: Найти или создать тег
+      one_time_description: Одноразовые операции будут исключены из некоторых расчетов
+        бюджета и отчетов, чтобы помочь вам увидеть, что действительно важно.
+      one_time_title: Одноразовая %{type}
+      open_matcher: Открыть сопоставитель
+      overview: Обзор
+      payee: Получатель
+      pending_duplicate_merger_button: Открыть объединение
+      pending_duplicate_merger_description: Вручную объедините эту ожидающую операцию
+        с ее проведенной версией.
+      pending_duplicate_merger_title: Дубликат проведенной операции?
+      potential_duplicate_description: Эта ожидающая операция может быть такой же,
+        как и проведенная ниже. Если это так, объедините их, чтобы избежать двойного
+        учета.
+      potential_duplicate_title: Обнаружен возможный дубликат
+      provider_extras: Дополнения провайдера
+      settings: Настройки
+      tab_transactions: Операции
+      tab_upcoming: Предстоящие
       tags_label: Теги
       transfer: Перевод
-      category_search_placeholder: Поиск категорий
-      create_category: Создать «%{name}»
-      create_category_error: Не удалось создать категорию
-      create_merchant: Создать
-      create_merchant_error: Не удалось создать продавца
-      merchant_search_placeholder: Найдите или создайте продавца
+      transfer_matcher_description: Свяжите эту операцию с ее аналогом на другом счете.
+      transfer_or_debt_payment: Перевод или платеж по долгу?
+      uncategorized: "(без категории)"
+      create_bill: Создать регулярный платёж
+      applied_to_title: Платежи, оплаченные этой операцией
+      applied_to_detail: "%{amount} в счёт платежа со сроком %{date}"
+      applied_to_unreviewed: Требует проверки
+      submit: Добавить операцию
+      tag_search_placeholder: Найти или создать тег
     header:
       edit_categories: Редактировать категории
       edit_imports: Редактировать импорты
@@ -246,13 +296,12 @@ ru:
       transaction: операция
       transactions: операции
     mark_recurring: Отметить как регулярную
-    mark_recurring_subtitle: Отслеживайте это как регулярную операцию. Разница в сумме автоматически рассчитывается на основе последних 6 месяцев аналогичных операций.
+    mark_recurring_subtitle: Отслеживайте это как регулярную операцию. Разница в сумме
+      автоматически рассчитывается на основе последних 6 месяцев аналогичных операций.
     mark_recurring_title: Регулярная операция
     merge_duplicate:
       failure: Не удалось объединить операции
       success: Операции успешно объединены
-    new:
-      new_transaction: Новая операция
     pending_duplicate_merge:
       confirm_title: Объединить с проведенной операцией (%{posted_amount})
       possible_duplicate: Дубликат?
@@ -330,77 +379,8 @@ ru:
       duplicate: Дублировать
       edit: Редактировать
       selected: выбрано
-    show:
-      account_label: Счёт
-      activity_type: Тип активности
-      activity_type_description: Тип инвестиционной активности (Покупка, Продажа,
-        Дивиденды и т.д.). Автоматически определяется или устанавливается вручную.
-      additional_details: Дополнительные детали
-      amount: Сумма
-      attachments: Вложения
-      category_label: Категория
-      convert: Преобразовать
-      convert_to_trade_button: Преобразовать в сделку
-      convert_to_trade_description: Преобразуйте эту операцию в покупку или продажу ценной бумаги для отслеживания портфеля.
-      convert_to_trade_title: Преобразовать в сделку с ценными бумагами
-      date_label: Дата
-      delete: Удалить
-      delete_subtitle: Это навсегда удалит операцию, повлияет на ваши исторические
-        балансы и не может быть отменено.
-      delete_title: Удалить операцию
-      description: Описание
-      details: Детали
-      exclude: Исключить
-      exclude_description: Исключённые операции не будут учитываться в расчётах бюджета
-        и отчётах.
-      keep_both: Нет, оставить обе
-      loan_payment: Платеж по кредиту
-      mark_recurring: Отметить как регулярную
-      mark_recurring_subtitle: Отслеживайте это как регулярную операцию. Разница в сумме автоматически рассчитывается на основе последних 6 месяцев аналогичных операций.
-      mark_recurring_title: Регулярная операция
-      memo: Заметка
-      merchant_label: Продавец
-      merge_duplicate: Да, объединить их
-      name_label: Название
-      nature: Тип
-      none: "(нет)"
-      note_label: Заметки
-      note_placeholder: Введите заметку
-      one_time_description: Одноразовые операции будут исключены из некоторых расчетов
-        бюджета и отчетов, чтобы помочь вам увидеть, что действительно важно.
-      one_time_title: Одноразовая %{type}
-      open_matcher: Открыть сопоставитель
-      overview: Обзор
-      payee: Получатель
-      pending_duplicate_merger_button: Открыть объединение
-      pending_duplicate_merger_description: Вручную объедините эту ожидающую операцию
-        с ее проведенной версией.
-      pending_duplicate_merger_title: Дубликат проведенной операции?
-      potential_duplicate_description: Эта ожидающая операция может быть такой же,
-        как и проведенная ниже. Если это так, объедините их, чтобы избежать двойного
-        учета.
-      potential_duplicate_title: Обнаружен возможный дубликат
-      provider_extras: Дополнения провайдера
-      settings: Настройки
-      tab_transactions: Операции
-      tab_upcoming: Предстоящие
-      tags_label: Теги
-      transfer: Перевод
-      transfer_matcher_description: Свяжите эту операцию с ее аналогом на другом счете.
-      transfer_or_debt_payment: Перевод или платеж по долгу?
-      uncategorized: "(без категории)"
-      create_bill: Создать регулярный платёж
-      applied_to_title: Платежи, оплаченные этой операцией
-      applied_to_detail: '%{amount} в счёт платежа со сроком %{date}'
-      applied_to_unreviewed: Требует проверки
     split_parent_row:
       split_label: Разделена
-    summary:
-      expenses: Расходы
-      income: Доход
-      inflow: Поступления
-      outflow: Отток
-      total_transactions: Всего операций
     toggle_recurring_section: Переключить предстоящие регулярные операции
     transaction:
       activity_type_tooltip: Тип инвестиционной активности
@@ -415,16 +395,6 @@ ru:
       split: Разделена
       split_child_tooltip: Часть разделенной операции
       split_tooltip: Эта операция была разделена на несколько записей
-    transfer_match:
-      auto_matched: Автоматически сопоставлено
-      auto_matched_short: А/С
-      confirm_match: Подтвердить сопоставление
-      confirmed_title: "%{type} подтверждён"
-      payment: Платёж
-      payment_confirmed: Платёж подтверждён
-      reject_match: Отклонить сопоставление
-      transfer: Перевод
-      transfer_confirmed: Перевод подтверждён
     unknown_name: Неизвестная операция
     update:
       updated: Операция обновлена

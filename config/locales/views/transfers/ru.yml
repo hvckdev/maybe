@@ -5,14 +5,15 @@ ru:
       success: Перевод создан
       exchange_rate_unavailable: Курс для выбранных валют и даты недоступен
       date_invalid: указана неверно
-      stale_form: Эта форма уже была отправлена с другими данными. Обновите страницу и повторите попытку.
+      stale_form: Эта форма уже была отправлена с другими данными. Обновите страницу
+        и повторите попытку.
     destroy:
       success: Перевод удалён
     form:
       amount: Сумма
       bank_charges: Банковские комиссии
-      outgoing_fee: Комиссия исходящего перевода
-      incoming_fee: Комиссия входящего перевода
+      outgoing_fee: Комиссия за исходящий перевод
+      incoming_fee: Комиссия за входящий перевод
       date: Дата
       destination_amount: Сумма на счёте назначения
       destination_amount_display: 'Сумма на счёте назначения: %{amount}'
@@ -25,18 +26,21 @@ ru:
       submit: Создать перевод
       to: Куда
       transfer: Перевод
-      bank_charges: Банковские комиссии
-      outgoing_fee: Комиссия за исходящий перевод
-      incoming_fee: Комиссия за входящий перевод
+      calculate_rate_tab: Рассчитать обменный курс
+      convert_tab: Конвертировать по обменному курсу
+      exchange_rate: Обменный курс
+      exchange_rate_help: Выберите способ ввода суммы перевода.
     new:
       title: Новый перевод
     show:
       delete: Удалить перевод
-      delete_subtitle: Это удалит перевод. Связанные операции при этом удалены не будут.
+      delete_subtitle: Это удалит перевод. Связанные операции при этом удалены не
+        будут.
       delete_title: Удалить перевод?
       details: Подробности
       mark_recurring: Отметить как регулярный
-      mark_recurring_subtitle: Отслеживайте этот перевод как регулярный в ленте предстоящих и на странице регулярных операций.
+      mark_recurring_subtitle: Отслеживайте этот перевод как регулярный в ленте предстоящих
+        и на странице регулярных операций.
       mark_recurring_title: Отметить перевод как регулярный
       note_label: Заметки
       note_placeholder: Добавьте заметку к этому переводу
@@ -48,14 +52,9 @@ ru:
       transfer_amount: Сумма перевода
       total: Итого
       bank_charges: Банковские комиссии
-      source_fee: Комиссия источника
-      destination_fee: Комиссия назначения
-      category: Категория
-      uncategorized: Без категории
-      transfer_amount: Сумма перевода
-      total: Итого
-      bank_charges: Банковские комиссии
       source_fee: Комиссия на стороне отправителя
       destination_fee: Комиссия на стороне получателя
+      category: Категория
+      uncategorized: Без категории
     update:
       success: Перевод обновлён

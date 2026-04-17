@@ -15,5 +15,4 @@ ru:
           attributes:
             raw_file_str:
               invalid_csv_format: не является допустимым форматом CSV
-          duplicate_headers: 'Заголовки CSV нормализуются до дублирующихся столбцов:
-            %{columns}'
+          duplicate_headers: 'Заголовки CSV нормализуются до дублирующихся столбцов: %{columns}'
