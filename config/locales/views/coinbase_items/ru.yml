@@ -10,8 +10,7 @@ ru:
       calculating_balances: Расчёт балансов...
       checking_configuration: Проверка конфигурации счетов...
       checking_credentials: Проверка данных...
-      credentials_invalid: Недействительные API-данные. Пожалуйста, проверьте ваш
-        API-ключ и секрет.
+      credentials_invalid: Недействительные API-данные. Пожалуйста, проверьте ваш API-ключ и секрет.
       importing_accounts: Импорт счетов из Coinbase...
       processing_accounts: Обработка данных счетов...
   coinbase_items:
@@ -41,8 +40,7 @@ ru:
           one: Синхронизирован %{count} счёт
           other: Синхронизированы %{count} счёта
         no_accounts: Счета не найдены
-        partial_sync: "%{linked_count} синхронизировано, %{unlinked_count} требуют
-          настройки"
+        partial_sync: "%{linked_count} синхронизировано, %{unlinked_count} требуют настройки"
       syncing: Синхронизация...
       update_credentials: Обновить данные
     complete_account_setup:
@@ -81,8 +79,7 @@ ru:
       cancel: Отмена
       creating: Импорт...
       import_selected: Импортировать выбранные
-      instructions: Выберите кошельки, которые хотите импортировать. Невыбранные кошельки
-        останутся доступными для добавления позже.
+      instructions: Выберите кошельки, которые хотите импортировать. Невыбранные кошельки останутся доступными для добавления позже.
       no_accounts: Все кошельки импортированы.
       select_all: Выбрать все
       subtitle: Выберите кошельки для отслеживания
