@@ -6,8 +6,7 @@ ru:
     destroy:
       success: Счета запланированы на удаление.
     errors:
-      link_token_generic: Не удалось открыть Plaid. Пожалуйста, попробуйте ещё раз.
-        Если проблема сохраняется, проверьте логи сервера.
+      link_token_generic: Не удалось открыть Plaid. Пожалуйста, попробуйте ещё раз. Если проблема сохраняется, проверьте логи сервера.
       link_token_with_message: 'Не удалось открыть подключение Plaid: %{message}'
     link_existing_account:
       already_linked: Этот счёт Plaid уже привязан
@@ -38,6 +37,5 @@ ru:
       cancel: Отмена
       description: Выберите счёт Plaid для привязки к вашему существующему счёту
       link_account: Привязать счёт
-      no_available_accounts: Нет доступных счетов Plaid для привязки. Пожалуйста,
-        сначала подключите новый счёт Plaid.
+      no_available_accounts: Нет доступных счетов Plaid для привязки. Пожалуйста, сначала подключите новый счёт Plaid.
       title: Привязать %{account_name} к Plaid

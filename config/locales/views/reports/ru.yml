@@ -61,8 +61,8 @@ ru:
       subtitle: Полный анализ вашего финансового состояния
       title: Отчёты
       today: Сегодня
-    invalid_date_range: Дата окончания не может быть раньше даты начала. Даты были
-      поменяны местами.
+      toggle_section: Переключить видимость раздела
+    invalid_date_range: Дата окончания не может быть раньше даты начала. Даты были поменяны местами.
     investment_flows:
       contributions: Пополнения
       contributions_description: Средства, добавленные в инвестиции
@@ -229,10 +229,8 @@ ru:
       current: текущий
       expenses: Расходы
       income: Доход
-      insight_higher_weekday: Вы тратите на %{percent}% больше за операцию в будни,
-        чем в выходные
-      insight_higher_weekend: Вы тратите на %{percent}% больше за операцию в выходные,
-        чем в будни
+      insight_higher_weekday: Вы тратите на %{percent}% больше за операцию в будни, чем в выходные
+      insight_higher_weekend: Вы тратите на %{percent}% больше за операцию в выходные, чем в будни
       insight_similar: Ваши расходы за операцию схожи в будни и выходные
       insight_title: Анализ
       month: Месяц
