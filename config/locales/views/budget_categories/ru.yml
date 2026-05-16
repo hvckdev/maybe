@@ -13,6 +13,9 @@ ru:
     budget_category_form:
       avg: "в среднем"
       this_month: "в этом месяце"
+      per_month_avg: "м ср."
+      shared_placeholder: "Общий"
+      leave_empty_to_share_parent_budget: "Оставьте пустым, чтобы использовать бюджет родительской категории"
     confirm_button:
       confirm: "Подтвердить"
     no_categories:
