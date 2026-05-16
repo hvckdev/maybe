@@ -1,7 +1,7 @@
 <%# locals: (budget:) %>
 
 <% steps = [
-  { name: t(".setup"), path: edit_budget_path(budget, **budget_owner_query), is_complete: budget.initialized?, step_number: 1 },
+{ name: t(".setup"), path: edit_budget_path(budget, **budget_owner_query), is_complete: budget.initialized?, step_number: 1 },
   { name: t(".categories"), path: budget_budget_categories_path(budget, **budget_owner_query), is_complete: budget.allocations_valid?, step_number: 2 },
 ] %>
 
