@@ -220,3 +220,31 @@ ru:
       invalid_token: Неверная или истёкшая ссылка подтверждения.
       success_login: Ваш email подтверждён. Пожалуйста, войдите с новым адресом электронной
         почты.
+  account_types:
+    depository:
+      one: Текущий
+      other: Текущие
+    credit_card:
+      one: Кредитная карта
+      other: Кредитные карты
+    investment:
+      one: Инвестиционный
+      other: Инвестиционные
+    crypto:
+      one: Крипто
+      other: Крипто
+    loan:
+      one: Кредит
+      other: Кредиты
+    property:
+      one: Недвижимость
+      other: Недвижимость
+    vehicle:
+      one: Транспорт
+      other: Транспорт
+    other_asset:
+      one: Другой актив
+      other: Другие активы
+    other_liability:
+      one: Другой пассив
+      other: Другие пассивы
