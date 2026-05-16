@@ -5,11 +5,13 @@ ru:
     account_statements: Хранилище выписок
     accounts: Счета
     ai_prompts: Подсказки ИИ
-    api_key: API ключ
-    api_keys: API ключи
+    api_key: API-ключ
+    api_keys: API-ключи
     appearance: Внешний вид
     appearances: Внешний вид
+    archived_exports: Архив экспорта
     bank_sync: Синхронизация с банком
+    bank_sync_providers: Провайдеры синхронизации
     binance_items: Binance
     brex_items: Brex
     budget_categories: Категории бюджета
@@ -21,6 +23,7 @@ ru:
     coinstats_items: CoinStats
     credit_cards: Кредитные карты
     cryptos: Криптовалюта
+    currencies: Валюты
     dashboard: Панель управления
     debug: Отладка
     debugs: Отладка
@@ -60,6 +63,7 @@ ru:
     plaid_items: Plaid
     preferences: Настройки
     profile: Информация профиля
+    profile_info: Профиль
     profiles: Информация профиля
     properties: Имущество
     providers: Провайдеры
@@ -71,6 +75,19 @@ ru:
     security: Безопасность
     self_hosting: Самостоятельный хостинг
     sessions: Вход
+    settings: Настройки
+    settings/ai_prompts: Подсказки ИИ
+    settings/api_keys: API-ключи
+    settings/bank_sync: Синхронизация
+    settings/guides: Руководства
+    settings/hostings: Самостоятельный хостинг
+    settings/llm_usages: Использование LLM
+    settings/payments: Подписка
+    settings/preferences: Настройки
+    settings/profiles: Профиль
+    settings/providers: Провайдеры
+    settings/securities: Безопасность
+    settings/sso_identities: SSO
     simplefin_items: SimpleFIN
     snaptrade_items: SnapTrade
     sophtron_items: Sophtron
