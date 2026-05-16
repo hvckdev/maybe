@@ -20,7 +20,7 @@
                 <div class="flex items-center justify-between">
                   <div>
                     <p class="text-sm font-medium text-primary"><%= potential_match.name %></p>
-                    <p class="text-xs text-secondary"><%= potential_match.date.strftime("%b %d, %Y") %> • <%= potential_match.account.name %></p>
+                    <p class="text-xs text-secondary"><%= I18n.l(potential_match.date, format: :long) %> • <%= potential_match.account.name %></p>
                   </div>
                   <p class="text-sm font-medium privacy-sensitive <%= potential_match.amount.negative? ? "text-green-600" : "text-primary" %>">
                     <%= format_money(-potential_match.amount_money) %>
@@ -238,7 +238,7 @@
               <div class="flex items-center justify-between">
                 <div>
                   <p class="text-sm font-medium text-primary"><%= parent.name %></p>
-                  <p class="text-xs text-secondary"><%= parent.date.strftime("%b %d, %Y") %></p>
+                  <p class="text-xs text-secondary"><%= I18n.l(parent.date, format: :long) %></p>
                 </div>
                 <p class="text-sm font-medium privacy-sensitive text-primary">
                   <%= format_money(-parent.amount_money) %>

@@ -219,3 +219,31 @@ en:
       invalid_token: Invalid or expired confirmation link.
       success_login: Your email has been confirmed. Please log in with your new email
         address.
+  account_types:
+    depository:
+      one: Depository
+      other: Depositories
+    credit_card:
+      one: Credit Card
+      other: Credit Cards
+    investment:
+      one: Investment
+      other: Investments
+    crypto:
+      one: Crypto
+      other: Crypto
+    loan:
+      one: Loan
+      other: Loans
+    property:
+      one: Property
+      other: Properties
+    vehicle:
+      one: Vehicle
+      other: Vehicles
+    other_asset:
+      one: Other Asset
+      other: Other Assets
+    other_liability:
+      one: Other Liability
+      other: Other Liabilities

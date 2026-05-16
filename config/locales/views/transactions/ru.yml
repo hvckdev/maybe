@@ -298,6 +298,12 @@ ru:
       filters:
         account_filter:
           filter_accounts: Фильтр по счетам
+        category_filter:
+          filter_category: Фильтр по категориям
+        merchant_filter:
+          filter_merchants: Фильтр по продавцам
+        tag_filter:
+          filter_tags: Фильтр по тегам
         amount_filter:
           equal_to: Равно
           greater_than: Больше чем
@@ -311,18 +317,12 @@ ru:
           on_or_before: не позднее %{date}
           pending: В ожидании
           transfer: Перевод
-        category_filter:
-          filter_category: Фильтр по категориям
         date_filter:
           end_date: Дата окончания
           start_date: Дата начала
-        merchant_filter:
-          filter_merchants: Фильтр по продавцам
         status_filter:
           confirmed: Подтверждено
           pending: В ожидании
-        tag_filter:
-          filter_tags: Фильтр по тегам
         type_filter:
           expense: Расход
           income: Доходы
