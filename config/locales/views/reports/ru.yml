@@ -45,6 +45,9 @@ ru:
       withdrawals_description: Средства, изъятые из инвестиций
       net_flow: Чистый поток
       net_flow_description: Общее чистое изменение
+      money_added: Средства внесены на инвестиционные счета
+      money_withdrawn: Средства выведены с инвестиционных счетов
+      total_net_change: Общее чистое изменение
     investment_performance:
       title: Эффективность инвестиций
       portfolio_value: Стоимость портфеля
@@ -54,6 +57,8 @@ ru:
       withdrawals: Выводы за период
       top_holdings: Основные активы
       holding: Актив
+      holdings: Активы
+      sell_trades: Продажи
       weight: Доля
       value: Стоимость
       return: Доходность
@@ -65,6 +70,7 @@ ru:
       taxable_realized_note: Эти доходы могут облагаться налогами
       no_data: "-"
       view_details: Посмотреть детали
+      and_more: "+%{count} ещё"
       holdings_count:
         one: "%{count} актив"
         few: "%{count} актива"
