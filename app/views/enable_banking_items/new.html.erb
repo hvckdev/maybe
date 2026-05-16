@@ -19,7 +19,7 @@
                     <div>
                         <p class="text-sm font-medium text-primary"><%= item.aspsp_name || t(".connected_bank") %></p>
                         <p class="text-xs text-secondary">
-                        <%= t(".session_expires") %>: <%= item.session_expires_at&.strftime("%b %d, %Y") || t(".unknown") %>
+                        <%= t(".session_expires") %>: <%= I18n.l(item.session_expires_at, format: :default) if item.session_expires_at %><%= t(".unknown") unless item.session_expires_at %>
                         </p>
                     </div>
                     <% elsif item.session_expired? %>

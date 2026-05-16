@@ -155,7 +155,7 @@
           <% @recent_runs.each do |run| %>
             <tr class="<%= "bg-red-tint-5 theme-dark:bg-red-tint-10" if run.failed? %>">
               <td class="px-4 py-3 text-sm text-primary whitespace-nowrap">
-                <%= run.executed_at.strftime("%b %d, %Y %I:%M %p") %>
+                <%= I18n.l(run.executed_at, format: :long) %>
               </td>
               <td class="px-4 py-3 text-sm text-primary text-center">
                 <%= render DS::Pill.new(label: t("rules.recent_runs.execution_types.#{run.execution_type}"), tone: run.execution_type == "manual" ? :indigo : :violet, marker: false) %>

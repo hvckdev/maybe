@@ -13,6 +13,9 @@ en:
     budget_category_form:
       avg: "avg"
       this_month: "this month"
+      per_month_avg: "m avg"
+      shared_placeholder: "Shared"
+      leave_empty_to_share_parent_budget: "Leave empty to share parent's budget"
     confirm_button:
       confirm: "Confirm"
     no_categories:
