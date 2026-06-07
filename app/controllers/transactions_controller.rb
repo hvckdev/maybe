@@ -20,6 +20,10 @@ class TransactionsController < ApplicationController
   end
 
   def index
+    @breadcrumbs = [
+      [ t("breadcrumbs.home"), root_path ],
+      [ t("breadcrumbs.transactions"), nil ]
+    ]
     @q = search_params
     @accessible_account_ids = Current.user.accessible_accounts.pluck(:id)
     @search = Transaction::Search.new(Current.family, filters: @q, accessible_account_ids: @accessible_account_ids)
