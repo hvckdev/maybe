@@ -282,25 +282,15 @@ class BudgetCategory < ApplicationRecord
       # Parent category
       parent_budget = (self[:budgeted_spending] || 0) + rolled_over_amount
 
-      # Get subcategories with and without individual limits
+      # Subcategories with their own limits use ring-fenced budgets; the rest share the parent's pool.
       subcategories_with_limits = subcategories.reject(&:inherits_parent_budget?)
-
-      # Ring-fenced budgets for subcategories with individual limits
-      subcategories_individual_budgets = subcategories_with_limits.sum { |sc| sc[:budgeted_spending] || 0 }
-
-      # Shared pool = parent budget - ring-fenced budgets
+      subcategories_individual_budgets = subcategories_with_limits.sum { |subcategory| subcategory[:budgeted_spending] || 0 }
       shared_pool = parent_budget - subcategories_individual_budgets
 
-      # Get actual spending from income statement (includes all subcategories)
-      total_spending = actual_spending
+      # Parent spending includes every subcategory, so remove ring-fenced spending to get shared-pool spending.
+      shared_pool_spending = actual_spending - subcategories_with_limits.sum(&:actual_spending)
 
-      # Subtract spending from subcategories with individual budgets (they use their ring-fenced money)
-      subcategories_with_limits_spending = subcategories_with_limits.sum(&:actual_spending)
-
-      # Spending from shared pool = total spending - ring-fenced spending
-      shared_pool_spending = total_spending - subcategories_with_limits_spending
-
-      # Available in shared pool (planned spending for parent + inheriting subcategories reduces it)
+      # Planned spending for the parent and inheriting subcategories reduces the shared pool.
       shared_pool - shared_pool_spending - planned_spending
     end
   end
