@@ -53,6 +53,13 @@
       <%= render "budgets/available_cash", budget: @budget %>
     <% end %>
 
+    <%# Planned Expenses Section %>
+    <% if @budget.initialized? %>
+      <div class="w-full bg-container rounded-xl shadow-border-xs p-4">
+        <%= render "budgets/planned_expenses", budget: @budget %>
+      </div>
+    <% end %>
+
     <%# Bottom Section: Categories full width %>
     <% has_over_budget = budget_has_over_budget?(@budget) %>
     <%= content_tag :div,

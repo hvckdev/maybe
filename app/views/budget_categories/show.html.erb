@@ -96,6 +96,19 @@
       </div>
     <% end %>
 
+    <% if @budget_category.budget.initialized? %>
+      <% category_planned = @budget.planned_expenses.where(category_id: @budget_category.category_id) %>
+      <% if category_planned.any? %>
+        <% dialog.with_section(title: t(".planned_expenses"), open: true) do %>
+          <div class="space-y-1">
+            <% category_planned.each do |pe| %>
+              <%= render "planned_expenses/planned_expense", planned_expense: pe %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
     <% dialog.with_section(title: t(".recent_transactions"), open: true) do %>
       <div class="space-y-2">
         <div class="px-3 py-4 space-y-2">

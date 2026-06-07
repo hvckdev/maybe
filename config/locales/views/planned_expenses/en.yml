@@ -1,0 +1,42 @@
+---
+en:
+  planned_expenses:
+    title: "Expected Expenses"
+    total_planned: "Expected"
+    add: "Plan an expense"
+    empty:
+      title: "No expected expenses"
+      description: "Plan upcoming expenses to reserve budget for them."
+    new:
+      title: "Plan an expense"
+      name: "Name"
+      amount: "Amount"
+      category: "Category"
+      account: "Account"
+      account_prompt: "Select account for transaction on confirm"
+      recurring: "Repeats monthly"
+      recurring_hint: "This expense will be copied to next month's budget automatically."
+      notes: "Notes"
+      submit: "Plan expense"
+    edit:
+      title: "Edit expected expense"
+      submit: "Save changes"
+    planned_expense:
+      pending: "Expected"
+      confirmed: "Confirmed"
+      cancelled: "Cancelled"
+      confirm: "Confirm"
+      confirm_title: "Confirm — create transaction"
+      cancel: "Cancel"
+      cancel_title: "Cancel — release budget"
+      reopen: "Reopen"
+      delete: "Delete"
+      recurring_badge: "Monthly"
+    destroy_confirm: "Delete this expected expense?"
+    resolved:
+      one: "%{count} resolved"
+      other: "%{count} resolved"
+    status:
+      pending: "Expected"
+      confirmed: "Confirmed"
+      cancelled: "Cancelled"

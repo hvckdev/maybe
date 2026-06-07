@@ -46,6 +46,7 @@ en:
       free: Really free
       goals_link: View goals
     show:
+      planned_spending: "Expected: %{amount}"
       categories:
         amount: Amount
         edit: Edit
@@ -128,6 +129,9 @@ en:
       left: "left"
       budgeted: "Budgeted"
       rolled_over: "Rolled over"
+      planned_expenses: "Planned Expenses"
+      no_planned_expenses: "No planned expenses for this category."
+      add_planned_expense: "Plan an expense"
       monthly_average_spending: "Monthly average spending"
       monthly_median_spending: "Monthly median spending"
       recent_transactions: "Recent Transactions"

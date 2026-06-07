@@ -47,6 +47,9 @@
   </header>
 
   <%= render "summary", totals: @search.totals %>
+
+  <%= render "planned_expenses/list", planned_expenses: @planned_expenses %>
+
   <% if Current.family.recurring_transactions_disabled? %>
     <%= render "transactions/list", transactions: @transactions, projected_recurring: @projected_recurring, q: params[:q], pagy: @pagy %>
   <% else %>
