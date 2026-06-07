@@ -22,6 +22,11 @@ class RecurringTransactionsController < ApplicationController
   helper_method :series_writable?, :separate_bill_chosen?
 
   def index
+    @breadcrumbs = [
+      [ t("breadcrumbs.home"), root_path ],
+      [ t("breadcrumbs.recurring_transactions"), nil ]
+    ]
+
     scope = Current.family.recurring_transactions
                   .accessible_by(Current.user)
                   .includes(:merchant)

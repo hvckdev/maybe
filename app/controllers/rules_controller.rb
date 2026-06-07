@@ -5,6 +5,10 @@ class RulesController < ApplicationController
   before_action :set_rule, only: [  :edit, :update, :destroy, :apply, :confirm ]
 
   def index
+    @breadcrumbs = [
+      [ t("breadcrumbs.home"), root_path ],
+      [ t("breadcrumbs.rules"), nil ]
+    ]
     @rules = Current.family.rules.includes(:actions, conditions: :sub_conditions).ordered.to_a
     Rule.share_option_lists(@rules)
     @layout = Rule::Layout.new(Current.family, rules: @rules)

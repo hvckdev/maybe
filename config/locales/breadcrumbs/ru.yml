@@ -71,11 +71,14 @@ ru:
     registrations: Регистрация
     reports: Отчёты
     rules: Правила
-    securities: "Ценные бумаги"
+    securities: Ценные бумаги
     security: Безопасность
     self_hosting: Самостоятельный хостинг
     sessions: Вход
     settings: Настройки
+    feedback: Обратная связь
+    changelogs: Что нового
+    pages: Страницы
     settings/ai_prompts: Подсказки ИИ
     settings/api_keys: API-ключи
     settings/bank_sync: Синхронизация
@@ -88,6 +91,7 @@ ru:
     settings/providers: Провайдеры
     settings/securities: Безопасность
     settings/sso_identities: SSO
+    settings/appearances: Внешний вид
     simplefin_items: SimpleFIN
     snaptrade_items: SnapTrade
     sophtron_items: Sophtron
@@ -104,8 +108,10 @@ ru:
     valuations: Оценки
     vehicles: Транспортные средства
     changelog: Что нового
-    feedback: Обратная связь
     monobank_items: Monobank
     plan: Планирование
     redbark_items: Redbark
     system_health: Состояние системы
+    webauthn_credentials: Ключи безопасности
+    settings/webauthn_credentials: Ключи безопасности
+    password_resets: Восстановление пароля
