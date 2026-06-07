@@ -105,7 +105,7 @@ services:
       - maybe_net
 
   worker:
-    image: ghcr.io/we-promise/sure:${SURE_IMAGE_TAG:-stable}
+    image: ghcr.io/hvckdev/maybe:latest
     command: bundle exec sidekiq
     volumes:
       - app-storage:/rails/storage
@@ -147,7 +147,7 @@ services:
     # See docs/hosting/docker.md "Backups, upgrades and rollbacks".
     profiles:
       - backup
-    image: ghcr.io/we-promise/sure:${SURE_IMAGE_TAG:-stable}
+    image: ghcr.io/hvckdev/maybe:latest
     # Root so it can write the host's backup folder; uploaded files keep their owner.
     user: "0"
     entrypoint: ["bin/sure-backup"]
@@ -167,7 +167,7 @@ services:
       db:
         condition: service_healthy
     networks:
-      - sure_net
+      - maybe_net
 
   backup-offsite:
     # Optional: copies the backup folder to any rclone remote (S3, R2, B2, SFTP,
@@ -202,7 +202,7 @@ services:
       RCLONE_CONFIG_S3_SECRET_ACCESS_KEY: ${RCLONE_CONFIG_S3_SECRET_ACCESS_KEY:-} # pipelock:ignore
       RCLONE_CONFIG_S3_ENDPOINT: ${RCLONE_CONFIG_S3_ENDPOINT:-}
     networks:
-      - sure_net
+      - maybe_net
 
   redis:
     image: redis:latest
