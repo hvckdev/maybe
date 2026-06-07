@@ -4,6 +4,10 @@ class CategoriesController < ApplicationController
   before_action :set_transaction, only: :create
 
   def index
+    @breadcrumbs = [
+      [ t("breadcrumbs.home"), root_path ],
+      [ t("breadcrumbs.categories"), nil ]
+    ]
     @categories = Current.family.categories.alphabetically_by_hierarchy.to_a
     @category_groups = Category::Group.for(@categories)
     @category_ids_with_transactions = Category.ids_with_transactions(

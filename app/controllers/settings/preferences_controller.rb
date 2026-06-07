@@ -2,6 +2,10 @@ class Settings::PreferencesController < ApplicationController
   layout "settings"
 
   def show
+    @breadcrumbs = [
+      [ t("breadcrumbs.home"), root_path ],
+      [ t("breadcrumbs.preferences"), nil ]
+    ]
     @user = Current.user
     @family_members = Current.family.users.where.not(id: @user.id).where(active: true)
     @budget_shares = @user.budget_shares_given.index_by(&:viewer_id)

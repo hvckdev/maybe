@@ -119,6 +119,18 @@ ru:
     hostings:
       ensure_admin:
         not_authorized: Доступ запрещён
+      brand_fetch_settings:
+        show_details: "(подробнее)"
+        hide_details: "(скрыть)"
+        configured_successfully: Вы успешно настроили Client ID Brand Fetch через
+          переменную окружения BRAND_FETCH_CLIENT_ID.
+        step1_html: Перейдите на <a href="https://brandfetch.com/developers" target="_blank"
+          rel="noopener noreferrer" class="underline">brandfetch.com</a> и создайте
+          бесплатный аккаунт разработчика Brand Fetch.
+        step2_html: Перейдите на страницу <a href="https://developers.brandfetch.com/dashboard/logo-api"
+          target="_blank" rel="noopener noreferrer" class="underline">Logo API</a>.
+        step3: Нажмите на значок глаза в разделе «Your Client ID», чтобы отобразить
+          <strong>Client ID</strong>, и вставьте его ниже.
     llm_usages:
       show:
         avg_cost_per_request: Средняя стоимость/запрос
@@ -150,6 +162,11 @@ ru:
         total_cost: Общая стоимость
         total_requests: Всего запросов
         total_tokens: Всего токенов
+        pricing_title: Оценка расходов
+        pricing_description: Расходы оценены на основе тарифов OpenAI на 2025 год.
+          Фактические расходы могут отличаться. Цены указаны за 1 миллион токенов
+          и зависят от модели. Кастомные или самостоятельно размещённые модели будут
+          показывать «N/A» и не включаются в итоговые расходы.
     mcp:
       revoke:
         revoked: Подключение отозвано.
@@ -192,6 +209,11 @@ ru:
           one: Данные будут удалены через %{count} день
           other: Данные будут удалены через %{count} дня
         trialing: В настоящее время используется открытая демо-версия %{product_name}
+        currently_on: Подписка
+        currently_using_demo: Сейчас используется открытая демо-версия %{product_name}
+        data_deleted_in: Данные будут удалены через %{days} дней
+        not_contributing: Вы сейчас <span class="font-medium">не участвуете</span>
+        contributions_will_show: Взносы в %{product_name} будут отображаться здесь.
     preferences:
       show:
         additional_currencies_label: Дополнительные валюты
@@ -259,6 +281,8 @@ ru:
           none: Нет доступа
           read_only: Только просмотр
           read_write: Может изменять
+        translation_note: Обратите внимание, мы ещё работаем над переводами для различных
+          языков.
     profiles:
       destroy:
         cannot_remove_self: Вы не можете удалить себя из аккаунта.
@@ -421,6 +445,26 @@ ru:
         syncing: Синхронизация
         unknown: Неизвестно
         update_connection: Обновить подключение
+        setup_instructions: 'Инструкция по настройке:'
+        step1_html: Перейдите в <a href="https://enablebanking.com" target="_blank"
+          rel="noopener noreferrer" class="link">аккаунт разработчика Enable Banking</a>,
+          чтобы получить учётные данные
+        step2: Выберите код страны в выпадающем списке ниже
+        step3: Введите Application ID и вставьте клиентский сертификат (включая приватный
+          ключ)
+        step4: Нажмите «Сохранить конфигурацию», затем используйте «Добавить подключение»
+          для привязки банка
+        field_descriptions: 'Описание полей:'
+        country_code_label: Код страны
+        country_code_description: Код страны ISO 3166-1 alpha-2 (например, GB, DE,
+          FR) — определяет доступные банки
+        application_id_description: Идентификатор, созданный в вашем аккаунте разработчика
+          Enable Banking
+        client_certificate_description: Сертификат, созданный при регистрации приложения
+          (должен включать приватный ключ)
+        configuration_locked: Конфигурация заблокирована
+        configuration_locked_message: Учётные данные нельзя изменить, пока есть активные
+          подключения к банкам. Сначала удалите все подключения.
       encryption_error:
         message: Синхронизация банка требует настройки шифрования Active Record. Установите
           primary_key, deterministic_key и key_derivation_salt в ваших учетных данных
@@ -545,6 +589,20 @@ ru:
         step_2: Вставьте ваш ключ ниже и подключитесь.
         step_3: Затем перейдите в Счета, чтобы связать ваши синхронизированные счета.
         update_connection: Обновить подключение
+        setup_instructions: 'Инструкция по настройке:'
+        step1_html: Перейдите на <a href="https://www.lunchflow.app/?atp=BiDIYS" target="_blank"
+          rel="noopener noreferrer" class="link">Lunch Flow</a>, чтобы получить API-ключ
+        step2: Вставьте ваш API-ключ ниже и нажмите кнопку «Сохранить»
+        step3: После успешного подключения перейдите на вкладку «Счета», чтобы добавить
+          новые счета и привязать их к существующим
+        field_descriptions: 'Описание полей:'
+        api_key_description: Ваш API-ключ Lunch Flow для аутентификации (обязательно)
+        base_url_description: Base URL для API Lunch Flow (необязательно, по умолчанию
+          https://lunchflow.app/api/v1)
+        base_url_label_optional: Base URL (необязательно)
+        status_configured_html: Настроено и готово к использованию. Перейдите на вкладку
+          <a href="%{accounts_url}" class="link">Счета</a>, чтобы управлять и настраивать
+          счета.
       maturity:
         alpha: Альфа
         beta: Бета
@@ -570,6 +628,11 @@ ru:
         step_3: Вставьте ваши учётные данные ниже и подключитесь.
       provider_form:
         save_and_connect: Сохранить и подключить
+        env_override_hint: Конфигурация может быть задана через переменные окружения
+          или переопределена ниже.
+        field_descriptions: 'Описание полей:'
+        optional: Необязательно
+        status_configured: Настроено и готово к использованию
       recently_synced: Недавно синхронизировано. Попробуйте снова через мгновение.
       search_filters:
         aria_label: Поиск провайдеров
@@ -589,6 +652,20 @@ ru:
         step_1_html: Перейдите на %{link} для получения одноразового токена настройки.
         step_2: Вставьте токен ниже и подключитесь.
         step_3: Затем перейдите в Счета, чтобы связать ваши синхронизированные счета.
+        setup_instructions: 'Инструкция по настройке:'
+        step1_html: Перейдите на <a href="https://beta-bridge.simplefin.org" target="_blank"
+          rel="noopener noreferrer" class="link">SimpleFIN Bridge</a>, чтобы получить
+          одноразовый токен настройки
+        step2: Вставьте токен ниже и нажмите кнопку «Сохранить» для включения синхронизации
+          банковских данных SimpleFIN
+        step3: После успешного подключения перейдите на вкладку «Счета», чтобы добавить
+          новые счета и привязать их к существующим
+        field_descriptions: 'Описание полей:'
+        setup_token_description: Одноразовый токен настройки SimpleFIN из SimpleFIN
+          Bridge (используется при первом подключении)
+        status_configured_html: Настроено и готово к использованию. Перейдите на вкладку
+          <a href="%{accounts_url}" class="link">Счета</a>, чтобы управлять и настраивать
+          счета.
       status:
         err: Ошибка
         'off': Не настроено
@@ -814,6 +891,50 @@ ru:
         not_configured: Не настроено.
       show:
         coinbase_title: Coinbase
+        page_title: Провайдеры синхронизации
+        description: Настройте учётные данные сторонних провайдеров синхронизации.
+          Настройки здесь переопределяют переменные окружения.
+        lunch_flow_title: Lunch Flow
+        simplefin_title: SimpleFIN
+        enable_banking_title: Enable Banking (бета)
+        coinstats_title: CoinStats (бета)
+        mercury_title: Mercury (бета)
+        binance_title: Binance (бета)
+        snaptrade_title: SnapTrade (бета)
+        indexa_capital_title: Indexa Capital (альфа)
+        sophtron_title: Sophtron (альфа)
+        tinkoff_title: Тинькофф
+      mercury_panel:
+        setup_instructions: 'Инструкция по настройке:'
+        step1_html: Перейдите на <a href="https://mercury.com" target="_blank" rel="noopener
+          noreferrer" class="link">Mercury</a> и войдите в свой аккаунт
+        step2: Перейдите в Settings > Developer > API Tokens
+        step3: Создайте новый API-токен с доступом «Read Only»
+        step4_important: 'Важно: добавьте IP-адрес вашего сервера в белый список токена'
+        step5_html: Скопируйте <strong>полный токен</strong> (включая префикс <code>secret-token:</code>)
+          и вставьте его ниже
+        step6: После успешного подключения перейдите на вкладку «Счета», чтобы настроить
+          новые счета
+        field_descriptions: 'Описание полей:'
+        token_label: API-токен
+        token_description_html: Полный API-токен Mercury, включая префикс <code>secret-token:</code>
+          (обязательно)
+        base_url_label: Base URL
+        base_url_description_html: URL API Mercury (необязательно, по умолчанию https://api.mercury.com/api/v1)
+        base_url_label_optional: Base URL (необязательно)
+        base_url_placeholder: https://api.mercury.com/api/v1 (по умолчанию)
+        token_placeholder_new: Вставьте токен сюда
+        token_placeholder_update: Введите новый токен для обновления
+        note_label: Примечание
+        sandbox_note_html: Для тестирования используйте <code>https://api-sandbox.mercury.com/api/v1</code>
+          как Base URL. Mercury требует белый список IP — обязательно добавьте ваш
+          IP в панели Mercury.
+        status_configured_html: Настроено и готово к использованию. Перейдите на вкладку
+          <a href="%{accounts_url}" class="link">Счета</a>, чтобы управлять и настраивать
+          счета.
+      not_configured: Не настроено
+      save_configuration: Сохранить конфигурацию
+      update_configuration: Обновить конфигурацию
     securities:
       show:
         encryption_warning:
@@ -849,6 +970,12 @@ ru:
         enable_mfa: Включить 2FA
         disable_mfa: Отключить 2FA
         disable_mfa_confirm: Вы уверены, что хотите отключить двухфакторную аутентификацию?
+        mfa_enabled: Двухфакторная аутентификация <span class="font-medium text-green-600">включена</span>
+        mfa_enabled_description: Ваш аккаунт защищён дополнительным уровнем безопасности.
+        mfa_disabled: Двухфакторная аутентификация <span class="font-medium text-red-600">отключена</span>
+        mfa_enable_hint: Включите 2FA для дополнительной защиты аккаунта.
+        mfa_enabled_html: Двухфакторная аутентификация <span class="font-medium text-green-600">включена</span>
+        mfa_disabled_html: Двухфакторная аутентификация <span class="font-medium text-red-600">отключена</span>
     settings_nav:
       accounts_label: Счета
       advanced_section_title: Расширенные
@@ -947,3 +1074,78 @@ ru:
     budget_shares:
       update:
         success: Настройки общего доступа к бюджету обновлены
+    bank_sync:
+      show:
+        page_title: Синхронизация банков
+        providers_label: ПРОВАЙДЕРЫ
+        no_providers: Провайдеры не настроены
+        no_providers_hint: Настройте провайдеры для привязки банковских счетов.
+    api_keys:
+      new:
+        page_title: Создать новый API-ключ
+        subtitle: Создайте новый API-ключ для программного доступа к вашим данным
+          в Sure.
+        name_label: Название API-ключа
+        name_placeholder: Например, Мой бюджет, Трекер портфеля
+        name_help_text: Выберите понятное название, чтобы легко идентифицировать этот
+          ключ в будущем.
+        permissions_label: Права доступа
+        permissions_description: Выберите права доступа для этого API-ключа.
+        read_only: Только чтение
+        read_only_description: Просмотр счетов, транзакций и балансов
+        read_write: Чтение и запись
+        read_write_description: Просмотр данных и создание новых транзакций
+        security_warning_title: Предупреждение о безопасности
+        security_warning_body: API-ключ будет показан только один раз после создания.
+          Убедитесь, что скопировали и сохранили его в безопасном месте. Любой, у
+          кого есть этот ключ, сможет получить доступ к вашим данным в соответствии
+          с выбранными правами.
+        save_api_key: Сохранить API-ключ
+      show:
+        newly_created_title: API-ключ успешно создан
+        created_successfully: API-ключ успешно создан!
+        created_description: Ваш новый API-ключ «%{name}» создан и готов к использованию.
+        your_api_key: Ваш API-ключ
+        copy_and_store: Скопируйте и сохраните этот ключ в безопасном месте. Он понадобится
+          для аутентификации API-запросов.
+        copy_api_key: Копировать API-ключ
+        how_to_use: Как использовать ваш API-ключ
+        continue_to_settings: Перейти к настройкам API-ключа
+        your_api_key_page_title: Ваш API-ключ
+        create_new_key: Создать новый ключ
+        created_ago: Создан %{time} назад
+        last_used_ago: Последнее использование %{time} назад
+        never_used: Не использовался
+        active: Активен
+        permissions: Права доступа
+        read_only: Только чтение
+        read_write: Чтение и запись
+        revoke_key: Отозвать ключ
+        revoke_confirm: Вы уверены, что хотите отозвать этот API-ключ?
+        current_api_key:
+          usage_instructions: 'Для использования API-ключа добавьте заголовок <code>X-Api-Key:
+            &lt;ваш-ключ&gt;</code> к вашим запросам. Пример:'
+      created:
+        page_title: API-ключ создан
+        section_title: API-ключ успешно создан
+        section_subtitle: Ваш новый API-ключ успешно сгенерирован.
+        created_successfully: API-ключ успешно создан!
+        created_description: Ваш новый API-ключ «%{name}» создан и готов к использованию.
+        your_api_key: Ваш API-ключ
+        copy_and_store: Скопируйте и сохраните этот ключ в безопасном месте. Он понадобится
+          для аутентификации API-запросов.
+        copy_api_key: Копировать API-ключ
+        key_details: Детали ключа
+        name: Название
+        permissions: Права доступа
+        scope_view_accounts: Просмотр счетов
+        scope_view_transactions: Просмотр транзакций
+        scope_view_balances: Просмотр балансов
+        scope_create_transactions: Создание транзакций
+        created: Создан
+        security_note_title: Важное замечание о безопасности
+        security_note_body: Это единственный раз, когда ваш API-ключ отображается.
+          Обязательно скопируйте его сейчас и сохраните в безопасном месте. Если вы
+          потеряете этот ключ, придётся создать новый.
+        how_to_use: Как использовать ваш API-ключ
+        continue_to_settings: Перейти к настройкам API-ключа
