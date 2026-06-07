@@ -9,6 +9,10 @@ class BudgetsController < ApplicationController
   end
 
   def show
+    @breadcrumbs = [
+      [ t("breadcrumbs.home"), root_path ],
+      [ t("breadcrumbs.budgets"), nil ]
+    ]
     @source_budget = @budget.most_recent_initialized_budget unless @budget.initialized?
     @editable = @budget.editable_by?(Current.user)
     @switch_options = budget_switch_options(@budget)

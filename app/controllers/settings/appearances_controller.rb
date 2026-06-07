@@ -2,6 +2,10 @@ class Settings::AppearancesController < ApplicationController
   layout "settings"
 
   def show
+    @breadcrumbs = [
+      [ t("breadcrumbs.home"), root_path ],
+      [ t("breadcrumbs.appearances"), nil ]
+    ]
     @user = Current.user
   end
 

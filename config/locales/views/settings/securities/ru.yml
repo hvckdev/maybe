@@ -3,29 +3,44 @@ ru:
   settings:
     securities:
       show:
+        page_title: Безопасность
         disable_mfa: Отключить 2FA
         disable_mfa_confirm: Вы уверены, что хотите отключить двухфакторную аутентификацию? Это сделает ваш счёт менее защищённым.
-        enable_mfa: Включить 2FA
-        mfa_description: Добавьте дополнительный уровень безопасности вашему счёту, требуя код из приложения-аутентификатора при входе
-        mfa_disabled_description: Включите 2FA, чтобы добавить дополнительный уровень безопасности вашему счёту.
-        mfa_disabled_status_html: Двухфакторная аутентификация <span class="font-medium text-destructive">отключена</span>
-        mfa_enabled_description: Ваш счёт защищён дополнительным уровнем безопасности.
-        mfa_enabled_status_html: Двухфакторная аутентификация <span class="font-medium text-success">включена</span>
         mfa_title: Двухфакторная аутентификация
-        webauthn_add: Добавить ключ доступа или ключ безопасности
-        webauthn_added: Добавлено %{date}
+        mfa_description: Добавьте дополнительный уровень защиты вашему аккаунту, требуя код из приложения-аутентификатора при входе
+        mfa_disabled_description: Включите 2FA, чтобы добавить дополнительный уровень безопасности вашему аккаунту.
+        mfa_disabled_html: 'Двухфакторная аутентификация <span class="font-medium text-red-600">отключена</span>'
+        mfa_disabled_status_html: Двухфакторная аутентификация <span class="font-medium text-destructive">отключена</span>
+        mfa_enable_hint: Включите 2FA для дополнительной защиты аккаунта
+        mfa_enabled_description: Ваш аккаунт защищён дополнительным фактором аутентификации.
+        mfa_enabled_html: 'Двухфакторная аутентификация <span class="font-medium text-green-600">включена</span>'
+        mfa_enabled_status_html: Двухфакторная аутентификация <span class="font-medium text-success">включена</span>
+        webauthn_title: Ключи доступа и ключи безопасности
         webauthn_description: Используйте ключ доступа, Touch ID, Windows Hello или аппаратный ключ безопасности в качестве второго фактора при входе.
         webauthn_empty: Ключи доступа или ключи безопасности ещё не зарегистрированы.
+        webauthn_added: Добавлен %{date}
         webauthn_last_used: Последнее использование %{time_ago} назад
         webauthn_name_label: Название ключа
         webauthn_name_placeholder: MacBook Touch ID, YubiKey и т.д.
+        webauthn_add: Добавить ключ доступа или ключ безопасности
         webauthn_remove: Удалить
         webauthn_remove_confirm: Вы уверены, что хотите удалить этот ключ доступа или ключ безопасности?
-        webauthn_remove_confirm_body: Вам нужно будет зарегистрировать этот ключ доступа или ключ безопасности снова, прежде чем его можно будет использовать для проверки входа.
-        webauthn_title: Ключи доступа и ключи безопасности
+        webauthn_remove_confirm_body: Вам нужно будет зарегистрировать этот ключ доступа или ключ безопасности заново, прежде чем он сможет использоваться для входа.
         webauthn_unsupported: Этот браузер не поддерживает ключи доступа или ключи безопасности.
+        sso_title: Единый вход (SSO)
+        sso_subtitle: Подключённые аккаунты для входа через сторонних провайдеров
+        sso_no_email: Email не указан
+        sso_last_used: Последнее использование
+        sso_never: Никогда
+        sso_disconnect: Отключить
+        sso_confirm_title: Отключить провайдера SSO?
+        sso_confirm_body: Вы уверены, что хотите отключить вход через %{provider}?
+        sso_confirm_button: Отключить
+        sso_warning_message: Это единственный способ входа в ваш аккаунт. Убедитесь, что у вас есть доступ к этому провайдеру SSO.
+        sso_no_identities: Нет подключённых провайдеров SSO
+        sso_connect_hint: Подключите аккаунт для входа через стороннего провайдера
   webauthn_credentials:
     default_name: Ключ безопасности
-    failure: Не удалось сохранить этот ключ доступа или ключ безопасности. Пожалуйста, попробуйте снова.
+    failure: Не удалось сохранить ключ доступа или ключ безопасности. Попробуйте ещё раз.
     mfa_required: Включите двухфакторную аутентификацию перед добавлением ключа доступа или ключа безопасности.
     success: Ключ доступа или ключ безопасности удалён.
