@@ -6,6 +6,10 @@ class AccountsController < ApplicationController
   include Periodable
 
   def index
+    @breadcrumbs = [
+      [ t("breadcrumbs.home"), root_path ],
+      [ t("breadcrumbs.accounts"), nil ]
+    ]
     @accessible_account_ids = Current.user.accessible_accounts.pluck(:id)
     @manual_accounts = family.accounts
           .listable_manual

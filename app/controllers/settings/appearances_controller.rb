@@ -3,6 +3,10 @@ class Settings::AppearancesController < ApplicationController
 
   # Renders the user's appearance settings page (the form for #update).
   def show
+    @breadcrumbs = [
+      [ t("breadcrumbs.home"), root_path ],
+      [ t("breadcrumbs.appearances"), nil ]
+    ]
     @user = Current.user
   end
 

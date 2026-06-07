@@ -535,8 +535,9 @@ ru:
         disable_mfa: Отключить 2FA
         disable_mfa_confirm: Вы уверены, что хотите отключить двухфакторную аутентификацию?
         mfa_enabled: 'Двухфакторная аутентификация <span class="font-medium text-green-600">включена</span>'
+        mfa_enabled_html: 'Двухфакторная аутентификация <span class="font-medium text-green-600">включена</span>'
         mfa_enabled_description: Ваш аккаунт защищён дополнительным уровнем безопасности.
-        mfa_disabled: 'Двухфакторная аутентификация <span class="font-medium text-red-600">отключена</span>'
+        mfa_disabled_html: 'Двухфакторная аутентификация <span class="font-medium text-red-600">отключена</span>'
         mfa_enable_hint: Включите 2FA для дополнительной защиты аккаунта.
     settings_nav:
       accounts_label: Счета

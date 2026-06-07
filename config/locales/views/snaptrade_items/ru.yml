@@ -2,21 +2,48 @@
 ru:
   providers:
     snaptrade:
-      accounts_count:
-        few: "%{count} счёта"
-        many: "%{count} счетов"
-        one: "%{count} счёт"
-        other: "%{count} счёта"
+      name: SnapTrade
+      connection_description: Подключитесь к вашему брокеру через SnapTrade (поддерживается более 25 брокеров)
+      description: SnapTrade подключается к более чем 25 крупным брокерам (Fidelity, Vanguard, Schwab, Robinhood и др.) и предоставляет полную историю торгов с метками активности и стоимостью.
+      setup_title: 'Инструкции по настройке:'
+      step_1_html: Создайте аккаунт на <a href="https://dashboard.snaptrade.com" target="_blank" rel="noopener noreferrer" class="text-primary underline">dashboard.snaptrade.com</a>
+      step_2: Скопируйте ваш Client ID и Consumer Key из панели управления
+      step_3: Введите ваши учетные данные ниже и нажмите Сохранить
+      step_4: Перейдите на страницу Счета и используйте 'Подключить другого брокера', чтобы связать ваши инвестиционные счета
+      free_tier_warning: Бесплатный тариф SnapTrade покрывает 5 подключений брокеров. Обновите на SnapTrade для большего количества.
       client_id_label: Client ID
       client_id_placeholder: Введите ваш SnapTrade Client ID
       client_id_update_placeholder: Введите новый Client ID для обновления
-      connect_button: Подключить брокера
-      connected_brokerages: 'Подключено:'
-      connection_description: Подключитесь к вашему брокеру через SnapTrade (поддерживается более 25 брокеров)
-      connections_error: 'Не удалось загрузить подключения: %{message}'
       consumer_key_label: Consumer Key
       consumer_key_placeholder: Введите ваш SnapTrade Consumer Key
       consumer_key_update_placeholder: Введите новый Consumer Key для обновления
+      save_button: Сохранить конфигурацию
+      update_button: Обновить конфигурацию
+      accounts_count:
+        one: "%{count} счёт"
+        few: "%{count} счёта"
+        many: "%{count} счетов"
+        other: "%{count} счетов"
+      status_connected:
+        one: "%{count} счёт из SnapTrade"
+        few: "%{count} счёта из SnapTrade"
+        many: "%{count} счетов из SnapTrade"
+        other: "%{count} счетов из SnapTrade"
+      needs_setup:
+        one: "%{count} требует настройки"
+        few: "%{count} требуют настройки"
+        many: "%{count} требуют настройки"
+        other: "%{count} требуют настройки"
+      status_ready: Готово к подключению брокеров
+      status_needs_registration: Учетные данные сохранены. Завершите настройку для подключения брокера.
+      status_not_configured: Не настроено
+      setup_accounts_button: Настроить счета
+      connect_button: Подключить брокера
+      connected_brokerages: 'Подключено:'
+      manage_connections: Управление подключениями
+      connection_limit_info: Бесплатный тариф SnapTrade позволяет 5 подключений к брокерам. Удалите неиспользуемые, чтобы освободить места.
+      loading_connections: Загрузка подключений...
+      connections_error: 'Не удалось загрузить подключения: %{message}'
       delete_connection: Удалить
       delete_connection_body: Это навсегда удалит подключение %{brokerage} из SnapTrade. Все счета этого брокера будут отвязаны. Вам нужно будет переподключиться, чтобы снова синхронизировать эти счета.
       delete_connection_confirm: Удалить подключение
@@ -25,19 +52,9 @@ ru:
       delete_orphaned_user_body: Это навсегда удалит этого неиспользуемого пользователя SnapTrade и все его подключения брокеров, освобождая слоты подключения.
       delete_orphaned_user_confirm: Удалить регистрацию
       delete_orphaned_user_title: Удалить неиспользуемую регистрацию?
-      description: SnapTrade подключается к более чем 25 крупным брокерам (Fidelity, Vanguard, Schwab, Robinhood и др.) и предоставляет полную историю торгов с метками активности и стоимостью.
-      free_tier_warning: Бесплатный тариф SnapTrade покрывает 5 подключений брокеров. Обновите на SnapTrade для большего количества.
       legacy_credentials_description: Используйте Client ID и Consumer Key, если в вашем аккаунте SnapTrade не включён OAuth.
       legacy_credentials_title: Использовать устаревшие API-данные
-      loading_connections: Загрузка подключений...
-      manage_connections: Управление подключениями
-      name: SnapTrade
       needs_linking: требует связывания
-      needs_setup:
-        few: "%{count} требуют настройки"
-        many: "%{count} требуют настройки"
-        one: "%{count} требует настройки"
-        other: "%{count} требуют настройки"
       no_connections: Подключения брокеров не найдены.
       oauth_connect_button: Подключить через SnapTrade
       oauth_reauthorize_button: Авторизовать заново
@@ -48,27 +65,10 @@ ru:
       orphaned_user: Неиспользуемая регистрация
       orphaned_users_description: Это предыдущие регистрации пользователей SnapTrade, которые занимают ваши слоты подключения. Удалите их, чтобы освободить слоты.
       orphaned_users_title:
+        one: "%{count} неиспользуемая регистрация"
         few: "%{count} неиспользуемые регистрации"
         many: "%{count} неиспользуемых регистраций"
-        one: "%{count} неиспользуемая регистрация"
-        other: "%{count} неиспользуемые регистрации"
-      save_button: Сохранить конфигурацию
-      setup_accounts_button: Настроить счета
-      setup_title: 'Инструкции по настройке:'
-      status_connected:
-        few: "%{count} счёта из SnapTrade"
-        many: "%{count} счетов из SnapTrade"
-        one: "%{count} счёт из SnapTrade"
-        other: "%{count} счёта из SnapTrade"
-      status_needs_registration: Учетные данные сохранены. Завершите настройку для подключения брокера.
-      status_ready: Готово к подключению брокеров
-      step_1_html: Создайте аккаунт на <a href="https://dashboard.snaptrade.com" target="_blank" rel="noopener noreferrer" class="text-primary underline">dashboard.snaptrade.com</a>
-      step_2: Скопируйте ваш Client ID и Consumer Key из панели управления
-      step_3: Введите ваши учетные данные ниже и нажмите Сохранить
-      step_4: Перейдите на страницу Счета и используйте 'Подключить другого брокера', чтобы связать ваши инвестиционные счета
-      update_button: Обновить конфигурацию
-      status_not_configured: Не настроено
-      connection_limit_info: Бесплатный тариф SnapTrade позволяет 5 подключений к брокерам. Удалите неиспользуемые, чтобы освободить места.
+        other: "%{count} неиспользуемых регистраций"
   snaptrade_item:
     brokerage_summary:
       count:

@@ -20,6 +20,11 @@ class RecurringTransactionsController < ApplicationController
   before_action :ensure_series_writable, only: %i[update toggle_status destroy confirm dismiss]
 
   def index
+    @breadcrumbs = [
+      [ t("breadcrumbs.home"), root_path ],
+      [ t("breadcrumbs.recurring_transactions"), nil ]
+    ]
+
     scope = Current.family.recurring_transactions
                   .accessible_by(Current.user)
                   .includes(:merchant)
