@@ -2,14 +2,13 @@
 ru:
   account_statements:
     account_tab:
-      coverage_description: Исторические месяцы, подтвержденные загруженными выписками
-        и проверками баланса.
-      coverage_range: "%{start} - %{end}"
-      coverage_title: Покрытие выписок
-      empty: Пока нет выписок, связанных с этим счётом.
+      coverage_title: Охват выписок
+      coverage_description: Исторические месяцы, подтверждённые загруженными выписками и проверками баланса.
+      coverage_range: "%{start} — %{end}"
+      empty: К этому счёту пока не привязано ни одной выписки.
       open_inbox: Входящие
       statements_title: Выписки
-      year_label: Год покрытия
+      year_label: Год охвата
     balance:
       unknown: Неизвестно
     coverage:
@@ -19,42 +18,40 @@ ru:
         duplicate: Дубликат
         mismatched: Несоответствие
         missing: Отсутствует
-        not_expected: Не ожидается
+        not_expected: Не ожидалось
     create:
       duplicates:
-        few: "%{count} дубликата выписки были пропущены."
-        many: "%{count} дубликатов выписок были пропущены."
         one: 1 дубликат выписки был пропущен.
-        other: "%{count} дубликата выписки были пропущены."
-      invalid_file_type: Загрузите выписку в формате PDF, CSV или XLSX, не превышающую
-        допустимый размер.
+        few: "%{count} дубликата выписки были пропущены."
+        many: "%{count} дубликатов выписок было пропущено."
+        other: "%{count} дубликатов выписок было пропущено."
+      invalid_file_type: Загрузите выписку в формате PDF, CSV или XLSX размером не более допустимого.
       no_files: Выберите хотя бы один файл выписки.
       success:
+        one: 1 выписка загружена.
         few: "%{count} выписки загружены."
         many: "%{count} выписок загружено."
-        one: 1 выписка загружена.
-        other: "%{count} выписки загружены."
+        other: "%{count} выписок загружено."
     destroy:
       failure: Не удалось удалить выписку.
       success: Выписка удалена.
     form:
       account_upload: Загрузить выписку
-      files_hint: PDF, CSV или XLSX. Максимум %{max_size}МБ на файл.
+      files_hint: PDF, CSV или XLSX. Максимум %{max_size} МБ на файл.
       files_label: Файлы выписок
       inbox_upload: Загрузить
     index:
       account_label: Счёт
       confidence: "%{confidence} совпадение"
-      empty_linked: Пока нет связанных выписок.
+      empty_linked: Нет привязанных выписок.
       empty_unmatched: Входящие выписки пусты.
-      leave_unmatched: Оставить несоответствующие
-      linked_title: Связанные выписки
-      no_suggestion: Нет предложений
+      leave_unmatched: Оставить непривязанной
+      linked_title: Привязанные выписки
+      no_suggestion: Нет предложения
       storage_used: Использовано места
       title: Хранилище выписок
-      unmatched_title: Несоответствующие входящие
-      upload_description: Загрузите выписки во входящие или выберите счёт для немедленной
-        привязки.
+      unmatched_title: Входящие
+      upload_description: Загрузите выписки во входящие или выберите счёт для немедленной привязки.
       upload_title: Загрузить выписки
     link:
       no_account: Выберите счёт перед привязкой этой выписки.
@@ -63,49 +60,48 @@ ru:
       unknown: Период неизвестен
     reconciliation:
       checks:
-        closing_balance: Закрывающий баланс
+        closing_balance: Конечный баланс
         opening_balance: Начальный баланс
         period_movement: Движение за период
         unknown_check: Неизвестная проверка
       matched: Совпадает
-      mismatched: Несоответствие
+      mismatched: Не совпадает
       unavailable: Не проверено
     reject:
-      success: Совпадение выписки отклонено.
+      success: Предложение привязки выписки отклонено.
     show:
       account_label: Счёт
-      account_last4_hint: Последние четыре цифры счёта
-      account_name_hint: Подсказка имени счёта
-      closing_balance: Закрывающий баланс
+      account_last4_hint: Последние 4 цифры счёта
+      account_name_hint: Подсказка названия счёта
+      closing_balance: Конечный баланс
       currency: Валюта
       delete: Удалить
       difference: Разница
       download: Скачать
-      institution_name_hint: Подсказка учреждения
-      ledger_amount: Книга Sure
-      link_suggestion: Предложение привязки
+      institution_name_hint: Подсказка организации
+      ledger_amount: Реестр Sure
       linked_to: Привязано к %{account}.
       linking_title: Привязка счёта
+      link_suggestion: Предложение привязки
       metadata_title: Метаданные выписки
-      no_suggestion: Пока нет предложений счёта.
+      no_suggestion: Предложение счёта пока отсутствует.
       opening_balance: Начальный баланс
       period_end_on: Конец периода
       period_start_on: Начало периода
       reconciliation_title: Сверка
-      reconciliation_unavailable: Добавьте период выписки и начальный или закрывающий
-        баланс, затем убедитесь, что Sure имеет историю баланса за эти даты.
+      reconciliation_unavailable: Добавьте период выписки и начальный или конечный баланс, затем убедитесь, что в Sure есть история балансов на эти даты.
       reject: Отклонить
       save: Сохранить выписку
       statement_amount: Выписка
-      suggested_account: Предлагаемый счёт — %{account} (%{confidence} уверенность).
+      suggested_account: Предлагаемый счёт — %{account} (уверенность %{confidence}).
       title: Выписка
-      unknown_value: Неизвестно
       unlink: Отвязать
-      unmatched_account: Несоответствующие входящие
+      unmatched_account: Входящие
+      unknown_value: Неизвестно
     status:
       linked: Привязано
       rejected: Отклонено
-      unmatched: Несоответствующее
+      unmatched: Не привязано
     table:
       account: Счёт
       actions: Действия
@@ -120,6 +116,6 @@ ru:
       unlink: Отвязать
       view: Просмотр
     unlink:
-      success: Выписка перемещена обратно в несоответствующие входящие.
+      success: Выписка возвращена во входящие.
     update:
       success: Выписка обновлена.

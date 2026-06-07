@@ -38,6 +38,7 @@ class AccountsController < ApplicationController
     @binance_items = visible_provider_items(family.binance_items.ordered.with_attached_logo.includes(:binance_accounts, :accounts))
     @kraken_items = visible_provider_items(family.kraken_items.ordered.with_attached_logo.includes(:kraken_accounts, :accounts))
     @questrade_items = visible_provider_items(family.questrade_items.ordered.with_attached_logo.includes(:accounts, questrade_accounts: :account_provider))
+    @tinkoff_items = visible_provider_items(family.tinkoff_items.ordered.with_attached_logo.includes(:tinkoff_accounts, :accounts))
     @wise_items = visible_provider_items(family.wise_items.ordered.includes(:wise_accounts, :accounts))
     @trade_republic_items = visible_provider_items(
       family.trade_republic_items.ordered.includes(trade_republic_accounts: { account_provider: :account })
@@ -373,6 +374,7 @@ class AccountsController < ApplicationController
         @binance_items,
         @kraken_items,
         @questrade_items,
+        @tinkoff_items,
         @wise_items,
         @trade_republic_items,
         @onchain_wallet_items
@@ -622,6 +624,13 @@ class AccountsController < ApplicationController
         @questrade_account_counts_map[item.id] = {
           linked: linked, unlinked: accounts.size - linked, total: accounts.size
         }
+      end
+
+      # Tinkoff sync stats
+      @tinkoff_sync_stats_map = {}
+      @tinkoff_items.each do |item|
+        latest_sync = item.syncs.ordered.first
+        @tinkoff_sync_stats_map[item.id] = latest_sync&.sync_stats || {}
       end
 
       # Wise sync stats
