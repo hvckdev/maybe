@@ -304,7 +304,7 @@ services:
       - sure_net
 
   web:
-    image: ghcr.io/we-promise/sure:stable
+    image: ghcr.io/hvckdev/maybe:latest
     volumes:
       - app-storage:/rails/storage
     ports:
@@ -336,7 +336,7 @@ services:
       - sure_net
 
   worker:
-    image: ghcr.io/we-promise/sure:stable
+    image: ghcr.io/hvckdev/maybe:latest
     command: bundle exec sidekiq
     volumes:
       - app-storage:/rails/storage
