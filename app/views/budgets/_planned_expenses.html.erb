@@ -1,0 +1,55 @@
+<%# locals: (budget:) %>
+
+<% pending = budget.planned_expenses.pending %>
+<% others = budget.planned_expenses.where.not(status: :pending) %>
+
+<%= turbo_frame_tag "planned_expenses" do %>
+  <div class="space-y-3">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <h2 class="text-primary font-medium"><%= t("planned_expenses.title") %></h2>
+        <% if pending.any? %>
+          <span class="text-sm text-secondary">
+            <%= t("planned_expenses.total_planned") %>: <span class="text-primary font-medium privacy-sensitive"><%= budget.planned_spending_money.format %></span>
+          </span>
+        <% end %>
+      </div>
+      <%= render DS::Link.new(
+            text: t("planned_expenses.add"),
+            href: new_budget_planned_expense_path(budget),
+            variant: "secondary",
+            icon: "plus",
+            size: "sm",
+            frame: "drawer"
+          ) %>
+    </div>
+
+    <% if budget.planned_expenses.empty? %>
+      <div class="text-center py-8">
+        <p class="text-secondary text-sm"><%= t("planned_expenses.empty.description") %></p>
+      </div>
+    <% else %>
+      <% if pending.any? %>
+        <div class="divide-y divide-secondary">
+          <% pending.each do |pe| %>
+            <%= render "planned_expenses/planned_expense", planned_expense: pe %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if others.any? %>
+        <details class="group">
+          <summary class="flex items-center gap-1 cursor-pointer text-secondary text-xs hover:text-primary">
+            <%= icon "chevron-right", size: "xs", class: "group-open:rotate-90 transition-transform" %>
+            <span><%= t("planned_expenses.resolved", count: others.count) %></span>
+          </summary>
+          <div class="divide-y divide-secondary mt-2">
+            <% others.each do |pe| %>
+              <%= render "planned_expenses/planned_expense", planned_expense: pe %>
+            <% end %>
+          </div>
+        </details>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

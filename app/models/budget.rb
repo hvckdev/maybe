@@ -15,6 +15,7 @@ class Budget < ApplicationRecord
   belongs_to :user, optional: true
 
   has_many :budget_categories, -> { includes(:category) }, dependent: :destroy
+  has_many :planned_expenses, dependent: :destroy
 
   validates :start_date, :end_date, presence: true
   validates :start_date, :end_date, uniqueness: { scope: [ :family_id, :user_id ] }
@@ -23,7 +24,7 @@ class Budget < ApplicationRecord
   monetize :budgeted_spending, :expected_income, :allocated_spending,
            :actual_spending, :available_to_spend, :available_to_allocate,
            :estimated_spending, :estimated_income, :actual_income, :remaining_expected_income,
-           :total_rolled_over
+           :total_rolled_over, :planned_spending
 
   class << self
     def date_to_param(date)
@@ -313,6 +314,12 @@ class Budget < ApplicationRecord
         )
       end
 
+      source_budget.planned_expenses.recurring.each do |source_pe|
+        next unless target_by_category[source_pe.category_id]
+
+        source_pe.copy_to!(self)
+      end
+
       # Copying the toggle changes what the chain should hold, and this runs
       # after find_or_bootstrap already recomputed it. Recompute again so the
       # target doesn't sit on a zero carry until the next page load.
@@ -376,8 +383,13 @@ class Budget < ApplicationRecord
     # Continuous gray segment for empty budgets
     return [ { color: "var(--budget-unallocated-fill)", amount: 1, id: unused_segment_id } ] unless allocations_valid?
 
-    segments = donut_budget_categories.map do |bc|
-      { color: bc.category.color, amount: budget_category_actual_spending(bc), id: bc.id }
+    segments = donut_budget_categories.flat_map do |bc|
+      actual = budget_category_actual_spending(bc)
+      planned = bc.planned_spending
+      segments = []
+      segments << { color: bc.category.color, amount: actual, id: bc.id, type: "actual" } if actual.positive?
+      segments << { color: bc.category.color, amount: planned, id: "#{bc.id}_planned", type: "planned" } if planned.positive?
+      segments
     end
 
     if available_to_spend.positive?
@@ -425,7 +437,11 @@ class Budget < ApplicationRecord
   end
 
   def available_to_spend
-    (budgeted_spending || 0) - actual_spending
+    (budgeted_spending || 0) - actual_spending - planned_spending
+  end
+
+  def planned_spending
+    @planned_spending ||= planned_expenses.pending.sum(:amount)
   end
 
   def percent_of_budget_spent

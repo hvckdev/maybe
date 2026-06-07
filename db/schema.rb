@@ -51,6 +51,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_02_180400) do
     t.string "account_name_hint", limit: 200
     t.bigint "byte_size", null: false
     t.string "checksum", limit: 64, null: false
+
     t.decimal "closing_balance", precision: 19, scale: 4
     t.string "content_sha256"
     t.string "content_type", limit: 100, null: false
@@ -298,6 +299,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_02_180400) do
   end
 
   create_table "binance_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+
     t.text "api_key"
     t.text "api_secret"
     t.datetime "created_at", null: false
@@ -952,6 +954,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_02_180400) do
     t.datetime "created_at", null: false
     t.uuid "family_id", null: false
     t.string "name"
+
     t.boolean "pending_account_setup", default: false, null: false
     t.string "query_id"
     t.jsonb "raw_payload"
@@ -1618,6 +1621,25 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_02_180400) do
     t.index ["plaid_id"], name: "index_plaid_items_on_plaid_id", unique: true
   end
 
+  create_table "planned_expenses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "budget_id", null: false
+    t.uuid "category_id", null: false
+    t.string "name", null: false
+    t.decimal "amount", precision: 19, scale: 4, null: false
+    t.string "currency", null: false
+    t.string "status", default: "pending", null: false
+    t.boolean "recurring", default: false, null: false
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "account_id", null: false
+    t.index ["account_id"], name: "index_planned_expenses_on_account_id"
+    t.index ["budget_id", "category_id"], name: "index_planned_expenses_on_budget_id_and_category_id"
+    t.index ["budget_id", "status"], name: "index_planned_expenses_on_budget_id_and_status"
+    t.index ["budget_id"], name: "index_planned_expenses_on_budget_id"
+    t.index ["category_id"], name: "index_planned_expenses_on_category_id"
+  end
+
   create_table "properties", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "area_unit"
     t.integer "area_value"
@@ -2152,6 +2174,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_02_180400) do
   end
 
   create_table "sophtron_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+
     t.string "access_key", null: false
     t.string "base_url"
     t.datetime "created_at", null: false
@@ -2718,6 +2741,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_02_180400) do
   add_foreign_key "onchain_wallet_items", "families"
   add_foreign_key "plaid_accounts", "plaid_items"
   add_foreign_key "plaid_items", "families"
+  add_foreign_key "planned_expenses", "accounts"
+  add_foreign_key "planned_expenses", "budgets"
+  add_foreign_key "planned_expenses", "categories"
   add_foreign_key "push_subscriptions", "users"
   add_foreign_key "questrade_accounts", "questrade_items"
   add_foreign_key "questrade_items", "families"

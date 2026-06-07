@@ -7,13 +7,13 @@
 
 <p align="center">
   <!-- Keep these links. Translations will automatically update with the README. -->
-  <a href="https://readme-i18n.com/de/we-promise/sure">Deutsch</a> | 
-  <a href="https://readme-i18n.com/es/we-promise/sure">Español</a> | 
-  <a href="https://readme-i18n.com/fr/we-promise/sure">Français</a> | 
-  <a href="https://readme-i18n.com/ja/we-promise/sure">日本語</a> | 
-  <a href="https://readme-i18n.com/ko/we-promise/sure">한국어</a> | 
-  <a href="https://readme-i18n.com/pt/we-promise/sure">Português</a> | 
-  <a href="https://readme-i18n.com/ru/we-promise/sure">Русский</a> | 
+  <a href="https://readme-i18n.com/de/we-promise/sure">Deutsch</a> |
+  <a href="https://readme-i18n.com/es/we-promise/sure">Español</a> |
+  <a href="https://readme-i18n.com/fr/we-promise/sure">Français</a> |
+  <a href="https://readme-i18n.com/ja/we-promise/sure">日本語</a> |
+  <a href="https://readme-i18n.com/ko/we-promise/sure">한국어</a> |
+  <a href="https://readme-i18n.com/pt/we-promise/sure">Português</a> |
+  <a href="https://readme-i18n.com/ru/we-promise/sure">Русский</a> |
   <a href="https://readme-i18n.com/zh/we-promise/sure">中文</a>
 </p>
 
@@ -26,9 +26,25 @@ involved: [Discord](https://discord.gg/36ZGBsxYEK) • [Website](https://sure.am
 > This repository is a community fork of the now-abandoned Maybe Finance project. <br />
 > Learn more in their [final release](https://github.com/maybe-finance/maybe/releases/tag/v0.6.0) doc.
 
+## About This Fork
+
+This is a personal fork that blends [Maybe Finance](https://github.com/maybe-finance/maybe) (archived) and its community successor [Sure](https://github.com/we-promise/sure) with my own modifications. The upstream project is excellent, but I needed changes that are too opinionated or niche for the main codebase — so I maintain them here.
+
+### Why a separate repo instead of contributing to Sure?
+
+I'm Russian and Russian localization is important to me. Some of my changes (full Russian i18n, planned expenses, UX tweaks) are either too personal or too niche to be accepted into the upstream project, which targets a global English-first audience. Rather than maintain a long-lived fork on GitHub and deal with the friction of keeping it in sync, I prefer to develop independently — pulling upstream changes regularly and merging my own on top.
+
+### What's different from Sure
+
+| Feature | Description |
+|---|---|
+| **Планирование трат (Planned Expenses)** | Запланированные расходы по категориям на месяц. Ожидаются → подтверждаются (создаёт реальную транзакцию) или отменяются. Повторяющиеся переносятся в следующий месяц. Прогресс-бар и остаток бюджета учитывают ожидаемые траты. |
+| **Русская локализация** | Полный перевод интерфейса на русский: навигация, формы, уведомления, месяцы, статусы, ошибки валидации. |
+| **Мелкие удобства** | Личные настройки и улучшения UX, которые не подошли бы в upstream. |
+
 ## Backstory
 
-The [Maybe Finance](https://github.com/maybe-finance/maybe) (archived/abandoned repo) team spent most of 2021–2022 building a full-featured personal finance and wealth management app. It even included an “Ask an Advisor” feature that connected users with a real CFP/CFA — all included with your subscription.
+The [Maybe Finance](https://github.com/maybe-finance/maybe) (archived/abandoned repo) team spent most of 2021–2022 building a full-featured personal finance and wealth management app. It even included an "Ask an Advisor" feature that connected users with a real CFP/CFA — all included with your subscription.
 
 The business end of things didn't work out, and so they stopped developing the app in mid-2023.
 
@@ -36,7 +52,7 @@ After spending nearly $1 million on development (employees, contractors, data pr
 
 They actually did launch that hosted version … briefly.
 
-That also didn’t work out — at least not as a sustainable B2C business — so now here we are: hosting a community-maintained fork to keep the codebase alive and see where this can go next.
+That also didn't work out — at least not as a sustainable B2C business — so now here we are: hosting a community-maintained fork to keep the codebase alive and see where this can go next.
 
 Join us!
 
@@ -49,7 +65,7 @@ clients, and LLM agents. See [Sure Clients](docs/clients.md) for an overview.
 ## Forking and Attribution
 
 This repo is a community fork of the archived Maybe Finance repo.
-You’re free to fork it under the AGPLv3 license — but we’d love it if you stuck around and contributed here instead.
+You're free to fork it under the AGPLv3 license — but we'd love it if you stuck around and contributed here instead.
 
 To stay compliant and avoid trademark issues:
 

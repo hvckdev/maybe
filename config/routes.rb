@@ -455,6 +455,11 @@ Rails.application.routes.draw do
     resources :budget_categories, only: %i[index show update] do
       post :move, on: :collection
     end
+
+    resources :planned_expenses, only: %i[new create update destroy] do
+      post :confirm, on: :member
+      post :cancel, on: :member
+    end
   end
 
   resources :goals do
