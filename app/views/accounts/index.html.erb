@@ -107,11 +107,6 @@
     <% if @tinkoff_items.any? %>
       <%= render @tinkoff_items.sort_by(&:created_at) %>
     <% end %>
-
-    <% if @tinkoff_items.any? %>
-  <%= render @tinkoff_items.sort_by(&:created_at) %>
-<% end %>
-
     <% if @manual_accounts.any? %>
       <div id="manual-accounts">
         <%= render "accounts/index/manual_accounts", accounts: @manual_accounts %>
