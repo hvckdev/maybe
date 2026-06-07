@@ -13,8 +13,8 @@ pin "utils/transactions_filter_url", to: "utils/transactions_filter_url.mjs"
 pin "@github/hotkey", to: "@github--hotkey.js" # @3.1.1
 pin "@simonwep/pickr", to: "@simonwep--pickr.js" # @1.9.1
 
-# D3 packages
-pin "d3" # @7.9.0
+# D3 packages - preload main d3 bundle for faster loading
+pin "d3", preload: true # @7.9.0
 pin "d3-array", to: "shims/d3-array-default.js"
 pin "d3-axis" # @3.0.0
 pin "d3-brush" # @3.0.0
