@@ -567,4 +567,71 @@ class BudgetTest < ActiveSupport::TestCase
       assert_equal 0, budget.days_remaining
     end
   end
+
+  test "planned_spending returns sum of pending planned expenses" do
+    budget = budgets(:one)
+    category = categories(:food_and_drink)
+    account = accounts(:depository)
+
+    budget.planned_expenses.create!(category: category, account: account, name: "Insurance", amount: 200, currency: "USD")
+    budget.planned_expenses.create!(category: category, account: account, name: "Subscription", amount: 50, currency: "USD", status: :confirmed)
+    budget.planned_expenses.create!(category: category, account: account, name: "Cancelled", amount: 100, currency: "USD", status: :cancelled)
+
+    assert_equal 200, budget.planned_spending
+  end
+
+  test "planned_spending returns 0 when no pending expenses" do
+    budget = budgets(:one)
+    assert_equal 0, budget.planned_spending
+  end
+
+  test "available_to_spend subtracts planned_spending" do
+    budget = budgets(:one)
+    category = categories(:food_and_drink)
+    account = accounts(:depository)
+
+    budget.planned_expenses.create!(category: category, account: account, name: "Insurance", amount: 300, currency: "USD")
+
+    expected = budget.budgeted_spending - budget.actual_spending - 300
+    assert_equal expected, budget.available_to_spend
+  end
+
+  test "confirmed and cancelled expenses do not reduce available_to_spend" do
+    budget = budgets(:one)
+    category = categories(:food_and_drink)
+    account = accounts(:depository)
+
+    baseline = budget.available_to_spend
+
+    budget.planned_expenses.create!(category: category, account: account, name: "Confirmed", amount: 200, currency: "USD", status: :confirmed)
+    budget.planned_expenses.create!(category: category, account: account, name: "Cancelled", amount: 100, currency: "USD", status: :cancelled)
+
+    assert_equal baseline, budget.available_to_spend
+  end
+
+  test "copy_from! copies recurring planned expenses as pending" do
+    source = budgets(:one)
+    category = categories(:food_and_drink)
+    account = accounts(:depository)
+
+    source.planned_expenses.create!(category: category, account: account, name: "Insurance", amount: 300, currency: "USD", recurring: true)
+    source.planned_expenses.create!(category: category, account: account, name: "One-time", amount: 100, currency: "USD", recurring: false)
+
+    target = Budget.create!(
+      family: source.family,
+      start_date: 1.month.from_now.beginning_of_month,
+      end_date: 1.month.from_now.end_of_month,
+      currency: "USD"
+    )
+
+    # Target needs budget categories for copy_from! to work
+    target.budget_categories.create!(category: category, budgeted_spending: 0, currency: "USD")
+
+    target.copy_from!(source)
+
+    copied = target.planned_expenses.pending
+    assert_equal 1, copied.count
+    assert_equal "Insurance", copied.first.name
+    assert_equal 300, copied.first.amount
+  end
 end

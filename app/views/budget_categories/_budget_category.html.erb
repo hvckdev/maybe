@@ -39,10 +39,15 @@
 
       <%# Progress Bar %>
       <div class="mb-3">
-        <div class="h-1.5 bg-container-inset rounded-full overflow-hidden">
+        <div class="h-1.5 bg-container-inset rounded-full overflow-hidden flex">
           <% bar_color = budget_category.over_budget? ? "bg-destructive" : (budget_category.near_limit? ? "bg-warning" : "bg-success") %>
-          <div class="h-full <%= bar_color %> rounded-full transition-all duration-500"
+          <div class="h-full <%= bar_color %> transition-all duration-500 shrink-0"
             style="inline-size: <%= budget_category.bar_width_percent %>%"></div>
+          <% if budget_category.planned_bar_width_percent > 0 %>
+            <% planned_color = budget_category.over_budget? ? "bg-destructive/30" : (budget_category.near_limit? ? "bg-warning/30" : "bg-success/30") %>
+            <div class="h-full <%= planned_color %> transition-all duration-500 shrink-0"
+              style="inline-size: <%= budget_category.planned_bar_width_percent %>%"></div>
+          <% end %>
         </div>
       </div>
 
@@ -89,6 +94,11 @@
             <%= t("budget_categories.bills_reserved_unconvertible", count: unconvertible) %>
           </div>
         <% end %>
+        <% end %>
+        <% if budget_category.planned_spending > 0 %>
+          <div class="whitespace-nowrap w-full sm:w-auto">
+            <span class="text-sm text-secondary"><%= t("budgets.show.planned_spending", amount: budget_category.planned_spending_money.format) %></span>
+          </div>
         <% end %>
         <div class="whitespace-nowrap w-full sm:w-auto lg:ml-auto">
           <% if budget_category.available_to_spend >= 0 %>

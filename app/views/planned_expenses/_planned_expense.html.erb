@@ -1,0 +1,61 @@
+<%# locals: (planned_expense:) %>
+
+<%= turbo_frame_tag dom_id(planned_expense) do %>
+  <div class="flex items-center gap-3 py-2 px-1 group">
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center gap-2">
+        <span class="text-primary text-sm font-medium truncate"><%= planned_expense.name %></span>
+        <% if planned_expense.recurring? %>
+          <span class="text-xs bg-alpha-black-5 text-secondary px-1.5 py-0.5 rounded"><%= t("planned_expenses.planned_expense.recurring_badge") %></span>
+        <% end %>
+      </div>
+      <div class="flex items-center gap-2 mt-0.5">
+        <span class="text-secondary text-xs"><%= planned_expense.category.name %></span>
+        <% if planned_expense.account.present? %>
+          <span class="text-subdued text-xs">· <%= planned_expense.account.name %></span>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <span class="text-sm font-medium <%= planned_expense.pending? ? "text-primary" : "text-secondary" %> privacy-sensitive">
+        <%= planned_expense.amount_money.format %>
+      </span>
+
+      <% status_classes = case planned_expense.status
+         when "pending" then "bg-blue-100 text-blue-700"
+         when "confirmed" then "bg-green-100 text-green-700"
+         when "cancelled" then "bg-gray-100 text-gray-500"
+         end %>
+      <span class="text-xs px-1.5 py-0.5 rounded <%= status_classes %>">
+        <%= t("planned_expenses.planned_expense.#{planned_expense.status}") %>
+      </span>
+
+      <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+        <% if planned_expense.pending? %>
+          <%= button_to confirm_budget_planned_expense_path(planned_expense.budget, planned_expense),
+                method: :post, class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.planned_expense.confirm_title") do %>
+            <%= icon "check", size: "xs" %>
+          <% end %>
+          <%= button_to cancel_budget_planned_expense_path(planned_expense.budget, planned_expense),
+                method: :post, class: "p-1 text-secondary hover:text-destructive", title: t("planned_expenses.planned_expense.cancel_title") do %>
+            <%= icon "x", size: "xs" %>
+          <% end %>
+        <% else %>
+          <%= button_to confirm_budget_planned_expense_path(planned_expense.budget, planned_expense),
+                method: :post, form: { data: { turbo_confirm: t("planned_expenses.destroy_confirm") } },
+                class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.planned_expense.reopen") do %>
+            <%= icon "rotate-ccw", size: "xs" %>
+          <% end %>
+        <% end %>
+
+        <%= button_to budget_planned_expense_path(planned_expense.budget, planned_expense),
+              method: :delete,
+              form: { data: { turbo_confirm: t("planned_expenses.destroy_confirm") } },
+              class: "p-1 text-secondary hover:text-destructive" do %>
+          <%= icon "trash-2", size: "xs" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

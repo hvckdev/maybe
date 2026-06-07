@@ -1,0 +1,67 @@
+<%# locals: (planned_expenses:) %>
+
+<% if planned_expenses.any? %>
+  <details open class="bg-container rounded-xl shadow-border-xs">
+    <summary class="flex items-center gap-2 px-4 py-3 cursor-pointer hover:bg-alpha-black-5 rounded-t-xl">
+      <%= icon "chevron-right", size: "sm", class: "text-secondary open:rotate-90 transition-transform" %>
+      <span class="text-sm font-medium text-secondary uppercase"><%= t("planned_expenses.title") %></span>
+      <span class="text-xs text-subdued">(<%= planned_expenses.count %>)</span>
+    </summary>
+
+    <div class="px-1 pb-1">
+      <% planned_expenses.each do |pe| %>
+        <div class="group flex lg:grid lg:grid-cols-12 items-center text-primary text-sm font-medium p-3 lg:p-4">
+          <div class="pr-4 lg:pr-10 flex items-center gap-3 lg:gap-4 col-span-8 min-w-0">
+            <div class="max-w-full">
+              <div class="flex items-center gap-3 lg:gap-4">
+                <div class="w-9 h-9 rounded-full flex justify-center items-center shrink-0"
+                     style="background-color: color-mix(in oklab, <%= pe.category.color %> 10%, transparent);
+                            color: <%= pe.category.color %>;">
+                  <% if pe.category.lucide_icon %>
+                    <%= icon pe.category.lucide_icon, size: "sm", color: "current" %>
+                  <% else %>
+                    <%= render DS::FilledIcon.new(variant: :text, hex_color: pe.category.color, text: pe.category.name, size: "lg", rounded: true) %>
+                  <% end %>
+                </div>
+
+                <div class="truncate">
+                  <div class="space-y-0.5">
+                    <div class="flex items-center gap-1 min-w-0">
+                      <div class="truncate flex-shrink"><%= pe.name %></div>
+                      <div class="flex items-center gap-1 flex-shrink-0">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-tint-10 text-link">
+                          <%= t("planned_expenses.planned_expense.pending") %>
+                        </span>
+                        <% if pe.recurring? %>
+                          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-alpha-black-5 text-secondary">
+                            <%= t("planned_expenses.planned_expense.recurring_badge") %>
+                          </span>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="text-secondary text-xs font-normal truncate">
+                      <%= pe.category.name %>
+                      <% if pe.account.present? %>
+                        <span>&middot;</span> <%= pe.account.name %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hidden lg:flex items-center gap-1 col-span-2">
+            <span class="text-xs text-secondary"><%= t("planned_expenses.title") %></span>
+          </div>
+
+          <div class="col-span-2 ml-auto text-right shrink-0">
+            <p class="font-medium text-subdued privacy-sensitive">
+              <%= format_money(-pe.amount_money) %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </details>
+<% end %>

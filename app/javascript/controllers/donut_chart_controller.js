@@ -188,13 +188,13 @@ export default class extends Controller {
       });
   }
 
-  #transformRingColor = ({ data: { id, color } }) => {
+  #transformRingColor = ({ data: { id, color, type } }) => {
     if (id === this.unusedSegmentIdValue || id === this.overageSegmentIdValue) {
       return color;
     }
 
     const reducedOpacityColor = d3.color(color);
-    reducedOpacityColor.opacity = this.segmentOpacityValue;
+    reducedOpacityColor.opacity = type === "planned" ? 0.3 : this.segmentOpacityValue;
     return reducedOpacityColor;
   };
 

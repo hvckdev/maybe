@@ -45,6 +45,7 @@ ru:
       fix_allocations: Исправить распределение
       over_allocated_message: Вы превысили бюджет. Пожалуйста, исправьте распределение.
     show:
+      planned_spending: "Ожидается: %{amount}"
       categories:
         amount: Сумма
         edit: Редактировать

@@ -24,7 +24,7 @@ class BudgetCategory < ApplicationRecord
   validates :budget_id, uniqueness: { scope: :category_id }
 
   monetize :budgeted_spending, :available_to_spend, :avg_monthly_expense, :median_monthly_expense, :actual_spending,
-           :rolled_over_amount
+           :rolled_over_amount, :planned_spending
 
   class Group
     attr_reader :budget_category, :budget_subcategories
@@ -256,6 +256,19 @@ class BudgetCategory < ApplicationRecord
     @parent_budget_category ||= budget.budget_categories.find { |bc| bc.category.id == category.parent_id }
   end
 
+  def planned_spending
+    @planned_spending ||= begin
+      if inherits_parent_budget?
+        0
+      elsif subcategory?
+        budget.planned_expenses.pending.where(category_id: category_id).sum(:amount)
+      else
+        inheriting_ids = subcategories.select(&:inherits_parent_budget?).map(&:category_id)
+        budget.planned_expenses.pending.where(category_id: [ category_id, *inheriting_ids ]).sum(:amount)
+      end
+    end
+  end
+
   def available_to_spend
     if inherits_parent_budget?
       parent = parent_budget_category
@@ -269,10 +282,10 @@ class BudgetCategory < ApplicationRecord
                       ring_fenced_children.sum { |child| child[:budgeted_spending] || 0 }
       shared_spending = parent.actual_spending - ring_fenced_children.sum(&:actual_spending)
 
-      [ shared_budget - shared_spending, 0 ].max
+      [ shared_budget - shared_spending - parent.planned_spending, 0 ].max
     elsif subcategory?
       # Subcategory with individual limit
-      (self[:budgeted_spending] || 0) + rolled_over_amount - actual_spending
+      (self[:budgeted_spending] || 0) + rolled_over_amount - actual_spending - planned_spending
     else
       # A parent card displays its full allocation and total spending (including
       # all children), so the available amount must reconcile with those same
@@ -281,7 +294,7 @@ class BudgetCategory < ApplicationRecord
       # the parent. Include that carry without counting child allocations twice.
       child_rollover = subcategories.reject(&:inherits_parent_budget?).sum(&:rolled_over_amount)
 
-      (self[:budgeted_spending] || 0) + rolled_over_amount + child_rollover - actual_spending
+      (self[:budgeted_spending] || 0) + rolled_over_amount + child_rollover - actual_spending - planned_spending
     end
   end
 
@@ -314,8 +327,27 @@ class BudgetCategory < ApplicationRecord
     end
   end
 
+  def planned_percent_of_budget
+    if inherits_parent_budget?
+      parent = parent_budget_category
+      return 0 unless parent
+
+      parent_budget = parent[:budgeted_spending] || 0
+      return 0 if parent_budget == 0
+      (planned_spending.to_f / parent_budget) * 100
+    else
+      budget_amount = self[:budgeted_spending] || 0
+      return 0 if budget_amount == 0
+      (planned_spending.to_f / budget_amount) * 100
+    end
+  end
+
   def bar_width_percent
     [ percent_of_budget_spent, 100 ].min
+  end
+
+  def planned_bar_width_percent
+    [[ percent_of_budget_spent + planned_percent_of_budget, 100 ].min - bar_width_percent, 0].max
   end
 
   def over_budget?
@@ -368,7 +400,7 @@ class BudgetCategory < ApplicationRecord
   end
 
   def near_limit?
-    !over_budget? && percent_of_budget_spent >= 90
+    !over_budget? && (percent_of_budget_spent + planned_percent_of_budget) >= 90
   end
 
   # Returns hash with suggested daily spending info or nil if not applicable
@@ -389,9 +421,11 @@ class BudgetCategory < ApplicationRecord
     unused_segment_id = "unused"
     overage_segment_id = "overage"
 
-    return [ { color: "var(--budget-unallocated-fill)", amount: 1, id: unused_segment_id } ] unless actual_spending > 0
+    return [ { color: "var(--budget-unallocated-fill)", amount: 1, id: unused_segment_id } ] unless actual_spending > 0 || planned_spending > 0
 
-    segments = [ { color: category.color, amount: actual_spending, id: id } ]
+    segments = []
+    segments << { color: category.color, amount: actual_spending, id: id, type: "actual" } if actual_spending > 0
+    segments << { color: category.color, amount: planned_spending, id: "#{id}_planned", type: "planned" } if planned_spending > 0
 
     if available_to_spend.negative?
       segments.push({ color: "var(--color-destructive)", amount: available_to_spend.abs, id: overage_segment_id })

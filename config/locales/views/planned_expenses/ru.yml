@@ -1,0 +1,44 @@
+---
+ru:
+  planned_expenses:
+    title: "Ожидаемые траты"
+    total_planned: "Ожидается"
+    add: "Запланировать трату"
+    empty:
+      title: "Нет ожидаемых трат"
+      description: "Запланируйте предстоящие траты, чтобы зарезервировать под них бюджет."
+    new:
+      title: "Запланировать трату"
+      name: "Название"
+      amount: "Сумма"
+      category: "Категория"
+      account: "Счёт"
+      account_prompt: "Выберите счёт для транзакции при подтверждении"
+      recurring: "Повторяется ежемесячно"
+      recurring_hint: "Эта трата будет автоматически копироваться в бюджет следующего месяца."
+      notes: "Заметки"
+      submit: "Запланировать"
+    edit:
+      title: "Редактировать ожидаемую трату"
+      submit: "Сохранить"
+    planned_expense:
+      pending: "Ожидается"
+      confirmed: "Подтверждено"
+      cancelled: "Отменено"
+      confirm: "Подтвердить"
+      confirm_title: "Подтвердить — создать транзакцию"
+      cancel: "Отменить"
+      cancel_title: "Отменить — освободить бюджет"
+      reopen: "Возобновить"
+      delete: "Удалить"
+      recurring_badge: "Ежемесячно"
+    destroy_confirm: "Удалить эту ожидаемую трату?"
+    resolved:
+      one: "%{count} завершена"
+      few: "%{count} завершено"
+      many: "%{count} завершено"
+      other: "%{count} завершено"
+    status:
+      pending: "Ожидается"
+      confirmed: "Подтверждено"
+      cancelled: "Отменено"
