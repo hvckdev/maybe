@@ -27,6 +27,7 @@ en:
       over: "%{amount} over"
       left: "%{amount} left"
       spent: "%{amount} spent"
+      planned: "%{amount} expected"
     edit:
       setup_title: "Setup your budget"
       setup_description: "Enter your monthly earnings and planned spending below to setup your budget."

@@ -3,7 +3,7 @@ ru:
   planned_expenses:
     title: "Ожидаемые траты"
     total_planned: "Ожидается"
-    add: "Запланировать трату"
+    add: "Запланировать"
     empty:
       title: "Нет ожидаемых трат"
       description: "Запланируйте предстоящие траты, чтобы зарезервировать под них бюджет."
@@ -21,6 +21,12 @@ ru:
     edit:
       title: "Редактировать ожидаемую трату"
       submit: "Сохранить"
+    confirm:
+      title: "Подтвердить трату"
+      description: "Подтвердить «%{name}» и создать транзакцию."
+      date: "Дата"
+      amount: "Сумма"
+      submit: "Подтвердить"
     planned_expense:
       pending: "Ожидается"
       confirmed: "Подтверждено"

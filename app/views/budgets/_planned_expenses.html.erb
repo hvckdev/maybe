@@ -6,12 +6,12 @@
 <%= turbo_frame_tag "planned_expenses" do %>
   <div class="space-y-3">
     <div class="flex items-center justify-between">
-      <div class="flex items-center gap-2">
+      <div>
         <h2 class="text-primary font-medium"><%= t("planned_expenses.title") %></h2>
         <% if pending.any? %>
-          <span class="text-sm text-secondary">
+          <p class="text-xs text-secondary mt-0.5">
             <%= t("planned_expenses.total_planned") %>: <span class="text-primary font-medium privacy-sensitive"><%= budget.planned_spending_money.format %></span>
-          </span>
+          </p>
         <% end %>
       </div>
       <%= render DS::Link.new(

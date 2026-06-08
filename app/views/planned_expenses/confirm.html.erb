@@ -1,0 +1,23 @@
+<%= turbo_frame_tag "drawer" do %>
+  <%= render DS::Dialog.new(variant: :drawer) do |dialog| %>
+    <% dialog.with_header title: t("planned_expenses.confirm.title") %>
+
+    <% dialog.with_body do %>
+      <%= styled_form_with model: @planned_expense, url: confirm_budget_planned_expense_path(@budget, @planned_expense), method: :post, class: "space-y-4" do |f| %>
+        <div>
+          <p class="text-sm text-secondary mb-4">
+            <%= t("planned_expenses.confirm.description", name: @planned_expense.name) %>
+          </p>
+        </div>
+
+        <%= f.date_field :date, label: t("planned_expenses.confirm.date"), value: Date.current, required: true %>
+
+        <%= f.money_field :amount, label: t("planned_expenses.confirm.amount"), value: @planned_expense.amount, required: true, disable_currency: true %>
+
+        <%= f.hidden_field :currency, value: @planned_expense.currency %>
+
+        <%= f.submit t("planned_expenses.confirm.submit") %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

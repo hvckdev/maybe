@@ -21,6 +21,7 @@ ru:
       left: "%{amount} осталось"
       over: "%{amount} превышено"
       spent: "%{amount} потрачено"
+      planned: "%{amount} ожидается"
     copy_previous:
       already_initialized: Этот бюджет уже настроен
       no_source: Не найден предыдущий бюджет для копирования

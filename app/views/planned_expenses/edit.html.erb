@@ -1,0 +1,38 @@
+<%= turbo_frame_tag "drawer" do %>
+  <%= render DS::Dialog.new(variant: :drawer) do |dialog| %>
+    <% dialog.with_header title: t("planned_expenses.edit.title") %>
+
+    <% dialog.with_body do %>
+      <%= styled_form_with model: @planned_expense, url: budget_planned_expense_path(@budget, @planned_expense), class: "space-y-4" do |f| %>
+        <%= f.text_field :name, label: t("planned_expenses.new.name"), required: true, autofocus: true %>
+
+        <%= f.collection_select :category_id,
+              @budget.budget_categories.map(&:category),
+              :id, :name,
+              { label: t("planned_expenses.new.category"), variant: :badge, searchable: true },
+              required: true %>
+
+        <%= f.money_field :amount, label: t("planned_expenses.new.amount"), required: true, disable_currency: true %>
+
+        <%= f.collection_select :account_id,
+              Current.family.accounts.active.alphabetically,
+              :id, :name,
+              { label: t("planned_expenses.new.account"), required: true } %>
+
+        <div class="space-y-1">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <%= f.check_box :recurring, class: "rounded border-secondary" %>
+            <span class="text-sm text-primary"><%= t("planned_expenses.new.recurring") %></span>
+          </label>
+          <p class="text-xs text-subdued ml-6"><%= t("planned_expenses.new.recurring_hint") %></p>
+        </div>
+
+        <%= f.text_area :notes, label: t("planned_expenses.new.notes"), rows: 2 %>
+
+        <%= f.hidden_field :currency, value: @planned_expense.currency %>
+
+        <%= f.submit t("planned_expenses.edit.submit") %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
