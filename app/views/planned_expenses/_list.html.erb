@@ -1,7 +1,8 @@
 <%# locals: (planned_expenses:) %>
 
-<% if planned_expenses.any? %>
-  <details open class="bg-container rounded-xl shadow-border-xs">
+<%= turbo_frame_tag "planned_expenses_list" do %>
+  <% if planned_expenses.any? %>
+    <details open class="bg-container rounded-xl shadow-border-xs">
     <summary class="flex items-center gap-2 px-4 py-3 cursor-pointer hover:bg-alpha-black-5 rounded-t-xl">
       <%= icon "chevron-right", size: "sm", class: "text-secondary open:rotate-90 transition-transform" %>
       <span class="text-sm font-medium text-secondary uppercase"><%= t("planned_expenses.title") %></span>
@@ -10,58 +11,82 @@
 
     <div class="px-1 pb-1">
       <% planned_expenses.each do |pe| %>
-        <div class="group flex lg:grid lg:grid-cols-12 items-center text-primary text-sm font-medium p-3 lg:p-4">
-          <div class="pr-4 lg:pr-10 flex items-center gap-3 lg:gap-4 col-span-8 min-w-0">
-            <div class="max-w-full">
-              <div class="flex items-center gap-3 lg:gap-4">
-                <div class="w-9 h-9 rounded-full flex justify-center items-center shrink-0"
-                     style="background-color: color-mix(in oklab, <%= pe.category.color %> 10%, transparent);
-                            color: <%= pe.category.color %>;">
-                  <% if pe.category.lucide_icon %>
-                    <%= icon pe.category.lucide_icon, size: "sm", color: "current" %>
-                  <% else %>
-                    <%= render DS::FilledIcon.new(variant: :text, hex_color: pe.category.color, text: pe.category.name, size: "lg", rounded: true) %>
-                  <% end %>
-                </div>
+        <div class="py-2 px-3 sm:px-4 group overflow-hidden">
+          <%# Row 1: icon + name + actions %>
+          <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex justify-center items-center shrink-0"
+                 style="background-color: color-mix(in oklab, <%= pe.category.color %> 10%, transparent);
+                        color: <%= pe.category.color %>;">
+              <% if pe.category.lucide_icon %>
+                <%= icon pe.category.lucide_icon, size: "sm", color: "current" %>
+              <% else %>
+                <%= render DS::FilledIcon.new(variant: :text, hex_color: pe.category.color, text: pe.category.name, size: "md", rounded: true) %>
+              <% end %>
+            </div>
 
-                <div class="truncate">
-                  <div class="space-y-0.5">
-                    <div class="flex items-center gap-1 min-w-0">
-                      <div class="truncate flex-shrink"><%= pe.name %></div>
-                      <div class="flex items-center gap-1 flex-shrink-0">
-                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-tint-10 text-link">
-                          <%= t("planned_expenses.planned_expense.pending") %>
-                        </span>
-                        <% if pe.recurring? %>
-                          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-alpha-black-5 text-secondary">
-                            <%= t("planned_expenses.planned_expense.recurring_badge") %>
-                          </span>
-                        <% end %>
-                      </div>
-                    </div>
-                    <div class="text-secondary text-xs font-normal truncate">
-                      <%= pe.category.name %>
-                      <% if pe.account.present? %>
-                        <span>&middot;</span> <%= pe.account.name %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-1.5 min-w-0">
+                <span class="text-sm font-medium text-primary truncate"><%= pe.name %></span>
+                <% if pe.recurring? %>
+                  <span class="text-xs bg-alpha-black-5 text-secondary px-1.5 py-0.5 rounded shrink-0"><%= t("planned_expenses.planned_expense.recurring_badge") %></span>
+                <% end %>
               </div>
+            </div>
+
+            <%# Desktop: inline buttons %>
+            <div class="hidden sm:flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+              <%= link_to confirm_budget_planned_expense_path(pe.budget, pe),
+                    class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.planned_expense.confirm_title"), data: { turbo_frame: "drawer" } do %>
+                <%= icon "check", size: "xs" %>
+              <% end %>
+              <%= button_to cancel_budget_planned_expense_path(pe.budget, pe),
+                    method: :post, class: "p-1 text-secondary hover:text-destructive", title: t("planned_expenses.planned_expense.cancel_title") do %>
+                <%= icon "x", size: "xs" %>
+              <% end %>
+              <%= link_to edit_budget_planned_expense_path(pe.budget, pe),
+                    class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.edit.title"), data: { turbo_frame: "drawer" } do %>
+                <%= icon "pencil-line", size: "xs" %>
+              <% end %>
+              <%= button_to budget_planned_expense_path(pe.budget, pe),
+                    method: :delete,
+                    form: { data: { turbo_confirm: t("planned_expenses.destroy_confirm") } },
+                    class: "p-1 text-secondary hover:text-destructive", title: t("planned_expenses.planned_expense.delete") do %>
+                <%= icon "trash-2", size: "xs" %>
+              <% end %>
+            </div>
+
+            <%# Mobile: dropdown %>
+            <div class="sm:hidden shrink-0 max-w-fit">
+              <%= render DS::Menu.new(variant: "icon_sm") do |menu| %>
+                <% menu.with_item(variant: "link", text: t("planned_expenses.planned_expense.confirm"), href: confirm_budget_planned_expense_path(pe.budget, pe), icon: "check", data: { turbo_frame: "drawer" }) %>
+                <% menu.with_item(variant: "button", text: t("planned_expenses.planned_expense.cancel"), href: cancel_budget_planned_expense_path(pe.budget, pe), method: :post, icon: "x") %>
+                <% menu.with_item(variant: "link", text: t("planned_expenses.edit.title"), href: edit_budget_planned_expense_path(pe.budget, pe), icon: "pencil-line", data: { turbo_frame: "drawer" }) %>
+                <% menu.with_item(variant: "divider") %>
+                <% menu.with_item(variant: "button", text: t("planned_expenses.planned_expense.delete"), href: budget_planned_expense_path(pe.budget, pe), method: :delete, icon: "trash-2", confirm: t("planned_expenses.destroy_confirm")) %>
+              <% end %>
             </div>
           </div>
 
-          <div class="hidden lg:flex items-center gap-1 col-span-2">
-            <span class="text-xs text-secondary"><%= t("planned_expenses.title") %></span>
-          </div>
-
-          <div class="col-span-2 ml-auto text-right shrink-0">
-            <p class="font-medium text-subdued privacy-sensitive">
-              <%= format_money(-pe.amount_money) %>
-            </p>
+          <%# Row 2: category · account | amount + status %>
+          <div class="flex items-center gap-2 mt-1 pl-10 sm:pl-12">
+            <div class="flex-1 min-w-0 text-secondary text-xs truncate">
+              <%= pe.category.name %>
+              <% if pe.account.present? %>
+                <span>&middot;</span> <%= pe.account.name %>
+              <% end %>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="text-xs font-medium text-primary privacy-sensitive">
+                <%= format_money(-pe.amount_money) %>
+              </span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">
+                <%= t("planned_expenses.planned_expense.pending") %>
+              </span>
+            </div>
           </div>
         </div>
       <% end %>
     </div>
   </details>
+  <% end %>
 <% end %>

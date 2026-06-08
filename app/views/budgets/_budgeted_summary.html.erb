@@ -44,12 +44,24 @@
           <div class="rounded-md h-1.5 bg-inverse" style="width: <%= 100 - budget.overage_percent %>%"></div>
           <div class="rounded-md h-1.5 bg-destructive" style="width: <%= budget.overage_percent %>%"></div>
         <% else %>
-          <div class="rounded-md h-1.5 bg-inverse" style="width: <%= budget.percent_of_budget_spent %>%"></div>
-          <div class="rounded-md h-1.5 bg-surface-inset" style="width: <%= 100 - budget.percent_of_budget_spent %>%"></div>
+          <% spent_percent = budget.percent_of_budget_spent %>
+          <% planned_percent = budget.planned_spending > 0 ? (budget.planned_spending.to_f / budget.budgeted_spending * 100).round : 0 %>
+          <div class="rounded-md h-1.5 bg-inverse" style="width: <%= spent_percent %>%"></div>
+          <% if planned_percent > 0 && spent_percent + planned_percent <= 100 %>
+            <div class="rounded-md h-1.5 bg-gray-400" style="width: <%= planned_percent %>%"></div>
+            <div class="rounded-md h-1.5 bg-surface-inset" style="width: <%= 100 - spent_percent - planned_percent %>%"></div>
+          <% else %>
+            <div class="rounded-md h-1.5 bg-surface-inset" style="width: <%= 100 - spent_percent %>%"></div>
+          <% end %>
         <% end %>
       </div>
       <div class="flex justify-between text-sm privacy-sensitive">
-        <p class="text-secondary"><%= t(".spent", amount: format_money(budget.actual_spending_money)) %></p>
+        <div>
+          <p class="text-secondary"><%= t(".spent", amount: format_money(budget.actual_spending_money)) %></p>
+          <% if budget.planned_spending > 0 %>
+            <p class="text-subdued text-xs mt-0.5"><%= t(".planned", amount: format_money(budget.planned_spending_money)) %></p>
+          <% end %>
+        </div>
         <p class="font-medium">
           <% if budget.available_to_spend.negative? %>
             <span class="text-destructive"><%= t(".over", amount: format_money(budget.available_to_spend_money.abs)) %></span>

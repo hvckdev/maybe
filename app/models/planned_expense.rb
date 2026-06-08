@@ -18,18 +18,20 @@ class PlannedExpense < ApplicationRecord
 
   scope :recurring, -> { where(recurring: true) }
 
-  def confirm!
+  def confirm!(date: Date.current, amount: nil)
+    entry = nil
     transaction do
       entry = account.entries.create!(
-        date: Date.current,
+        date: date,
         name: name,
-        amount: -amount,
+        amount: amount || self.amount,
         currency: currency,
         entryable: Transaction.new(category: category)
       )
       entry.mark_user_modified!
       update!(status: :confirmed)
     end
+    entry
   end
 
   def cancel!

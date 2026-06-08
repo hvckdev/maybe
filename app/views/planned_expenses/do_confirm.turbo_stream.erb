@@ -1,0 +1,19 @@
+<%= turbo_stream.update "planned_expenses" do %>
+  <%= render "budgets/planned_expenses", budget: @planned_expense.budget %>
+<% end %>
+
+<%= turbo_stream.update "planned_expenses_list" do %>
+  <% current_budget = Current.family.budgets.find_by(start_date: Date.current.beginning_of_month, end_date: Date.current.end_of_month) %>
+  <% planned = current_budget ? current_budget.planned_expenses.pending.includes(:category, :account) : PlannedExpense.none %>
+  <%= render "planned_expenses/list", planned_expenses: planned %>
+<% end %>
+
+<% @planned_expense.budget.budget_categories.each do |bc| %>
+  <%= turbo_stream.update dom_id(bc) do %>
+    <%= render "budget_categories/budget_category", budget_category: bc %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "drawer" do %>
+  <div></div>
+<% end %>

@@ -54,6 +54,12 @@
             <%= format_money(bc.actual_spending_money) %>
           </p>
 
+          <% if bc.planned_spending > 0 %>
+            <p class="text-xs text-secondary">
+              <%= t("budgets.show.planned_spending", amount: bc.planned_spending_money.format) %>
+            </p>
+          <% end %>
+
           <% if editable %>
             <%= render DS::Link.new(
               text: t(".of_budget", amount: bc.budgeted_spending_money.format(precision: 0)),

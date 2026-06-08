@@ -1,5 +1,6 @@
 ARG RUBY_VERSION=3.4.9
-FROM ruby:${RUBY_VERSION}-slim-bookworm
+ARG RUBY_IMAGE_REGISTRY=mirror.gcr.io/library
+FROM ${RUBY_IMAGE_REGISTRY}/ruby:${RUBY_VERSION}-slim-bookworm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
