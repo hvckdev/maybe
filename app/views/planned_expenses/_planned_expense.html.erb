@@ -11,9 +11,7 @@
      end %>
 
   <div class="py-2 px-1 group overflow-hidden">
-    <%# Row 1: icon + name + actions (mobile: menu, desktop: inline) %>
     <div class="flex items-center gap-2 sm:gap-3 min-w-0">
-      <%# Category icon %>
       <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex justify-center items-center shrink-0"
            style="background-color: color-mix(in oklab, <%= planned_expense.category.color %> 10%, transparent);
                   color: <%= planned_expense.category.color %>;">
@@ -24,7 +22,6 @@
         <% end %>
       </div>
 
-      <%# Name %>
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-1.5 min-w-0">
           <span class="text-primary text-sm font-medium truncate"><%= planned_expense.name %></span>
@@ -37,39 +34,31 @@
         </div>
       </div>
 
-      <%# Desktop: inline action buttons %>
       <% if planned_expense.pending? %>
         <div class="hidden sm:flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
-          <%= link_to confirm_budget_planned_expense_path(planned_expense.budget, planned_expense),
-                class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.planned_expense.confirm_title"), data: { turbo_frame: "drawer" } do %>
+          <%= link_to confirm_budget_planned_expense_path(planned_expense.budget, planned_expense), class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.planned_expense.confirm_title"), data: { turbo_frame: "drawer" } do %>
             <%= icon "check", size: "xs" %>
           <% end %>
-          <%= button_to cancel_budget_planned_expense_path(planned_expense.budget, planned_expense),
-                method: :post, class: "p-1 text-secondary hover:text-destructive", title: t("planned_expenses.planned_expense.cancel_title") do %>
+          <%= button_to cancel_budget_planned_expense_path(planned_expense.budget, planned_expense), method: :post, class: "p-1 text-secondary hover:text-destructive", title: t("planned_expenses.planned_expense.cancel_title") do %>
             <%= icon "x", size: "xs" %>
           <% end %>
-          <%= link_to edit_budget_planned_expense_path(planned_expense.budget, planned_expense),
-                class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.edit.title"), data: { turbo_frame: "drawer" } do %>
+          <%= link_to edit_budget_planned_expense_path(planned_expense.budget, planned_expense), class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.edit.title"), data: { turbo_frame: "drawer" } do %>
             <%= icon "pencil-line", size: "xs" %>
           <% end %>
           <%= render "planned_expenses/delete_action", planned_expense: planned_expense %>
         </div>
       <% else %>
         <div class="hidden sm:flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
-          <%= button_to reopen_budget_planned_expense_path(planned_expense.budget, planned_expense),
-                method: :post,
-                class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.planned_expense.reopen") do %>
+          <%= button_to reopen_budget_planned_expense_path(planned_expense.budget, planned_expense), method: :post, class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.planned_expense.reopen") do %>
             <%= icon "rotate-ccw", size: "xs" %>
           <% end %>
-          <%= link_to edit_budget_planned_expense_path(planned_expense.budget, planned_expense),
-                class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.edit.title"), data: { turbo_frame: "drawer" } do %>
+          <%= link_to edit_budget_planned_expense_path(planned_expense.budget, planned_expense), class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.edit.title"), data: { turbo_frame: "drawer" } do %>
             <%= icon "pencil-line", size: "xs" %>
           <% end %>
           <%= render "planned_expenses/delete_action", planned_expense: planned_expense %>
         </div>
       <% end %>
 
-      <%# Mobile: dropdown menu %>
       <div class="sm:hidden shrink-0 max-w-fit">
         <%= render DS::Menu.new(variant: "icon_sm") do |menu| %>
           <% if planned_expense.pending? %>
@@ -89,7 +78,6 @@
       </div>
     </div>
 
-    <%# Row 2: category · account | amount + status %>
     <div class="flex items-center gap-2 mt-1 pl-10 sm:pl-12">
       <div class="flex-1 min-w-0 text-secondary text-xs truncate">
         <%= planned_expense.category.name %>
