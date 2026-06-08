@@ -1,0 +1,13 @@
+<%= turbo_stream.update "planned_expenses" do %>
+  <%= render "budgets/planned_expenses", budget: @planned_expense.budget %>
+<% end %>
+
+<% @planned_expense.budget.budget_categories.each do |bc| %>
+  <%= turbo_stream.update dom_id(bc) do %>
+    <%= render "budget_categories/budget_category", budget_category: bc %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "drawer" do %>
+  <div></div>
+<% end %>

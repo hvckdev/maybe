@@ -60,12 +60,24 @@ class PlannedExpenseTest < ActiveSupport::TestCase
 
     entry = @account.entries.order(:created_at).last
     assert_equal "Test", entry.name
-    assert_equal(-100, entry.amount)
+    assert_equal(100, entry.amount)
+    assert_equal Date.current, entry.date
     assert_equal "USD", entry.currency
     assert_equal "Transaction", entry.entryable_type
     assert_equal @category, entry.entryable.category
     assert entry.user_modified?
     assert_equal "confirmed", pe.reload.status
+  end
+
+  test "confirm! uses custom date and amount" do
+    pe = PlannedExpense.create!(budget: @budget, category: @category, account: @account, name: "Test", amount: 100, currency: "USD")
+
+    custom_date = 3.days.ago.to_date
+    pe.confirm!(date: custom_date, amount: 150)
+
+    entry = @account.entries.order(:created_at).last
+    assert_equal custom_date, entry.date
+    assert_equal(150, entry.amount)
   end
 
   test "cancel! changes status to cancelled" do

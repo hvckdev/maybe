@@ -3,7 +3,7 @@ en:
   planned_expenses:
     title: "Expected Expenses"
     total_planned: "Expected"
-    add: "Plan an expense"
+    add: "Plan"
     empty:
       title: "No expected expenses"
       description: "Plan upcoming expenses to reserve budget for them."
@@ -21,6 +21,12 @@ en:
     edit:
       title: "Edit expected expense"
       submit: "Save changes"
+    confirm:
+      title: "Confirm expense"
+      description: "Confirm \"%{name}\" and create a transaction."
+      date: "Date"
+      amount: "Amount"
+      submit: "Confirm"
     planned_expense:
       pending: "Expected"
       confirmed: "Confirmed"

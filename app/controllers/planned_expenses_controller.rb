@@ -2,7 +2,7 @@
 
 class PlannedExpensesController < ApplicationController
   before_action :set_budget
-  before_action :set_planned_expense, only: %i[update destroy confirm cancel]
+  before_action :set_planned_expense, only: %i[edit update destroy confirm do_confirm cancel reopen]
 
   def new
     @planned_expense = @budget.planned_expenses.build(
@@ -25,6 +25,9 @@ class PlannedExpensesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
     if @planned_expense.update(planned_expense_params)
       respond_to do |format|
@@ -32,7 +35,7 @@ class PlannedExpensesController < ApplicationController
         format.html { redirect_to budget_path(@budget) }
       end
     else
-      render :new, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -46,7 +49,14 @@ class PlannedExpensesController < ApplicationController
   end
 
   def confirm
-    @planned_expense.confirm!
+    # GET — show confirm form in drawer
+  end
+
+  def do_confirm
+    # POST — process confirmation
+    date = params[:planned_expense][:date]
+    amount = params[:planned_expense][:amount]
+    @confirmed_entry = @planned_expense.confirm!(date: date, amount: amount)
 
     respond_to do |format|
       format.turbo_stream
@@ -56,6 +66,15 @@ class PlannedExpensesController < ApplicationController
 
   def cancel
     @planned_expense.cancel!
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to budget_path(@budget) }
+    end
+  end
+
+  def reopen
+    @planned_expense.reopen!
 
     respond_to do |format|
       format.turbo_stream

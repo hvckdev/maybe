@@ -456,9 +456,11 @@ Rails.application.routes.draw do
       post :move, on: :collection
     end
 
-    resources :planned_expenses, only: %i[new create update destroy] do
-      post :confirm, on: :member
+    resources :planned_expenses, only: %i[new create edit update destroy] do
+      get :confirm, on: :member
+      post :confirm, action: :do_confirm, on: :member
       post :cancel, on: :member
+      post :reopen, on: :member
     end
   end
 
