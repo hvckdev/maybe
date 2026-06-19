@@ -31,8 +31,11 @@
     <% else %>
       <% if pending.any? %>
         <div class="divide-y divide-secondary">
-          <% pending.each do |pe| %>
-            <%= render "planned_expenses/planned_expense", planned_expense: pe %>
+          <% PlannedExpense.group_for_display(pending).each do |group| %>
+            <%= render "planned_expenses/planned_expense",
+                  planned_expense: group[:planned_expense],
+                  occurrence_count: group[:occurrence_count],
+                  total_amount: group[:total_amount] %>
           <% end %>
         </div>
       <% end %>

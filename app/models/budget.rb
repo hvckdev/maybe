@@ -71,7 +71,7 @@ class Budget < ApplicationRecord
         budget_start, budget_end = period_for(start_date, family: family)
 
         owner = (household || !family.personal_budgets?) ? nil : user
-
+        budget_created = false
         budget = Budget.find_or_create_by!(
           family: family,
           start_date: budget_start,
@@ -79,10 +79,12 @@ class Budget < ApplicationRecord
           user: owner
         ) do |b|
           b.currency = family.currency
+          budget_created = true
         end
 
         budget.current_user = user
         budget.sync_budget_categories
+        budget.populate_recurring_planned_expenses! if budget_created
 
         Budget::RolloverCalculator.new(family: family, user: owner).recompute!
 
@@ -289,6 +291,26 @@ class Budget < ApplicationRecord
       .first
   end
 
+  def populate_recurring_planned_expenses!
+    target_by_category = budget_categories.index_by(&:category_id)
+
+    family.planned_expenses.recurring
+      .joins(:budget)
+      .includes(:budget)
+      .where("budgets.start_date < ?", start_date)
+      .group_by { |planned_expense| planned_expense.recurrence_series_id || planned_expense.id }
+      .each_value do |series_expenses|
+        source_pe = series_expenses.min_by { |planned_expense| planned_expense.due_date || planned_expense.budget.start_date }
+        next unless target_by_category[source_pe.category_id]
+
+        source_pe.recurrence_dates_for(self).each do |due_date|
+          next if planned_expenses.exists?(recurrence_series_id: source_pe.recurrence_series_id, due_date: due_date)
+
+          source_pe.copy_to!(self, due_date: due_date)
+        end
+      end
+  end
+
   def copy_from!(source_budget)
     raise ArgumentError, "source budget must belong to the same family" unless source_budget.family_id == family_id
     raise ArgumentError, "source budget must belong to the same user" unless source_budget.user_id == user_id
@@ -300,9 +322,9 @@ class Budget < ApplicationRecord
         expected_income: source_budget.expected_income
       )
 
-      target_by_category = budget_categories.index_by(&:category_id)
+      target_by_category = budget_categories.reload.index_by(&:category_id)
 
-      source_budget.budget_categories.each do |source_bc|
+      source_budget.budget_categories.reload.each do |source_bc|
         target_bc = target_by_category[source_bc.category_id]
         next unless target_bc
 
@@ -314,10 +336,13 @@ class Budget < ApplicationRecord
         )
       end
 
-      source_budget.planned_expenses.recurring.each do |source_pe|
+source_budget.planned_expenses.recurring.group_by { |planned_expense| planned_expense.recurrence_series_id || planned_expense.id }.each_value do |series_expenses|
+        source_pe = series_expenses.min_by { |planned_expense| planned_expense.due_date || planned_expense.budget.start_date }
         next unless target_by_category[source_pe.category_id]
 
-        source_pe.copy_to!(self)
+        source_pe.recurrence_dates_for(self).each do |due_date|
+          source_pe.copy_to!(self, due_date: due_date)
+        end
       end
 
       # Copying the toggle changes what the chain should hold, and this runs

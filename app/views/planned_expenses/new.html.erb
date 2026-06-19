@@ -3,7 +3,7 @@
     <% dialog.with_header title: t("planned_expenses.new.title") %>
 
     <% dialog.with_body do %>
-      <%= styled_form_with model: @planned_expense, url: budget_planned_expenses_path(@budget), class: "space-y-4" do |f| %>
+      <%= styled_form_with model: @planned_expense, url: budget_planned_expenses_path(@budget), class: "space-y-4", data: { controller: "planned-expense-form" } do |f| %>
         <%= f.text_field :name, label: t("planned_expenses.new.name"), required: true, autofocus: true %>
 
         <%= f.collection_select :category_id,
@@ -14,17 +14,55 @@
 
         <%= f.money_field :amount, label: t("planned_expenses.new.amount"), required: true, disable_currency: true %>
 
+        <%= f.date_field :due_date, label: t("planned_expenses.new.due_date"), value: @planned_expense.due_date || @budget.start_date %>
+
         <%= f.collection_select :account_id,
               Current.family.accounts.active.alphabetically,
               :id, :name,
               { label: t("planned_expenses.new.account"), required: true } %>
 
-        <div class="space-y-1">
-          <label class="flex items-center gap-2 cursor-pointer">
-            <%= f.check_box :recurring, class: "rounded border-secondary" %>
-            <span class="text-sm text-primary"><%= t("planned_expenses.new.recurring") %></span>
-          </label>
-          <p class="text-xs text-subdued ml-6"><%= t("planned_expenses.new.recurring_hint") %></p>
+        <div class="space-y-3 rounded-lg border border-secondary p-3">
+          <div class="space-y-1">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <%= f.check_box :recurring,
+                    class: "rounded border-secondary",
+                    data: { planned_expense_form_target: "recurring", action: "planned-expense-form#update" } %>
+              <span class="text-sm text-primary"><%= t("planned_expenses.new.recurring") %></span>
+            </label>
+            <p class="text-xs text-subdued ml-6"><%= t("planned_expenses.new.recurring_hint") %></p>
+          </div>
+
+          <div class="space-y-3 <%= "hidden" unless @planned_expense.recurring? %>" data-planned-expense-form-target="recurrenceFields">
+            <%= f.select :recurrence_type,
+                  [[t("planned_expenses.recurrence.type.interval"), "interval"], [t("planned_expenses.recurrence.type.day_of_month"), "day_of_month"], [t("planned_expenses.recurrence.type.times_per_month"), "times_per_month"]],
+                  { label: t("planned_expenses.recurrence.type.label") },
+                  data: { planned_expense_form_target: "recurrenceType", action: "planned-expense-form#update" } %>
+
+            <div class="grid grid-cols-2 gap-3 <%= "hidden" unless @planned_expense.interval_recurrence? %>" data-planned-expense-form-target="intervalFields">
+              <%= f.number_field :recurrence_interval, label: t("planned_expenses.recurrence.interval"), min: 1, step: 1, value: @planned_expense.recurrence_interval || 1 %>
+              <%= f.select :recurrence_unit,
+                    [[t("planned_expenses.recurrence.unit.days"), "days"], [t("planned_expenses.recurrence.unit.weeks"), "weeks"], [t("planned_expenses.recurrence.unit.months"), "months"]],
+                    { label: t("planned_expenses.recurrence.unit.label") } %>
+            </div>
+
+            <div class="<%= "hidden" unless @planned_expense.day_of_month_recurrence? %>" data-planned-expense-form-target="dayOfMonthFields">
+              <%= f.number_field :recurrence_day_of_month,
+                    label: t("planned_expenses.recurrence.day_of_month"),
+                    min: 1,
+                    max: 31,
+                    step: 1,
+                    value: @planned_expense.recurrence_day_of_month || Date.current.day %>
+            </div>
+
+            <div class="<%= "hidden" unless @planned_expense.times_per_month_recurrence? %>" data-planned-expense-form-target="timesPerMonthFields">
+              <%= f.number_field :recurrence_count_per_month,
+                    label: t("planned_expenses.recurrence.count_per_month"),
+                    min: 1,
+                    max: 31,
+                    step: 1,
+                    value: @planned_expense.recurrence_count_per_month || 1 %>
+            </div>
+          </div>
         </div>
 
         <%= f.text_area :notes, label: t("planned_expenses.new.notes"), rows: 2 %>

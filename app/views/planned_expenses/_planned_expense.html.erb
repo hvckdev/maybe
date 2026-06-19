@@ -1,4 +1,7 @@
-<%# locals: (planned_expense:) %>
+<%# locals: (planned_expense:, occurrence_count: 1, total_amount: nil) %>
+
+<% occurrence_count ||= 1 %>
+<% total_amount ||= planned_expense.amount %>
 
 <%= turbo_frame_tag dom_id(planned_expense) do %>
   <% status_classes = case planned_expense.status
@@ -26,7 +29,10 @@
         <div class="flex items-center gap-1.5 min-w-0">
           <span class="text-primary text-sm font-medium truncate"><%= planned_expense.name %></span>
           <% if planned_expense.recurring? %>
-            <span class="text-xs bg-alpha-black-5 text-secondary px-1.5 py-0.5 rounded shrink-0"><%= t("planned_expenses.planned_expense.recurring_badge") %></span>
+            <span class="text-xs bg-alpha-black-5 text-secondary px-1.5 py-0.5 rounded shrink-0"><%= planned_expense.recurrence_description %></span>
+          <% end %>
+          <% if occurrence_count > 1 %>
+            <span class="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded shrink-0"><%= t("planned_expenses.planned_expense.occurrences_left", count: occurrence_count) %></span>
           <% end %>
         </div>
       </div>
@@ -96,10 +102,13 @@
         <% if planned_expense.account.present? %>
           <span>&middot;</span> <%= planned_expense.account.name %>
         <% end %>
+        <% if planned_expense.due_date.present? %>
+          <span>&middot;</span> <%= l(planned_expense.due_date, format: :default) %>
+        <% end %>
       </div>
       <div class="flex items-center gap-1.5 shrink-0">
         <span class="text-xs font-medium <%= planned_expense.pending? ? "text-primary" : "text-secondary" %> privacy-sensitive">
-          <%= planned_expense.amount_money.format %>
+          <%= Money.new(total_amount, planned_expense.currency).format %>
         </span>
         <span class="text-xs px-1.5 py-0.5 rounded <%= status_classes %>">
           <%= t("planned_expenses.planned_expense.#{planned_expense.status}") %>

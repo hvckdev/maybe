@@ -11,13 +11,51 @@ ru:
       title: "Запланировать трату"
       name: "Название"
       amount: "Сумма"
+      due_date: "Дата траты"
       category: "Категория"
       account: "Счёт"
       account_prompt: "Выберите счёт для транзакции при подтверждении"
-      recurring: "Повторяется ежемесячно"
-      recurring_hint: "Эта трата будет автоматически копироваться в бюджет следующего месяца."
+      recurring: "Повторяется"
+      recurring_hint: "Подходящие повторения будут добавлены при копировании бюджета в будущий месяц."
       notes: "Заметки"
       submit: "Запланировать"
+    recurrence:
+      type:
+        label: "Тип повторения"
+        interval: "Через интервал"
+        day_of_month: "В конкретный день месяца"
+        times_per_month: "N раз в месяц"
+      interval: "Каждые"
+      unit:
+        label: "Единица"
+        days: "дня/дней"
+        weeks: "недели"
+        months: "месяца/месяцев"
+      day_of_month: "День месяца"
+      count_per_month: "Раз в месяц"
+    recurrence_descriptions:
+      day_of_month: "Каждый месяц %{day}-го числа"
+      times_per_month:
+        one: "%{count} раз в месяц"
+        few: "%{count} раза в месяц"
+        many: "%{count} раз в месяц"
+        other: "%{count} раза в месяц"
+      interval:
+        days:
+          one: "Каждый день"
+          few: "Каждые %{count} дня"
+          many: "Каждые %{count} дней"
+          other: "Каждые %{count} дня"
+        weeks:
+          one: "Каждую неделю"
+          few: "Каждые %{count} недели"
+          many: "Каждые %{count} недель"
+          other: "Каждые %{count} недели"
+        months:
+          one: "Каждый месяц"
+          few: "Каждые %{count} месяца"
+          many: "Каждые %{count} месяцев"
+          other: "Каждые %{count} месяца"
     edit:
       title: "Редактировать ожидаемую трату"
       submit: "Сохранить"
@@ -38,6 +76,11 @@ ru:
       reopen: "Возобновить"
       delete: "Удалить"
       recurring_badge: "Ежемесячно"
+      occurrences_left:
+        one: "осталась %{count}"
+        few: "осталось %{count}"
+        many: "осталось %{count}"
+        other: "осталось %{count}"
     destroy_confirm: "Удалить эту ожидаемую трату?"
     resolved:
       one: "%{count} завершена"
