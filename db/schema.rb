@@ -1635,11 +1635,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_02_180400) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "account_id", null: false
+    t.date "due_date"
+    t.string "recurrence_type", default: "interval", null: false
+    t.integer "recurrence_interval", default: 1, null: false
+    t.string "recurrence_unit", default: "months", null: false
+    t.integer "recurrence_day_of_month"
+    t.uuid "recurrence_series_id"
+    t.integer "recurrence_count_per_month", default: 1, null: false
     t.index ["account_id"], name: "index_planned_expenses_on_account_id"
     t.index ["budget_id", "category_id"], name: "index_planned_expenses_on_budget_id_and_category_id"
     t.index ["budget_id", "status"], name: "index_planned_expenses_on_budget_id_and_status"
     t.index ["budget_id"], name: "index_planned_expenses_on_budget_id"
     t.index ["category_id"], name: "index_planned_expenses_on_category_id"
+    t.index ["recurrence_series_id"], name: "index_planned_expenses_on_recurrence_series_id"
   end
 
   create_table "properties", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

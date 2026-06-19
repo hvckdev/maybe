@@ -11,13 +11,43 @@ en:
       title: "Plan an expense"
       name: "Name"
       amount: "Amount"
+      due_date: "Planned date"
       category: "Category"
       account: "Account"
       account_prompt: "Select account for transaction on confirm"
-      recurring: "Repeats monthly"
-      recurring_hint: "This expense will be copied to next month's budget automatically."
+      recurring: "Repeats"
+      recurring_hint: "Matching occurrences will be added when you copy this budget to a future month."
       notes: "Notes"
       submit: "Plan expense"
+    recurrence:
+      type:
+        label: "Repeat type"
+        interval: "Every interval"
+        day_of_month: "Specific day of each month"
+        times_per_month: "N times per month"
+      interval: "Every"
+      unit:
+        label: "Unit"
+        days: "days"
+        weeks: "weeks"
+        months: "months"
+      day_of_month: "Day of month"
+      count_per_month: "Times per month"
+    recurrence_descriptions:
+      day_of_month: "Monthly on day %{day}"
+      times_per_month:
+        one: "Once per month"
+        other: "%{count} times per month"
+      interval:
+        days:
+          one: "Every day"
+          other: "Every %{count} days"
+        weeks:
+          one: "Weekly"
+          other: "Every %{count} weeks"
+        months:
+          one: "Monthly"
+          other: "Every %{count} months"
     edit:
       title: "Edit expected expense"
       submit: "Save changes"
@@ -38,6 +68,9 @@ en:
       reopen: "Reopen"
       delete: "Delete"
       recurring_badge: "Monthly"
+      occurrences_left:
+        one: "%{count} left"
+        other: "%{count} left"
     destroy_confirm: "Delete this expected expense?"
     resolved:
       one: "%{count} resolved"

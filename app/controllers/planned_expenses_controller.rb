@@ -16,6 +16,10 @@ class PlannedExpensesController < ApplicationController
     @planned_expense.currency ||= @budget.currency || Current.family.currency
 
     if @planned_expense.save
+      @planned_expense.materialize_multiple_occurrences_in_budget!
+      @planned_expense.propagate_multiple_occurrences_to_existing_future_budgets!
+      @planned_expense.propagate_day_of_month_to_existing_future_budgets!
+
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to budget_path(@budget) }
@@ -30,6 +34,10 @@ class PlannedExpensesController < ApplicationController
 
   def update
     if @planned_expense.update(planned_expense_params)
+      @planned_expense.materialize_multiple_occurrences_in_budget!
+      @planned_expense.propagate_multiple_occurrences_to_existing_future_budgets!
+      @planned_expense.propagate_day_of_month_to_existing_future_budgets!
+
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to budget_path(@budget) }
@@ -84,7 +92,12 @@ class PlannedExpensesController < ApplicationController
 
   private
     def planned_expense_params
-      params.require(:planned_expense).permit(:name, :amount, :category_id, :account_id, :recurring, :notes)
+      params.require(:planned_expense).permit(
+        :name, :amount, :category_id, :account_id, :due_date, :recurring,
+        :recurrence_type, :recurrence_interval, :recurrence_unit,
+        :recurrence_day_of_month, :recurrence_count_per_month,
+        :notes
+      )
     end
 
     def set_budget

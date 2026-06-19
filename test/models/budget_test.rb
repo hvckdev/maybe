@@ -634,4 +634,85 @@ class BudgetTest < ActiveSupport::TestCase
     assert_equal "Insurance", copied.first.name
     assert_equal 300, copied.first.amount
   end
+
+  test "find_or_bootstrap populates recurring planned expenses for new budget" do
+    family = families(:dylan_family)
+    source_start = Date.current.beginning_of_month + 1.month
+    target_start = Date.current.beginning_of_month + 2.months
+    source = Budget.create!(family: family, start_date: source_start, end_date: source_start.end_of_month, currency: "USD")
+    category = categories(:food_and_drink)
+    account = accounts(:depository)
+    source.budget_categories.create!(category: category, budgeted_spending: 0, currency: "USD")
+    source.planned_expenses.create!(
+      category: category, account: account, name: "Weekly lessons", amount: 50, currency: "USD", recurring: true,
+      due_date: source_start + 3.days, recurrence_interval: 1, recurrence_unit: "weeks"
+    )
+
+    target = Budget.find_or_bootstrap(family, start_date: target_start)
+
+    copied_dates = target.planned_expenses.order(:due_date).pluck(:due_date)
+    assert copied_dates.all? { |due_date| due_date.between?(target.start_date, target.end_date) }
+    assert copied_dates.any?
+    assert_equal [ "Weekly lessons" ], target.planned_expenses.distinct.pluck(:name)
+    assert_nil target.budgeted_spending
+  end
+
+  test "find_or_bootstrap does not duplicate recurring planned expenses for existing budget" do
+    family = families(:dylan_family)
+    source_start = Date.current.beginning_of_month + 3.months
+    target_start = Date.current.beginning_of_month + 4.months
+    source = Budget.create!(family: family, start_date: source_start, end_date: source_start.end_of_month, currency: "USD")
+    category = categories(:food_and_drink)
+    account = accounts(:depository)
+    source.budget_categories.create!(category: category, budgeted_spending: 0, currency: "USD")
+    source.planned_expenses.create!(
+      category: category, account: account, name: "Subscription", amount: 20, currency: "USD", recurring: true,
+      due_date: source_start + 1.day, recurrence_interval: 1, recurrence_unit: "months"
+    )
+
+    target = Budget.find_or_bootstrap(family, start_date: target_start)
+    initial_count = target.planned_expenses.count
+
+    assert_no_difference "target.planned_expenses.count" do
+      Budget.find_or_bootstrap(family, start_date: target_start)
+    end
+    assert initial_count.positive?
+  end
+
+  test "copy_from! creates each recurrence occurrence in target month" do
+    source = Budget.create!(family: families(:dylan_family), start_date: Date.new(2026, 1, 1), end_date: Date.new(2026, 1, 31), currency: "USD")
+    category = categories(:food_and_drink)
+    account = accounts(:depository)
+    source.budget_categories.create!(category: category, budgeted_spending: 0, currency: "USD")
+    source.planned_expenses.create!(
+      category: category, account: account, name: "Allowance", amount: 50, currency: "USD", recurring: true,
+      due_date: Date.new(2026, 1, 29), recurrence_interval: 3, recurrence_unit: "days"
+    )
+
+    target = Budget.create!(family: source.family, start_date: Date.new(2026, 2, 1), end_date: Date.new(2026, 2, 10), currency: "USD")
+    target.budget_categories.create!(category: category, budgeted_spending: 0, currency: "USD")
+
+    target.copy_from!(source)
+
+    assert_equal [ Date.new(2026, 2, 1), Date.new(2026, 2, 4), Date.new(2026, 2, 7), Date.new(2026, 2, 10) ], target.planned_expenses.order(:due_date).pluck(:due_date)
+  end
+
+  test "copy_from! uses one source per recurrence series" do
+    source = Budget.create!(family: families(:dylan_family), start_date: Date.new(2026, 1, 1), end_date: Date.new(2026, 1, 31), currency: "USD")
+    category = categories(:food_and_drink)
+    account = accounts(:depository)
+    source.budget_categories.create!(category: category, budgeted_spending: 0, currency: "USD")
+    first = source.planned_expenses.create!(
+      category: category, account: account, name: "Weekly", amount: 50, currency: "USD", recurring: true,
+      due_date: Date.new(2026, 1, 5), recurrence_interval: 1, recurrence_unit: "weeks"
+    )
+    first.copy_to!(source, due_date: Date.new(2026, 1, 12))
+
+    target = Budget.create!(family: source.family, start_date: Date.new(2026, 2, 1), end_date: Date.new(2026, 2, 28), currency: "USD")
+    target.budget_categories.create!(category: category, budgeted_spending: 0, currency: "USD")
+
+    target.copy_from!(source)
+
+    assert_equal [ Date.new(2026, 2, 2), Date.new(2026, 2, 9), Date.new(2026, 2, 16), Date.new(2026, 2, 23) ], target.planned_expenses.order(:due_date).pluck(:due_date)
+  end
 end

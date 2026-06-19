@@ -1,16 +1,20 @@
 <%# locals: (planned_expenses:) %>
 
 <%= turbo_frame_tag "planned_expenses_list" do %>
-  <% if planned_expenses.any? %>
+  <% grouped_planned_expenses = PlannedExpense.group_for_display(planned_expenses) %>
+  <% if grouped_planned_expenses.any? %>
     <details open class="bg-container rounded-xl shadow-border-xs">
     <summary class="flex items-center gap-2 px-4 py-3 cursor-pointer hover:bg-alpha-black-5 rounded-t-xl">
       <%= icon "chevron-right", size: "sm", class: "text-secondary open:rotate-90 transition-transform" %>
       <span class="text-sm font-medium text-secondary uppercase"><%= t("planned_expenses.title") %></span>
-      <span class="text-xs text-subdued">(<%= planned_expenses.count %>)</span>
+      <span class="text-xs text-subdued">(<%= grouped_planned_expenses.count %>)</span>
     </summary>
 
     <div class="px-1 pb-1">
-      <% planned_expenses.each do |pe| %>
+      <% grouped_planned_expenses.each do |group| %>
+        <% pe = group[:planned_expense] %>
+        <% occurrence_count = group[:occurrence_count] %>
+        <% total_amount = group[:total_amount] %>
         <div class="py-2 px-3 sm:px-4 group overflow-hidden">
           <%# Row 1: icon + name + actions %>
           <div class="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -28,7 +32,10 @@
               <div class="flex items-center gap-1.5 min-w-0">
                 <span class="text-sm font-medium text-primary truncate"><%= pe.name %></span>
                 <% if pe.recurring? %>
-                  <span class="text-xs bg-alpha-black-5 text-secondary px-1.5 py-0.5 rounded shrink-0"><%= t("planned_expenses.planned_expense.recurring_badge") %></span>
+                  <span class="text-xs bg-alpha-black-5 text-secondary px-1.5 py-0.5 rounded shrink-0"><%= pe.recurrence_description %></span>
+                <% end %>
+                <% if occurrence_count > 1 %>
+                  <span class="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded shrink-0"><%= t("planned_expenses.planned_expense.occurrences_left", count: occurrence_count) %></span>
                 <% end %>
               </div>
             </div>
@@ -74,10 +81,13 @@
               <% if pe.account.present? %>
                 <span>&middot;</span> <%= pe.account.name %>
               <% end %>
+              <% if pe.due_date.present? %>
+                <span>&middot;</span> <%= l(pe.due_date, format: :default) %>
+              <% end %>
             </div>
             <div class="flex items-center gap-1.5 shrink-0">
               <span class="text-xs font-medium text-primary privacy-sensitive">
-                <%= format_money(-pe.amount_money) %>
+                <%= format_money(-Money.new(total_amount, pe.currency)) %>
               </span>
               <span class="text-xs px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">
                 <%= t("planned_expenses.planned_expense.pending") %>
