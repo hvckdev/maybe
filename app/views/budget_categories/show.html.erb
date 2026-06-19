@@ -101,7 +101,13 @@
       <% if category_planned.any? %>
         <% dialog.with_section(title: t(".planned_expenses"), open: true) do %>
           <div class="space-y-1">
-            <% category_planned.each do |pe| %>
+            <% PlannedExpense.group_for_display(category_planned.pending).each do |group| %>
+              <%= render "planned_expenses/planned_expense",
+                    planned_expense: group[:planned_expense],
+                    occurrence_count: group[:occurrence_count],
+                    total_amount: group[:total_amount] %>
+            <% end %>
+            <% category_planned.where.not(status: :pending).each do |pe| %>
               <%= render "planned_expenses/planned_expense", planned_expense: pe %>
             <% end %>
           </div>
