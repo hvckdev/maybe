@@ -161,6 +161,41 @@ class BudgetCategoryTest < ActiveSupport::TestCase
     assert_equal 10.0, @subcategory_inheriting_bc.percent_of_budget_spent
   end
 
+  test "inheriting subcategory without own overspend is blocked but not over budget when parent is overspent" do
+    @parent_budget_category.stubs(:available_to_spend).returns(-50)
+    @subcategory_inheriting_bc.stubs(:parent_budget_category).returns(@parent_budget_category)
+    @budget.stubs(:budget_category_actual_spending).with(@subcategory_inheriting_bc).returns(0)
+
+    assert_equal 1000, @subcategory_inheriting_bc.own_available_to_spend
+    assert_not @subcategory_inheriting_bc.over_budget?
+    assert_not @subcategory_inheriting_bc.any_over_budget?
+    assert @subcategory_inheriting_bc.blocked_by_parent_budget?
+    assert_not @subcategory_inheriting_bc.on_track?
+    assert_not @subcategory_inheriting_bc.near_limit?
+  end
+
+  test "inheriting subcategory is over budget only when its own spending exceeds parent budget" do
+    @parent_budget_category.stubs(:available_to_spend).returns(-50)
+    @subcategory_inheriting_bc.stubs(:parent_budget_category).returns(@parent_budget_category)
+    @budget.stubs(:budget_category_actual_spending).with(@subcategory_inheriting_bc).returns(1_100)
+
+    assert_equal(-100, @subcategory_inheriting_bc.own_available_to_spend)
+    assert @subcategory_inheriting_bc.over_budget?
+    assert @subcategory_inheriting_bc.any_over_budget?
+    assert_not @subcategory_inheriting_bc.blocked_by_parent_budget?
+  end
+
+  test "parent over budget status still uses shared child spending" do
+    @budget.stubs(:budget_category_actual_spending).with(@parent_budget_category).returns(1_100)
+    @budget.stubs(:budget_category_actual_spending).with(@subcategory_with_limit_bc).returns(0)
+    @budget.stubs(:budget_category_actual_spending).with(@subcategory_inheriting_bc).returns(0)
+    @parent_budget_category.stubs(:subcategories).returns([ @subcategory_with_limit_bc, @subcategory_inheriting_bc ])
+
+    assert_equal(-400, @parent_budget_category.available_to_spend)
+    assert @parent_budget_category.over_budget?
+    assert @parent_budget_category.any_over_budget?
+  end
+
   test "parent with no subcategories works as before" do
     # Create a standalone parent category without subcategories
     standalone_category = Category.create!(
