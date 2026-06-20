@@ -334,8 +334,20 @@ class BudgetCategory < ApplicationRecord
     [ percent_of_budget_spent, 100 ].min
   end
 
+  def own_available_to_spend
+    return available_to_spend unless inherits_parent_budget?
+
+    parent = parent_budget_category
+    parent_budget = parent&.[](:budgeted_spending) || 0
+    parent_budget - actual_spending
+  end
+
   def over_budget?
-    available_to_spend.negative?
+    own_available_to_spend.negative?
+  end
+
+  def blocked_by_parent_budget?
+    inherits_parent_budget? && parent_budget_category&.available_to_spend&.negative? && !over_budget?
   end
 
   # "Is there money in this envelope", which drives the over-budget /
@@ -367,7 +379,7 @@ class BudgetCategory < ApplicationRecord
   end
 
   def on_track?
-    budgeted? && !over_budget?
+    budgeted? && !over_budget? && !blocked_by_parent_budget?
   end
 
   def any_over_budget?
@@ -393,7 +405,7 @@ class BudgetCategory < ApplicationRecord
   # sharing its parent's budget, available_to_spend is the shared pool, so the
   # measure is approximate there.
   def near_limit?
-    !over_budget? && percent_of_budget_spent >= NEAR_LIMIT_PERCENT &&
+    !blocked_by_parent_budget? && !over_budget? && percent_of_budget_spent >= NEAR_LIMIT_PERCENT &&
       self.class.near_limit_outside_bills?(spent: actual_spending, bills_paid: bills_paid, available: available_to_spend)
   end
 
