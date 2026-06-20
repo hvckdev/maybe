@@ -55,7 +55,8 @@ ru:
       status:
         good: В норме
         warning: Близко к лимиту
-        over: Превышение бюджета
+        over: Превышен
+        parent_budget_spent: Бюджет родителя исчерпан
     trends:
       title: Тренды и анализ
       monthly_breakdown: Ежемесячная разбивка

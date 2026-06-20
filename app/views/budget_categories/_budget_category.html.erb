@@ -29,6 +29,8 @@
         <div class="flex items-center gap-3 flex-shrink-0 ml-auto">
           <% if budget_category.over_budget? %>
             <%= render DS::Pill.new(label: t("reports.budget_performance.status.over"), tone: :error, marker: false, icon: "alert-circle") %>
+          <% elsif budget_category.blocked_by_parent_budget? %>
+            <%= render DS::Pill.new(label: t("reports.budget_performance.status.parent_budget_spent", default: "Parent budget spent"), tone: :neutral, marker: false, icon: "circle-minus") %>
           <% elsif budget_category.near_limit? %>
             <%= render DS::Pill.new(label: t("reports.budget_performance.status.warning"), tone: :warning, marker: false, icon: "alert-triangle") %>
           <% else %>
@@ -40,11 +42,11 @@
       <%# Progress Bar %>
       <div class="mb-3">
         <div class="h-1.5 bg-container-inset rounded-full overflow-hidden flex">
-          <% bar_color = budget_category.over_budget? ? "bg-destructive" : (budget_category.near_limit? ? "bg-warning" : "bg-success") %>
+          <% bar_color = budget_category.over_budget? ? "bg-destructive" : (budget_category.blocked_by_parent_budget? ? "bg-tertiary" : (budget_category.near_limit? ? "bg-warning" : "bg-success")) %>
           <div class="h-full <%= bar_color %> transition-all duration-500 shrink-0"
             style="inline-size: <%= budget_category.bar_width_percent %>%"></div>
           <% if budget_category.planned_bar_width_percent > 0 %>
-            <% planned_color = budget_category.over_budget? ? "bg-destructive/30" : (budget_category.near_limit? ? "bg-warning/30" : "bg-success/30") %>
+            <% planned_color = budget_category.over_budget? ? "bg-destructive/30" : (budget_category.blocked_by_parent_budget? ? "bg-tertiary" : (budget_category.near_limit? ? "bg-warning/30" : "bg-success/30")) %>
             <div class="h-full <%= planned_color %> transition-all duration-500 shrink-0"
               style="inline-size: <%= budget_category.planned_bar_width_percent %>%"></div>
           <% end %>
@@ -101,7 +103,12 @@
           </div>
         <% end %>
         <div class="whitespace-nowrap w-full sm:w-auto lg:ml-auto">
-          <% if budget_category.available_to_spend >= 0 %>
+          <% if budget_category.blocked_by_parent_budget? %>
+            <span class="text-sm text-secondary"><%= t("reports.budget_performance.remaining") %>:</span>
+            <span class="font-medium text-subdued privacy-sensitive">
+              <%= format_money(Money.new(0, budget_category.currency || budget_category.budget.family.currency)) %>
+            </span>
+          <% elsif budget_category.available_to_spend >= 0 %>
             <span class="text-sm text-secondary"><%= t("reports.budget_performance.remaining") %>:</span>
             <span class="font-medium <%= (budget_category.near_limit? ? "text-yellow-500" : "text-green-500") %> privacy-sensitive">
               <%= format_money(budget_category.available_to_spend_money) %>
