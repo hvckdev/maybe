@@ -28,13 +28,13 @@ module BudgetsHelper
       all_category_groups = BudgetCategory::Group.for(budget.budget_categories)
 
       over_budget_groups = if budget.initialized?
-        filtered_groups_for(all_category_groups) { |budget_category| budget_category.any_over_budget? }
+        filtered_groups_for(all_category_groups) { |budget_category| budget_category.any_over_budget? || budget_category.blocked_by_parent_budget? }
       else
         []
       end
 
       show_over_budget_uncategorized = budget.initialized? && uncategorized_budget_category.any_over_budget?
-      over_budget_count = visible_count_for(over_budget_groups) { |budget_category| budget_category.any_over_budget? }
+      over_budget_count = visible_count_for(over_budget_groups) { |budget_category| budget_category.any_over_budget? || budget_category.blocked_by_parent_budget? }
       over_budget_count += 1 if show_over_budget_uncategorized
 
       on_track_groups = if budget.initialized?
