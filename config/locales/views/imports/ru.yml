@@ -471,6 +471,98 @@ ru:
     update:
       account_saved: Счёт сохранён.
       invalid_account: Счёт не найден.
+    new:
+      description: Импортируйте данные из финансового инструмента или загрузите файлы с необработанными данными.
+      tab_financial_tools: Финансовые инструменты и файлы
+      tab_raw_data: Необработанные данные
+      coming_soon: Скоро
+      import_ynab: Импорт из YNAB
+      import_accounts: Импортировать счета
+      import_categories: Импортировать категории
+      import_mint: Импортировать из Mint
+      import_portfolio: Импортировать инвестиции
+      import_rules: Импортировать правила
+      import_transactions: Импортировать операции
+      import_qif: Импорт из Quicken (QIF)
+      import_sure: Импорт из Sure
+      import_sure_description: Файл полного экспорта .ndjson
+      import_file: Импортировать документ
+      import_file_description: Анализ с помощью ИИ для PDF и загрузка документов с поиском
+      requires_account: Сначала импортируйте счета, чтобы разблокировать эту опцию.
+      resume: Продолжить %{type}
+      sources: Источники
+      title: Новый импорт
+    create:
+      file_too_large: Файл слишком большой. Максимальный размер — %{max_size} МБ.
+      invalid_file_type: Неверный тип файла. Пожалуйста, загрузите CSV-файл.
+      csv_uploaded: CSV-файл успешно загружен.
+      ndjson_uploaded: NDJSON-файл успешно загружен.
+      pdf_too_large: PDF-файл слишком большой. Максимальный размер — %{max_size} МБ.
+      pdf_processing: Ваш PDF обрабатывается. Вы получите письмо, когда анализ будет завершён.
+      invalid_pdf: Загруженный файл не является валидным PDF.
+      document_too_large: Файл документа слишком большой. Максимальный размер — %{max_size} МБ.
+      invalid_document_file_type: Неверный тип файла документа для активного векторного хранилища.
+      document_uploaded: Документ успешно загружен.
+      document_upload_failed: Не удалось загрузить документ в векторное хранилище. Пожалуйста, попробуйте снова.
+      invalid_ndjson_file_type: Неверный тип или формат файла. Пожалуйста, загрузите корректный файл экспорта .ndjson или .json.
+      document_provider_not_configured: Векторное хранилище для загрузки документов не настроено.
+    show:
+      finalize_upload: Пожалуйста, завершите загрузку файла.
+      finalize_mappings: Пожалуйста, завершите сопоставление перед продолжением.
+    ready:
+      description: 'Вот сводка новых элементов, которые будут добавлены на ваш счет после публикации этого импорта.'
+      title: Подтвердите данные импорта
+      summary_item_label: Элемент
+      summary_count_label: Количество
+      empty_summary: 'Не удалось найти записи для импорта в этом файле. Возможно, файл пуст, или строки не соответствуют ожидаемому формату экспорта (каждая строка должна быть JSON-объектом с ключами «type» и «data», с использованием поддерживаемых типов).'
+      publish_import: Опубликовать импорт
+      back_to_imports: Назад к импортам
+    errors:
+      custom_column_requires_inflow: "Для импорта пользовательских столбцов необходимо выбрать столбец поступлений"
+    document_types:
+      bank_statement: Банковская выписка
+      credit_card_statement: Выписка по кредитной карте
+      investment_statement: Инвестиционная выписка
+      financial_document: Финансовый документ
+      contract: Договор
+      other: Другой документ
+      unknown: Неизвестный документ
+    pdf_import:
+      processing_title: Обработка вашего PDF
+      processing_description: Мы анализируем ваш документ с помощью ИИ. Это может занять некоторое время. Вы получите письмо, когда анализ будет завершён.
+      check_status: Проверить статус
+      back_to_dashboard: Назад к панели управления
+      failed_title: Ошибка обработки
+      failed_description: Не удалось обработать ваш PDF-документ. Пожалуйста, попробуйте снова или обратитесь в поддержку.
+      try_again: Попробовать снова
+      delete_import: Удалить импорт
+      complete_title: Документ проанализирован
+      complete_description: Мы проанализировали ваш PDF, вот что мы обнаружили.
+      document_type_label: Тип документа
+      summary_label: Сводка
+      email_sent_notice: Вам отправлено письмо с дальнейшими инструкциями.
+      back_to_imports: Назад к импортам
+      unknown_state_title: Неизвестное состояние
+      unknown_state_description: Этот импорт находится в неожиданном состоянии. Пожалуйста, вернитесь к списку импортов.
+      processing_failed_with_message: "%{message}"
+      processing_failed_generic: "Ошибка обработки: %{error}"
+    success:
+      title: Импорт выполнен успешно
+      description: Импортированные данные успешно добавлены в приложение и готовы к использованию.
+      back_to_dashboard: Назад к панели управления
+    importing:
+      title: Импорт выполняется
+      description: Ваш импорт находится в процессе обработки. Проверяйте обновления статуса в меню импортов или нажмите «Проверить статус», чтобы обновить страницу. Вы можете продолжать пользоваться приложением.
+      check_status: Проверить статус
+      back_to_dashboard: Назад к панели управления
+    failure:
+      title: Ошибка импорта
+      description: Пожалуйста, проверьте формат файла на наличие ошибок и убедитесь, что все обязательные поля заполнены, затем повторите попытку.
+      try_again: Попробовать снова
+    revert_failure:
+      title: Ошибка отмены импорта
+      description: Пожалуйста, попробуйте снова
+      try_again: Попробовать снова
   invitation_mailer:
     invite_email:
       accept_button: Принять приглашение

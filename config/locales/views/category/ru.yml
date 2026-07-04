@@ -1,0 +1,13 @@
+---
+ru:
+  category:
+    dropdowns:
+      show:
+        search_placeholder: "Поиск категорий..."
+        no_categories: "Категории не найдены"
+        empty: "Без категории"
+        bootstrap: "Начальная настройка"
+        clear: "Очистить"
+        match_transfer: "Совпадение перевода/платежа"
+        income: "Разовый доход/расход"
+        expense: "Расход"

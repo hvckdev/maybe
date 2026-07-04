@@ -1,0 +1,209 @@
+---
+en:
+  tinkoff_items:
+    sync_status:
+      no_accounts: "No accounts found"
+      synced:
+        one: "%{count} account synced"
+        other: "%{count} accounts synced"
+      synced_with_setup: "%{linked} synced, %{unlinked} need setup"
+    institution_summary:
+      none: "No institutions connected"
+      count:
+        one: "%{count} institution"
+        other: "%{count} institutions"
+    errors:
+      provider_not_configured: "Tinkoff provider is not configured"
+
+    sync:
+      status:
+        importing: "Importing accounts from Tinkoff..."
+        processing: "Processing transactions..."
+        calculating: "Calculating balances..."
+        importing_data: "Importing account data..."
+        checking_setup: "Checking account configuration..."
+        needs_setup: "%{count} accounts need setup..."
+      success: "Sync started"
+
+    panel:
+      setup_instructions: "How to get your session ID:"
+      step_1: "Open the Tinkoff mobile app on your phone"
+      step_2: "Log in and go to your profile settings"
+      step_3: "Use a network traffic inspector (e.g., mitmproxy, Charles Proxy) to capture the sessionid cookie from API requests to api.tinkoff.ru"
+      step_4: "Copy the sessionid value and paste it below"
+      step_5: "After saving, click the sync button on the Accounts page to import your transactions"
+      field_descriptions: "Fields:"
+      optional: "(Optional)"
+      required: "(required)"
+      optional_with_default: "(optional, defaults to %{default_value})"
+      save_button: "Save Configuration"
+      update_button: "Update Configuration"
+      status_configured_html: "Connected. Go to the <a href=\"%{accounts_path}\" class=\"link\">Accounts</a> page to sync and manage your accounts."
+      status_not_configured: "Not configured"
+      fields:
+        session_id:
+          label: "Session ID"
+          description: "Your Tinkoff sessionid cookie value"
+          placeholder_new: "Paste sessionid here"
+          placeholder_update: "Enter new sessionid to update"
+
+    create:
+      success: "Tinkoff connection created successfully"
+    update:
+      success: "Tinkoff connection updated"
+    destroy:
+      success: "Tinkoff connection removed"
+    index:
+      title: "Tinkoff Connections"
+
+    loading:
+      loading_message: "Loading Tinkoff accounts..."
+      loading_title: "Loading"
+
+    link_accounts:
+      all_already_linked:
+        one: "The selected account (%{names}) is already linked"
+        other: "All %{count} selected accounts are already linked: %{names}"
+      api_error: "API error: %{message}"
+      invalid_account_names:
+        one: "Cannot link account with blank name"
+        other: "Cannot link %{count} accounts with blank names"
+      link_failed: "Failed to link accounts"
+      no_accounts_selected: "Please select at least one account"
+      no_api_key: "Tinkoff session ID not found. Please configure it in Provider Settings."
+      partial_invalid: "Successfully linked %{created_count} account(s), %{already_linked_count} were already linked, %{invalid_count} account(s) had invalid names"
+      partial_success: "Successfully linked %{created_count} account(s). %{already_linked_count} account(s) were already linked: %{already_linked_names}"
+      success:
+        one: "Successfully linked %{count} account"
+        other: "Successfully linked %{count} accounts"
+
+    tinkoff_item:
+      accounts_need_setup: "Accounts need setup"
+      delete: "Delete connection"
+      deletion_in_progress: "deletion in progress..."
+      error: "Error"
+      more_accounts_available:
+        one: "%{count} more account available"
+        other: "%{count} more accounts available"
+      no_accounts_description: "This connection has no linked accounts yet."
+      no_accounts_title: "No accounts"
+      provider_name: "Tinkoff"
+      requires_update: "Session expired — update your credentials"
+      setup_action: "Set Up New Accounts"
+      setup_description: "%{linked} of %{total} accounts linked. Choose account types for your newly imported Tinkoff accounts."
+      setup_needed: "New accounts ready to set up"
+      status: "Synced %{timestamp} ago"
+      status_never: "Never synced"
+      status_with_summary: "Last synced %{timestamp} ago — %{summary}"
+      syncing: "Syncing..."
+      total: "Total"
+      unlinked: "Unlinked"
+      update_credentials: "Update credentials"
+
+    select_accounts:
+      accounts_selected: "accounts selected"
+      api_error: "API error: %{message}"
+      cancel: "Cancel"
+      configure_name_in_provider: "Cannot import — please configure account name in Tinkoff"
+      description: "Select the accounts you want to link to your %{product_name} account."
+      link_accounts: "Link selected accounts"
+      no_accounts_found: "No accounts found. Please check your session ID configuration."
+      no_api_key: "Tinkoff session ID is not configured. Please configure it in Settings."
+      no_credentials_configured: "Please configure your Tinkoff session ID first in Provider Settings."
+      no_name_placeholder: "(No name)"
+      title: "Select Tinkoff Accounts"
+
+    select_existing_account:
+      account_already_linked: "This account is already linked to a provider"
+      all_accounts_already_linked: "All Tinkoff accounts are already linked"
+      api_error: "API error: %{message}"
+      balance_label: "Balance:"
+      cancel: "Cancel"
+      cancel_button: "Cancel"
+      configure_name_in_provider: "Cannot import — please configure account name in Tinkoff"
+      connect_hint: "Connect a Tinkoff account to enable automatic syncing."
+      description: "Select a Tinkoff account to link with this account. Transactions will be synced and deduplicated automatically."
+      header: "Link with Tinkoff"
+      link_account: "Link account"
+      link_button: "Link this account"
+      linking_to: "Linking to:"
+      no_account_specified: "No account specified"
+      no_accounts: "No unlinked Tinkoff accounts found."
+      no_accounts_found: "No Tinkoff accounts found. Please check your session ID configuration."
+      no_api_key: "Tinkoff session ID is not configured. Please configure it in Settings."
+      no_credentials_configured: "Please configure your Tinkoff session ID first in Provider Settings."
+      no_name_placeholder: "(No name)"
+      settings_link: "Go to Provider Settings"
+      subtitle: "Choose a Tinkoff account"
+      title: "Link %{account_name} with Tinkoff"
+
+    link_existing_account:
+      account_already_linked: "This account is already linked to a provider"
+      api_error: "API error: %{message}"
+      invalid_account_name: "Cannot link account with blank name"
+      provider_account_already_linked: "This Tinkoff account is already linked to another account"
+      provider_account_not_found: "Tinkoff account not found"
+      missing_parameters: "Missing required parameters"
+      no_api_key: "Tinkoff session ID not found. Please configure it in Provider Settings."
+      success: "Successfully linked %{account_name} with Tinkoff"
+
+    setup_accounts:
+      account_type_label: "Account Type:"
+      accounts_count:
+        one: "%{count} account available"
+        other: "%{count} accounts available"
+      all_accounts_linked: "All your Tinkoff accounts have already been set up."
+      api_error: "API error: %{message}"
+      creating: "Creating accounts..."
+      fetch_failed: "Failed to Fetch Accounts"
+      import_selected: "Import selected accounts"
+      instructions: "Select the accounts you want to import from Tinkoff. You can choose multiple accounts."
+      no_accounts: "No unlinked accounts found from this Tinkoff connection."
+      no_accounts_to_setup: "No Accounts to Set Up"
+      no_api_key: "Tinkoff session ID is not configured. Please check your connection settings."
+      select_all: "Select all"
+      account_types:
+        skip: "Skip this account"
+        depository: "Checking or Savings Account"
+        credit_card: "Credit Card"
+        loan: "Loan or Mortgage"
+        other_asset: "Other Asset"
+      subtype_labels:
+        depository: "Account Subtype:"
+        credit_card: ""
+        loan: "Loan Type:"
+        other_asset: ""
+      subtype_messages:
+        credit_card: "Credit cards will be automatically set up as credit card accounts."
+        other_asset: "No additional options needed for Other Assets."
+      subtypes:
+        depository:
+          checking: "Checking"
+          savings: "Savings"
+          hsa: "Health Savings Account"
+          cd: "Certificate of Deposit"
+          money_market: "Money Market"
+        loan:
+          mortgage: "Mortgage"
+          student: "Student Loan"
+          auto: "Auto Loan"
+          other: "Other Loan"
+      balance: "Balance"
+      cancel: "Cancel"
+      choose_account_type: "Choose the correct account type for each Tinkoff account:"
+      create_accounts: "Create Accounts"
+      creating_accounts: "Creating Accounts..."
+      historical_data_range: "Historical Data Range:"
+      subtitle: "Choose the correct account types for your imported accounts"
+      sync_start_date_help: "Select how far back you want to sync transaction history."
+      sync_start_date_label: "Start syncing transactions from:"
+      title: "Set Up Your Tinkoff Accounts"
+
+    complete_account_setup:
+      all_skipped: "All accounts were skipped. No accounts were created."
+      creation_failed: "Failed to create accounts: %{error}"
+      no_accounts: "No accounts to set up."
+      success: "Successfully created %{count} account(s)."
+
+    preload_accounts:
+      no_credentials_configured: "Please configure your Tinkoff session ID first in Provider Settings."

@@ -179,3 +179,26 @@ en:
       success: Sync started
     update:
       success: Lunch Flow connection updated
+    setup_required:
+      title: Lunch Flow Setup Required
+      api_key_not_configured: API Key Not Configured
+      api_key_description: Before you can link Lunch Flow accounts, you need to configure your Lunch Flow API key.
+      setup_steps: "Setup Steps:"
+      step_1: "Go to Settings → Providers"
+      step_2: Find the Lunch Flow section
+      step_3: Enter your Lunch Flow API key
+      step_4: Return here to link your accounts
+      go_to_settings: Go to Provider Settings
+    api_error:
+      title: Lunch Flow Connection Error
+      unable_to_connect: Unable to connect to Lunch Flow
+      common_issues: "Common Issues:"
+      invalid_api_key: Invalid API Key
+      check_key: Check your API key in Provider Settings
+      expired_credentials: Expired Credentials
+      generate_new: Generate a new API key from Lunch Flow
+      network_issue: Network Issue
+      check_connection: Check your internet connection
+      service_down: Service Down
+      temporarily_unavailable: Lunch Flow API may be temporarily unavailable
+      check_settings: Check Provider Settings

@@ -1,0 +1,44 @@
+---
+ru:
+  periods:
+    labels:
+      last_day: За день
+      current_week: Текущая неделя
+      last_7_days: За 7 дней
+      current_month: Текущий месяц
+      last_month: Прошлый месяц
+      last_30_days: За 30 дней
+      last_90_days: За 90 дней
+      current_year: Текущий год
+      last_365_days: За 365 дней
+      last_5_years: За 5 лет
+      last_10_years: За 10 лет
+      all_time: За всё время
+      custom: Произвольный период
+    labels_short:
+      last_day: 1Д
+      current_week: НТД
+      last_7_days: 7Д
+      current_month: МТД
+      last_month: ПМ
+      last_30_days: 30Д
+      last_90_days: 90Д
+      current_year: ГТД
+      last_365_days: 365Д
+      last_5_years: 5Л
+      last_10_years: 10Л
+      all_time: Всё
+      custom: Другой
+    comparison_labels:
+      last_day: "к вчера"
+      current_week: "к началу недели"
+      last_7_days: "к прошлой неделе"
+      current_month: "к началу месяца"
+      last_month: "к прошлому месяцу"
+      last_30_days: "к прошлым 30 дням"
+      last_90_days: "к прошлому кварталу"
+      current_year: "к началу года"
+      last_365_days: "к году назад"
+      last_5_years: "к 5 годам назад"
+      last_10_years: "к 10 годам назад"
+      all_time: "к началу"

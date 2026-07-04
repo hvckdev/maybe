@@ -116,6 +116,8 @@ ru:
       confirm_button: Сбросить кэш
       success: Кэш ИИ очищается. Это может занять несколько минут.
     condition_filters:
+      and: "и"
+      value_placeholder: "Введите значение"
       transaction_type:
         income: Доход
         expense: Расход

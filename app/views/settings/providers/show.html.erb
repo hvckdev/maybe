@@ -95,4 +95,10 @@
       <p class="text-sm text-secondary px-1 py-2"><%= t("settings.providers.groups.empty_available") %></p>
     <% end %>
   <% end %>
+
+<%= settings_section title: t("settings.providers.show.tinkoff_title"), collapsible: true, open: false do %>
+  <turbo-frame id="tinkoff-providers-panel">
+    <%= render "settings/providers/tinkoff_panel" %>
+  </turbo-frame>
+<% end %>
 </div>

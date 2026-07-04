@@ -1,0 +1,7 @@
+---
+en:
+  layouts:
+    confirm_dialog:
+      title: "Are you sure?"
+      subtitle: "This action cannot be undone."
+      confirm: "Confirm"

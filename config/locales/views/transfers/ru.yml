@@ -43,6 +43,7 @@ ru:
       from: Откуда
       to: Куда
       date: Дата
+      amount: Сумма
       transfer_amount: Сумма перевода
       total: Итого
       bank_charges: Банковские комиссии
@@ -52,3 +53,23 @@ ru:
       uncategorized: Без категории
     update:
       success: Перевод обновлён
+    transfer_matches:
+      new:
+        header:
+          title: Связать перевод
+          subtitle: Свяжите транзакцию с соответствующей в другом счёте
+        from_account: Со счёта
+        to_account: На счёт
+        from_account_name: "Со счёта: %{name}"
+        to_account_name: "На счёт: %{name}"
+        outflow_transaction: Исходящая транзакция
+        inflow_transaction: Входящая транзакция
+        submit: Создать связь
+      matching_fields:
+        select_method_hint: Выберите способ сопоставления транзакций.
+        match_existing: Связать с существующей (рекомендуется)
+        create_new: Создать новую транзакцию
+        matching_method_label: Способ сопоставления
+        matching_transaction_label: Транзакция для сопоставления
+        target_account_label: Целевой счёт
+        no_candidates_hint: Мы не нашли транзакций для сопоставления в других счетах. Выберите счёт, и мы создадим новую входящую транзакцию.

@@ -35,3 +35,7 @@ en:
       no_auth_methods_enabled: No authentication methods are currently enabled. Please contact an administrator.
       demo_banner_title: "Demo Mode Active"
       demo_banner_message: "This is a demonstration environment. Login credentials have been pre-filled for your convenience. Please do not enter real or sensitive information."
+    mobile_sso_start:
+      redirecting: Redirecting to sign in...
+      click_here: Click here
+      if_not_redirected: if not redirected.

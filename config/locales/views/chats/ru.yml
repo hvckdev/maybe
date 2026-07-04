@@ -8,20 +8,31 @@ ru:
       function: 'Функция:'
       tool_calls: Вызовы инструментов
   chats:
+    demo_banner_title: "Демо-режим включён"
+    demo_banner_message: "Вы используете LLM через кредиты Cloudflare Workers AI. Результаты могут отличаться, так как код тестировался на `gpt-4.1`, но ваши токены нигде не используются для обучения! 🤖"
     ai_consent:
+      title: Включить AI-чат
       available_description: ИИ-чат может отвечать на финансовые вопросы и предоставлять анализ на основе ваших данных. Чтобы использовать эту функцию, вам нужно явно её включить.
-      disable_note: Отключить в любое время. Все данные, отправляемые нашим поставщикам LLM, анонимизируются.
-      enable_button: Включить ИИ-чаты
-      title: Включить ИИ-чаты
+      description_available: AI-чат может отвечать на финансовые вопросы и давать рекомендации на основе ваших данных. Чтобы использовать эту функцию, нужно явно включить её.
       unavailable_description_html: Чтобы использовать ИИ-ассистента, вам нужно установить переменную окружения <code class="bg-surface-inset px-1 py-0.5 rounded font-mono text-xs">OPENAI_ACCESS_TOKEN</code> или настроить её в параметрах самохостинга вашей инстанции.
+      description_unavailable_html: 'Для использования AI-помощника необходимо задать переменную окружения <code class="bg-surface-inset px-1 py-0.5 rounded font-mono text-xs">OPENAI_ACCESS_TOKEN</code> или настроить её в разделе «Самостоятельный хостинг».'
+      enable_button: Включить AI-чат
+      disable_note: Отключить в любое время. Все данные, отправляемые нашим поставщикам LLM, анонимизируются.
+      privacy_note: Можно отключить в любой момент. Все данные, отправляемые нашим LLM-провайдерам, анонимизируются.
     ai_greeting:
+      greeting: "Привет, %{name}! Я AI/большая языковая модель, которая поможет с финансами. У меня есть доступ к интернету и данным вашего аккаунта."
       commands_hint_html: Вы можете использовать <span class="bg-container border border-secondary px-1.5 py-0.5 rounded font-mono text-xs">/</span> для доступа к командам
-      evaluate_portfolio: Оценить инвестиционный портфель
-      greeting: Привет, %{name}! Я ИИ/модель обработки естественного языка, которая может помочь с вашими финансами. У меня есть доступ к интернету и данным вашего счёта.
+      commands_hint: 'Используйте <span class="bg-container border border-secondary px-1.5 py-0.5 rounded font-mono text-xs">/</span> для доступа к командам'
       questions_intro: 'Вот несколько вопросов, которые вы можете задать:'
+      suggestions_title: "Вот несколько вопросов, которые можно задать:"
+      evaluate_portfolio: Оценить инвестиционный портфель
+      question_portfolio: Оценить инвестиционный портфель
       spending_insights: Показать анализ расходов
-      there: здесь
+      question_spending: Показать аналитику расходов
       unusual_patterns: Найти необычные шаблоны
+      question_patterns: Найти необычные закономерности
+      there: здесь
+      fallback_name: друг
     chat:
       delete_chat: Удалить чат
       edit_chat_title: Редактировать название чата
@@ -30,16 +41,20 @@ ru:
       delete_chat: Удалить чат
       edit_chat_title: Редактировать название чата
       start_new_chat: Начать новый чат
-    demo_banner_message: "Вы используете LLM через кредиты, предоставленные Cloudflare Workers AI. Результаты могут варьироваться, так как кодовая база тестировалась на `gpt-4.1`, но ваши токены никуда не отправляются для обучения! \U0001F916"
-    demo_banner_title: Демо-режим активен
     destroy:
       notice: Чат успешно удалён
     error:
       retry: Повторить
     index:
+      title: Чаты
       chats: Чаты
       new_chat: Новый чат
     thinking: Думаю ...
     update:
       success: Чат обновлён
     worker_unhealthy_warning: Ответы ИИ могут временно не приходить — фоновый процесс не запущен или перегружен. Проверьте, что Sidekiq работает.
+  messages:
+    chat_form:
+      placeholder: Задайте вопрос...
+      coming_soon: Скоро
+      disclaimer: Ответы AI носят информационный характер. Не являются финансовой рекомендацией!

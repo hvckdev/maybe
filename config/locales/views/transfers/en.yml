@@ -53,3 +53,23 @@ en:
       uncategorized: Uncategorized
     update:
       success: Transfer updated
+    transfer_matches:
+      new:
+        header:
+          title: Create Transfer Match
+          subtitle: Match a transaction to its counterpart in another account
+        from_account: From account
+        to_account: To account
+        from_account_name: "From account: %{name}"
+        to_account_name: "To account: %{name}"
+        outflow_transaction: Outflow transaction
+        inflow_transaction: Inflow transaction
+        submit: Create transfer match
+      matching_fields:
+        select_method_hint: Select a method for matching your transactions.
+        match_existing: Match existing transaction (recommended)
+        create_new: Create new transaction
+        matching_method_label: Matching method
+        matching_transaction_label: Matching transaction
+        target_account_label: Target account
+        no_candidates_hint: We couldn't find any transactions to match from your other accounts. Please select an account and we will create a new inflow transaction for you.

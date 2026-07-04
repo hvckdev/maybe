@@ -212,3 +212,28 @@ ru:
       success: Синхронизация начата
     update:
       success: Подключение к Mercury обновлено
+    setup_required:
+      title: Требуется настройка Mercury
+      api_token_not_configured: API-токен не настроен
+      api_token_description: Перед привязкой счетов Mercury необходимо настроить API-токен Mercury.
+      setup_steps: "Настройка:"
+      step_1: "Перейдите в Настройки → Провайдеры"
+      step_2: Найдите раздел Mercury
+      step_3: Введите API-токен Mercury
+      step_4: Вернитесь сюда, чтобы привязать счета
+      go_to_settings: Перейти к настройкам провайдеров
+    api_error:
+      title: Ошибка подключения Mercury
+      unable_to_connect: Не удалось подключиться к Mercury
+      common_issues: "Частые проблемы:"
+      invalid_api_token: Неверный API-токен
+      check_token: Проверьте API-токен в настройках провайдеров
+      expired_credentials: Истёкшие учётные данные
+      generate_new: Создайте новый API-токен в Mercury
+      insufficient_permissions: Недостаточно прав
+      ensure_permissions: Убедитесь, что у токена есть доступ на чтение
+      network_issue: Проблема с сетью
+      check_connection: Проверьте подключение к интернету
+      service_down: Сервис недоступен
+      temporarily_unavailable: API Mercury временно недоступен
+      check_settings: Проверить настройки провайдеров

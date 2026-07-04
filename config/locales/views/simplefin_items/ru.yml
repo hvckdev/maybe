@@ -31,6 +31,14 @@ ru:
       cancel: Отмена
       connection_needs_update: 'Ваше подключение SimpleFIN нуждается в обновлении:'
       header_subtitle: Получите новый токен настройки для переподключения вашего аккаунта SimpleFIN
+      page_title: Обновить подключение SimpleFin
+      header_title: Обновить подключение SimpleFin
+      header_description: Получите новый токен настройки для переподключения вашего счёта SimpleFin
+      needs_update: "Ваше подключение SimpleFIN нужно обновить:"
+      step1_html: Перейдите на <a href="https://bridge.simplefin.org/simplefin/create" target="_blank" rel="noopener noreferrer" class="text-link hover:text-link underline">SimpleFIN Bridge</a>, чтобы создать новый токен настройки
+      step2: Скопируйте токен и вставьте его ниже
+      step3: Нажмите «Обновить», чтобы восстановить доступ
+      update_button: Обновить
       setup_token:
         help_text: Токен должен быть длинной строкой, начинающейся с букв и цифр
         label: 'Токен настройки SimpleFIN:'
@@ -119,13 +127,42 @@ ru:
         description: Эти счета существуют в вашей базе данных, но больше не предоставляются SimpleFIN. Это может произойти, когда конфигурации счетов изменяются.
         title: Счета больше не в SimpleFIN
         transaction_count:
-          few: "%{count} операции"
-          many: "%{count} операций"
-          one: "%{count} операция"
-          other: "%{count} операции"
+          one: "%{count} транзакция"
+          few: "%{count} транзакции"
+          many: "%{count} транзакций"
+          other: "%{count} транзакций"
       title: Настройте ваши счета SimpleFIN
+      page_title: Настройка счетов SimpleFin
+      header_title: Настройка ваших счетов SimpleFin
+      header_description: Выберите правильные типы для импортированных счетов
       transaction_history_description_html: SimpleFIN обычно предоставляет <strong>60-90 дней</strong> истории операций, в зависимости от вашего банка. После первоначальной настройки новые операции будут синхронизироваться автоматически. Доступность исторических данных зависит от учреждения и типа счета.
       transaction_history_title: 'История операций:'
+      transaction_history_label: История транзакций
+      transaction_history_description: SimpleFin обычно предоставляет 60-90 дней истории транзакций, в зависимости от банка. После первоначальной настройки новые транзакции будут синхронизироваться автоматически. Доступность исторических данных зависит от учреждения и типа счёта.
+      type_checking_savings: Текущий или сберегательный
+      type_checking_savings_desc: Обычные банковские счета
+      type_credit_card: Кредитная карта
+      type_credit_card_desc: Счета кредитных карт
+      type_investment: Инвестиционный
+      type_investment_desc: Брокерский, 401(k), IRA
+      type_loan: Кредит или ипотека
+      type_loan_desc: Долговые счета
+      type_other: Другой актив
+      type_other_desc: Всё остальное
+    complete_account_setup:
+      all_skipped: "Все счета пропущены. Ничего не создано."
+      no_accounts: "Нет счетов для настройки."
+      success:
+        one: "Успешно создан %{count} счёт SimpleFIN! Транзакции и активы импортируются в фоне."
+        few: "Успешно создано %{count} счёта SimpleFIN! Транзакции и активы импортируются в фоне."
+        many: "Успешно создано %{count} счетов SimpleFIN! Транзакции и активы импортируются в фоне."
+        other: "Успешно создано %{count} счетов SimpleFIN! Транзакции и активы импортируются в фоне."
+      stale_accounts_processed: "Устаревшие счета: %{deleted} удалено, %{moved} перемещено."
+      stale_accounts_errors:
+        one: "%{count} действие с устаревшим счётом не выполнено. Подробности в логах."
+        few: "%{count} действия с устаревшими счетами не выполнено. Подробности в логах."
+        many: "%{count} действий с устаревшими счетами не выполнено. Подробности в логах."
+        other: "%{count} действий с устаревшими счетами не выполнено. Подробности в логах."
     simplefin_item:
       accounts_skipped_label: 'Пропущено: %{count}'
       accounts_skipped_tooltip: Некоторые счета были пропущены из-за ошибок во время синхронизации
@@ -159,6 +196,11 @@ ru:
       status_with_summary: Последняя синхронизация %{timestamp} назад • %{summary}
       syncing: Синхронизация...
       update: Обновить
+    subtype_select:
+      please_select: "Пожалуйста, выберите %{type}"
+      subtype: подтип
+      type: тип
+      select_type: "Выберите %{type}"
     stale_pending_status:
       message:
         few: "%{count} ожидающие операции старше %{days} дней"

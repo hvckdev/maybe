@@ -10,6 +10,9 @@ en:
       title: No entries found
     loading:
       loading: Loading entries...
+    selection_bar:
+      edit: Edit
+      delete: Delete
     update:
       success: Entry updated
     unlock:

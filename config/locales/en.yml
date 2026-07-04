@@ -1,0 +1,44 @@
+---
+en:
+  periods:
+    labels:
+      last_day: Last Day
+      current_week: Current Week
+      last_7_days: Last 7 Days
+      current_month: Current Month
+      last_month: Last Month
+      last_30_days: Last 30 Days
+      last_90_days: Last 90 Days
+      current_year: Current Year
+      last_365_days: Last 365 Days
+      last_5_years: Last 5 Years
+      last_10_years: Last 10 Years
+      all_time: All Time
+      custom: Custom Period
+    labels_short:
+      last_day: 1D
+      current_week: WTD
+      last_7_days: 7D
+      current_month: MTD
+      last_month: LM
+      last_30_days: 30D
+      last_90_days: 90D
+      current_year: YTD
+      last_365_days: 365D
+      last_5_years: 5Y
+      last_10_years: 10Y
+      all_time: All
+      custom: Custom
+    comparison_labels:
+      last_day: "vs. yesterday"
+      current_week: "vs. start of week"
+      last_7_days: "vs. last week"
+      current_month: "vs. start of month"
+      last_month: "vs. last month"
+      last_30_days: "vs. last 30 days"
+      last_90_days: "vs. last quarter"
+      current_year: "vs. start of year"
+      last_365_days: "vs. 1 year ago"
+      last_5_years: "vs. 5 years ago"
+      last_10_years: "vs. 10 years ago"
+      all_time: "vs. beginning"

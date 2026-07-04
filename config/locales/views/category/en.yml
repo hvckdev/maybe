@@ -1,0 +1,13 @@
+---
+en:
+  category:
+    dropdowns:
+      show:
+        search_placeholder: "Search categories..."
+        no_categories: "No categories found"
+        empty: "No category"
+        bootstrap: "Bootstrap"
+        clear: "Clear"
+        match_transfer: "Match transfer/payment"
+        income: "One-time income/expense"
+        expense: "Expense"

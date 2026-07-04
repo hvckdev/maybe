@@ -103,7 +103,7 @@ ru:
         few: "%{count} продажи"
         many: "%{count} продаж"
         one: "%{count} продажа"
-        other: "%{count} продажи"
+        other: "%{count} продаж"
       taxable_realized_note: Эти доходы могут облагаться налогами
       title: Эффективность инвестиций
       top_holdings: Основные активы
@@ -114,6 +114,7 @@ ru:
       view_details: Посмотреть детали
       weight: Доля
       withdrawals: Изъятия за период
+      and_more: "+ещё %{count}"
     net_worth:
       assets_vs_liabilities: Активы против обязательств
       current_net_worth: Текущая чистая стоимость
@@ -123,6 +124,31 @@ ru:
       title: Чистая стоимость
       total_assets: Активы
       total_liabilities: Обязательства
+    investment_flows:
+      title: Движение средств по инвестициям
+      description: Отслеживание движения средств по инвестиционным счетам
+      contributions: Пополнения
+      withdrawals: Снятия
+      net_flow: Чистое движение
+      money_added: Средства внесены на инвестиционные счета
+      money_withdrawn: Средства выведены с инвестиционных счетов
+      total_net_change: Общее чистое изменение
+    google_sheets_instructions:
+      title_with_key: "URL для Google Sheets скопирован"
+      title_no_key: "Нужен API-ключ"
+      ready: Ваш URL (с API-ключом) готов.
+      steps: "Для импорта в Google Sheets:\n1. Создайте новую таблицу\n2. В ячейку A1 введите формулу ниже\n3. Нажмите Enter"
+      security_warning: "Этот URL содержит ваш API-ключ. Храните его в безопасности!"
+      need_key: Для импорта в Google Sheets нужен API-ключ.
+      step1: "Перейдите в Настройки → API-ключи"
+      step2: "Создайте новый API-ключ с правом «чтение»"
+      step3: Скопируйте API-ключ
+      step4: "Добавьте его в этот URL"
+      example: Пример
+      then_use: Затем используйте полный URL с =IMPORTDATA() в Google Sheets.
+      open_sheets: Открыть Google Sheets
+      go_to_api_keys: Перейти к API-ключам
+      close: Понятно
     print:
       document_title: Финансовый отчёт
       generated_on: Создан %{date}

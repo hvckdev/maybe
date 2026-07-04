@@ -76,6 +76,10 @@ en:
         manual_entry: Enter account balance
         title: How would you like to add it?
       title: What would you like to add?
+    new_container:
+      select: Select
+      navigate: Navigate
+      close: Close
     show:
       limited_fx_history_warning: "Exchange rate history is only available from %{date} onwards. Transactions before this date use approximate currency conversions — this can happen when the FX provider only offers a limited historical window."
       tabs:
@@ -198,6 +202,17 @@ en:
       description: "Choose which provider you want to use to link %{account_name}"
       already_linked: "Account is already linked to a provider"
       no_providers: "No providers are currently configured"
+
+    ui:
+      account:
+        chart:
+          total_value: Total value
+          holdings: Holdings
+          cash: Cash
+          no_data_available: No data available
+        activity_date:
+          end_of_day_balance_tooltip: The end of day balance, after all transactions and adjustments
+          no_balance_data: No balance data available for this date
 
   email_confirmations:
     new:

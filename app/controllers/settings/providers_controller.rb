@@ -208,7 +208,8 @@ class Settings::ProvidersController < ApplicationController
       { key: "trade_republic", title: "Trade Republic",  turbo_id: "trade-republic", partial: "trade_republic_panel" },
       { key: "indexa_capital", title: "Indexa Capital",  turbo_id: "indexa_capital", partial: "indexa_capital_panel" },
       { key: "sophtron",       title: "Sophtron",        turbo_id: "sophtron",       partial: "sophtron_panel" },
-      { key: "questrade",      title: "Questrade",       turbo_id: "questrade",      partial: "questrade_panel" }
+      { key: "questrade",      title: "Questrade",       turbo_id: "questrade",      partial: "questrade_panel" },
+      { key: "tinkoff",        title: "Tinkoff",         turbo_id: "tinkoff",        partial: "tinkoff_panel" }
     ].freeze
 
     FAMILY_PANEL_KEYS = FAMILY_PANELS.map { |p| p[:key] }.freeze
@@ -235,7 +236,8 @@ class Settings::ProvidersController < ApplicationController
       "trading212"     => "Trading212Item",
       "trade_republic" => "TradeRepublicItem",
       "indexa_capital" => "IndexaCapitalItem",
-      "sophtron"       => "SophtronItem"
+      "sophtron"       => "SophtronItem",
+      "tinkoff"        => "TinkoffItem"
     }.freeze
 
     def load_provider_items(provider_key)
@@ -282,6 +284,8 @@ class Settings::ProvidersController < ApplicationController
         @sophtron_items = Current.family.sophtron_items.ordered
       when "questrade"
         @questrade_items = Current.family.questrade_items.active.ordered
+      when "tinkoff"
+        @tinkoff_items = Current.family.tinkoff_items.ordered
       end
     end
 
@@ -316,6 +320,7 @@ class Settings::ProvidersController < ApplicationController
       @kraken_items = Current.family.kraken_items.active.ordered
       @onchain_wallet_items = Current.family.onchain_wallet_items.active.ordered
       @questrade_items = Current.family.questrade_items.active.ordered.select(:id)
+      @tinkoff_items = Current.family.tinkoff_items.ordered.select(:id)
 
       @provider_sync_health = compute_provider_sync_health(family_panel_items)
 
@@ -353,7 +358,8 @@ class Settings::ProvidersController < ApplicationController
         "trading212"     => @trading212_items,
         "trade_republic" => @trade_republic_items,
         "indexa_capital" => @indexa_capital_items,
-        "sophtron"       => @sophtron_items
+        "sophtron"       => @sophtron_items,
+        "tinkoff"        => @tinkoff_items
       }
     end
 

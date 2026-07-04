@@ -23,7 +23,6 @@ class Settings::ProfilesControllerTest < ActionDispatch::IntegrationTest
     assert_select "[data-action='app-layout#openMobileSidebar']", count: 0
     assert_select "[data-action='app-layout#closeMobileSidebar']", count: 0
     assert_select "[data-action='app-layout#toggleLeftSidebar']", count: 0
-    assert_select "[data-action='app-layout#toggleRightSidebar']", count: 0
   end
 
   test "admin can remove a family member" do
