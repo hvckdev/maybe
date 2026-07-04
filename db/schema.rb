@@ -2359,6 +2359,47 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_02_180400) do
     t.index ["status"], name: "index_tinkoff_items_on_status"
   end
 
+  create_table "tinkoff_accounts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "tinkoff_item_id", null: false
+    t.string "name"
+    t.string "tinkoff_account_id"
+    t.string "account_number"
+    t.string "currency"
+    t.decimal "current_balance", precision: 19, scale: 4
+    t.string "account_status"
+    t.string "account_type"
+    t.string "provider"
+    t.jsonb "institution_metadata"
+    t.jsonb "raw_payload"
+    t.jsonb "raw_transactions_payload"
+    t.date "sync_start_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tinkoff_account_id"], name: "index_tinkoff_accounts_on_tinkoff_account_id", unique: true
+    t.index ["tinkoff_item_id"], name: "index_tinkoff_accounts_on_tinkoff_item_id"
+  end
+
+  create_table "tinkoff_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "family_id", null: false
+    t.string "name"
+    t.string "institution_id"
+    t.string "institution_name"
+    t.string "institution_domain"
+    t.string "institution_url"
+    t.string "institution_color"
+    t.string "status", default: "good"
+    t.boolean "scheduled_for_deletion", default: false
+    t.boolean "pending_account_setup", default: false
+    t.datetime "sync_start_date"
+    t.jsonb "raw_payload"
+    t.jsonb "raw_institution_payload"
+    t.text "session_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["family_id"], name: "index_tinkoff_items_on_family_id"
+    t.index ["status"], name: "index_tinkoff_items_on_status"
+  end
+
   create_table "tool_calls", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.jsonb "function_arguments"

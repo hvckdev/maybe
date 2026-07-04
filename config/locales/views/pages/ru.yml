@@ -75,18 +75,18 @@ ru:
         value: Сумма
         weight: Доля
       investment_summary:
-        add_investment: Добавьте инвестиционный счёт для отслеживания портфеля
+        add_investment: Добавьте инвестиционный аккаунт для отслеживания портфеля
         contributions: Пополнения
-        holding: Позиция
-        no_investments: Нет инвестиционных счетов
-        period_activity: Активность за %{period}
+        holding: Актив
+        no_investments: Нет инвестиционных аккаунтов
+        period_activity: Движение за %{period}
         return: Доходность
         title: Инвестиции
         total_return: Общая доходность
         trades: Сделки
         value: Сумма
         weight: Доля
-        withdrawals: Выводы
+        withdrawals: Снятия
     privacy:
       heading: Политика конфиденциальности
       placeholder: Содержимое политики конфиденциальности будет отображено здесь.
