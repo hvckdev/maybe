@@ -103,17 +103,68 @@ ru:
       try_after_sync: Если вы только что подключились или синхронизировались, попробуйте снова после завершения синхронизации.
       unlink_to_move: Чтобы связать другой счёт, сначала отвяжите его в меню действий счёта.
     setup_accounts:
-      account_type_label: 'Тип счёта:'
+      account_type_label: "Тип счёта:"
       balance: Баланс
       cancel: Отмена
-      choose_account_type: 'Выберите правильный тип счёта для каждого счёта Enable Banking:'
+      choose_account_type: "Выберите правильный тип для каждого счёта Enable Banking:"
       create_accounts: Создать счета
       creating_accounts: Создание счетов...
       header_subtitle: Выберите правильные типы счетов для ваших импортированных счетов
-      historical_data_range: 'Диапазон исторических данных:'
-      psd2_savings_notice: Уведомление о сберегательных счетах Psd2
-      sync_start_date_help: Выберите, насколько далеко назад вы хотите синхронизировать историю операций. Максимум доступно 2 года истории.
-      sync_start_date_label: 'Начать синхронизацию операций с:'
-      title: Настройте ваши счета Enable Banking
+      subtitle: Выберите правильные типы для импортированных счетов
+      historical_data_range: "Исторический период:"
+      psd2_savings_notice: "Примечание: некоторые французские сберегательные счета (Livret A, PEL, LEP, LDDS) могут иметь ограниченный доступ через Open Banking (PSD2). Если сберегательный счёт отсутствует, добавьте его вручную."
+      sync_start_date_help: Выберите, насколько далеко загружать историю транзакций. Максимум 2 года.
+      sync_start_date_label: "Начать синхронизацию с:"
+      title: Настройка счетов Enable Banking
+    new:
+      link_enable_banking_title: Привязать Enable Banking
+      connected_bank: Подключённый банк
+      connection: Подключение
+      session_expires: Сессия истекает
+      unknown: Неизвестно
+      session_expired: Сессия истекла — требуется повторная авторизация
+      configured: Настроено
+      ready_to_connect: Готово для подключения банка
+      sync: Синхронизировать
+      reconnect: Переподключить
+      connect_bank: Подключить банк
+      remove_confirm: Вы уверены, что хотите удалить это подключение?
+      remove: Удалить
+      add_connection: Добавить подключение
+      not_configured_title: Подключение Enable Banking не настроено
+      not_configured_description: Перед привязкой счетов Enable Banking необходимо настроить подключение.
+      setup_steps_title: "Настройка:"
+      setup_step_1: "Перейдите в Настройки → Провайдеры"
+      setup_step_2: Найдите раздел Enable Banking
+      setup_step_3: Введите данные Enable Banking
+      setup_step_4: Вернитесь сюда, чтобы привязать счета
+      go_to_provider_settings: Перейти к настройкам провайдеров
+    enable_banking_item:
+      provider_name: Enable Banking
+      syncing: Синхронизация...
+      reconnect: Переподключить
+      last_synced: "%{time} назад"
+      never_synced: Никогда не синхронизировалось
+      deletion_in_progress: Удаление...
+      update: Обновить
+      delete: Удалить
+      setup_needed: Требуется настройка
+      accounts_need_setup:
+        one: "%{count} счёт из Enable Banking нужно настроить"
+        few: "%{count} счёта из Enable Banking нужно настроить"
+        many: "%{count} счетов из Enable Banking нужно настроить"
+        other: "%{count} счетов из Enable Banking нужно настроить"
+      set_up_accounts: Настроить счета
+      no_accounts_found: Счета не найдены
+      no_accounts_try_sync: Счета Enable Banking не найдены. Попробуйте синхронизировать снова.
+    select_existing_account:
+      title: Привязать счёт Enable Banking
+      all_linked: Все счета Enable Banking уже привязаны.
+      try_after_sync: Если вы только что подключились или синхронизировались, попробуйте снова после завершения.
+      unlink_to_move: Чтобы связать другой счёт, сначала отвяжите его в меню действий счёта.
+      unlink_hint: Чтобы привязать другой счёт, сначала открепите текущий в меню действий счёта.
+      balance: Баланс
+      link: Связать
+      link_account: Привязать
     update:
       success: Конфигурация Enable Banking обновлена.

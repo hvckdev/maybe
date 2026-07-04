@@ -26,6 +26,14 @@ en:
         update_failed: "Failed to update connection: %{message}"
         unexpected: An unexpected error occurred. Please try again.
     edit:
+      page_title: Update SimpleFin Connection
+      header_title: Update SimpleFin Connection
+      header_description: Get a new setup token to reconnect your SimpleFin account
+      needs_update: "Your SimpleFIN connection needs to be updated:"
+      step1_html: Visit <a href="https://bridge.simplefin.org/simplefin/create" target="_blank" rel="noopener noreferrer" class="text-link hover:text-link underline">SimpleFIN Bridge</a> to create a new setup token
+      step2: Copy the token and paste it below
+      step3: Click "Update" to restore access
+      update_button: Update
       setup_token:
         label: "SimpleFIN Setup Token:"
         placeholder: "Paste your SimpleFIN setup token here..."
@@ -82,6 +90,25 @@ en:
         transaction_count:
           one: "%{count} transaction"
           other: "%{count} transactions"
+      page_title: Set Up SimpleFin Accounts
+      header_title: Set Up Your SimpleFin Accounts
+      header_description: Choose the correct account types for your imported accounts
+      creating_accounts: Creating Accounts...
+      choose_account_type: "Choose the correct account type for each SimpleFin account:"
+      type_checking_savings: Checking or Savings
+      type_checking_savings_desc: Regular bank accounts
+      type_credit_card: Credit Card
+      type_credit_card_desc: Credit card accounts
+      type_investment: Investment
+      type_investment_desc: Brokerage, 401(k), IRA accounts
+      type_loan: Loan or Mortgage
+      type_loan_desc: Debt accounts
+      type_other: Other Asset
+      type_other_desc: Everything else
+      transaction_history_label: Transaction History
+      transaction_history_description: SimpleFin typically provides 60-90 days of transaction history, depending on your bank. After initial setup, new transactions will sync automatically going forward. Historical data availability varies by institution and account type.
+      account_type_label: "Account Type:"
+      create_accounts: Create Accounts
     complete_account_setup:
       all_skipped: "All accounts were skipped. No accounts were created."
       no_accounts: "No accounts to set up."
@@ -152,6 +179,12 @@ en:
       unlink_to_move: To move a link, first unlink it from the account’s actions menu.
       all_accounts_already_linked: All SimpleFIN accounts appear to be linked already.
       currently_linked_to: "Currently linked to: %{account_name}"
+      balance: Balance
+    subtype_select:
+      please_select: "Please select a %{type}"
+      subtype: subtype
+      type: type
+      select_type: "Select %{type}"
 
     link_existing_account:
       success: Account successfully linked to SimpleFIN

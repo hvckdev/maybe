@@ -17,8 +17,19 @@ ru:
       from_account_named: 'Со счёта: %{name}'
       header:
         subtitle: Найдите соответствующую операцию в другом счёте или создайте её, если она не существует.
-        title: Соответствие перевода или платежа
-      inflow_transaction: Операция зачисления
-      outflow_transaction: Операция списания
+        title: Найти перевод или платёж
+      inflow_transaction: Входящая транзакция
+      outflow_transaction: Исходящая транзакция
       to_account: На счёт
       to_account_named: 'На счёт: %{name}'
+      from_account_name: "Со счёта: %{name}"
+      to_account_name: "На счёт: %{name}"
+      submit: Привязать
+    matching_fields:
+      select_method_hint: Выберите способ сопоставления транзакций.
+      match_existing: Привязать существующую транзакцию (рекомендуется)
+      create_new: Создать новую транзакцию
+      matching_method_label: Способ сопоставления
+      matching_transaction_label: Соответствующая транзакция
+      target_account_label: Целевой счёт
+      no_candidates_hint: Мы не нашли транзакций для сопоставления на других счетах. Выберите счёт, и мы создадим новую входящую транзакцию.

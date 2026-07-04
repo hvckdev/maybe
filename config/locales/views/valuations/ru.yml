@@ -1,20 +1,31 @@
 ---
 ru:
   valuations:
+    confirm_update:
+      title: Обновить баланс
+      action_verb: обновить
+      submit: Обновить
+    confirm_create:
+      title: Подтвердить новый баланс
+      action_verb: установить
+      submit: Подтвердить
     confirmation_contents:
+      investment_text: "Это %{action_verb} стоимость счёта на %{date} на:"
       account_balance: баланс счёта
       asset_value: стоимость актива
       balance: баланс
-      brokerage_cash: Брокерский счёт
+      brokerage_cash: Свободные средства на брокерском счёте
       change: изменение
       credit_card_balance: баланс кредитной карты
       crypto_balance: баланс криптовалюты
-      holdings_value: Стоимость активов
+      holdings_value: Стоимость позиций
       liability_balance: баланс обязательств
       loan_balance: баланс по кредиту
       'on': на
+      on_date_to: "на %{date} до %{amount}."
       property_value: стоимость недвижимости
       recalculate_notice: Все будущие операции и балансы будут пересчитаны на основе этого %{change_or_update}.
+      recalculation_note: Все будущие транзакции и балансы будут пересчитаны на основе этого %{type}.
       this_will: Это %{action_verb} стоимость счёта на
       to: до
       to_colon: 'до:'
@@ -56,6 +67,7 @@ ru:
       opening_balance: Начальный баланс
       overview: Обзор
       settings: Настройки
+      account_value_on_date: Стоимость счёта на дату
       update_value: Обновить стоимость
     update:
       account_updated: Счёт обновлён

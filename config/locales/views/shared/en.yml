@@ -14,6 +14,7 @@ en:
       body_html: "<p>You will not be able to undo this decision</p>"
       cancel: Cancel
       title: Are you sure?
+    cancel: Cancel
     money_field:
       label: Amount
     exchange_rate_tabs:

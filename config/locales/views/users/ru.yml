@@ -1,6 +1,13 @@
 ---
 ru:
   users:
+    user_menu:
+      version: Версия
+      settings: Настройки
+      changelog: Что нового
+      feedback: Обратная связь
+      contact: Связаться
+      log_out: Выйти
     destroy:
       success: Ваш счёт был удалён.
     resend_confirmation_email:

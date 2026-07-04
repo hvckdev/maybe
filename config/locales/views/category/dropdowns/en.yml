@@ -10,3 +10,9 @@ en:
         no_categories: No categories found
         recent: Recent
         search_placeholder: Search
+        empty: No categories yet
+        bootstrap: Create default categories
+        match_transfer: Match transfer/payment
+        one_time: "One-time %{type}"
+        income: income
+        expense: expense

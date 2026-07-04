@@ -10,3 +10,9 @@ ru:
         no_categories: Категории не найдены
         recent: Недавние
         search_placeholder: Поиск
+        empty: Категорий пока нет
+        bootstrap: Создать категории по умолчанию
+        match_transfer: Привязать перевод/платёж
+        one_time: "Разовый(ая): %{type}"
+        income: доход
+        expense: расход

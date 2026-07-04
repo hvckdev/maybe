@@ -73,5 +73,5 @@ ru:
         empty: Категории не найдены
         expense: расход
         income: доход
-        match_transfer: Соответствие переводу/платежу
-        one_time: Одноразовый %{type}
+        match_transfer: Связать перевод/платёж
+        one_time: "Разовое: %{type}"

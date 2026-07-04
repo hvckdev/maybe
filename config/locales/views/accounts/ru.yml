@@ -189,11 +189,26 @@ ru:
       vehicle: Транспорт
     unlink:
       error: 'Не удалось отвязать счёт: %{error}'
-      generic_error: Произошла непредвиденная ошибка. Пожалуйста, попробуйте снова.
-      not_linked: Счёт не связан с провайдером
+      generic_error: Произошла непредвиденная ошибка. Попробуйте ещё раз.
+      not_linked: Счёт не привязан к провайдеру
       success: Счёт успешно отвязан. Теперь это ручной счёт.
     update:
       success: Счёт %{type} обновлён
+    select_provider:
+      title: Выберите провайдера для подключения
+      description: "Выберите провайдера для подключения %{account_name}"
+      already_linked: "Счёт уже привязан к провайдеру"
+      no_providers: "Провайдеры пока не настроены"
+    ui:
+      account:
+        chart:
+          total_value: Итого
+          holdings: Активы
+          cash: Наличные
+          no_data_available: Данные недоступны
+        activity_date:
+          end_of_day_balance_tooltip: Баланс на конец дня, после всех транзакций и корректировок
+          no_balance_data: Нет данных о балансе за эту дату
   email_confirmations:
     new:
       invalid_token: Неверная или истёкшая ссылка подтверждения.

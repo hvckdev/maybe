@@ -1,0 +1,7 @@
+---
+ru:
+  layouts:
+    confirm_dialog:
+      title: "Вы уверены?"
+      subtitle: "Это действие нельзя отменить."
+      confirm: "Подтвердить"
