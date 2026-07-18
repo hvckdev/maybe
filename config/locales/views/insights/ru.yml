@@ -38,6 +38,7 @@ ru:
       budget_at_risk: Бюджет
       budget_on_track: Бюджет
       maintained_goal_depleted: Резерв
+      budget_unplanned_spending: Бюджет
     meta:
       next_n_days:
         one: Следующий %{count} день
@@ -66,6 +67,7 @@ ru:
         few: без движения %{count} дня
         many: без движения %{count} дней
         other: без движения %{count} дня
+      from_unallocated: из нераспределённого
     actions:
       spending_anomaly: Операции в категории «%{category}»
       cash_flow_warning: Проверить регулярные операции
@@ -95,6 +97,7 @@ ru:
         many: "%{count} категорий бюджета требуют внимания"
         other: "%{count} категории бюджета требуют внимания"
       budget_on_track: Бюджет идёт по плану
+      budget_unplanned_spending: Нераспределённый бюджет покрыл перерасход
     templates:
       spending_anomaly:
         above: При текущем темпе вы потратите в этом месяце %{projected_spend} в категории
@@ -130,3 +133,6 @@ ru:
           общего бюджета.'
       budget_on_track: Вы потратили %{spent} из бюджета %{budgeted} (%{budget_spent_pct}%),
         и все категории в пределах лимита.
+      budget_unplanned_spending: В этом месяце %{covered_amount} перерасхода по категориям
+        покрыто из нераспределённого бюджета. Осталось нераспределённого бюджета —
+        %{unallocated_left}.
