@@ -1,0 +1,103 @@
+---
+ru:
+  insights:
+    actions:
+      budget: Перейти к бюджету
+      cash_flow_warning: Проверить регулярные операции
+      idle_cash: Перейти к счёту
+      net_worth_milestone: Посмотреть отчёт о капитале
+      savings_rate_change: Посмотреть операции за этот месяц
+      spending_anomaly: Посмотреть операции категории «%{category}»
+      subscription_audit: Проверить регулярные операции
+    card:
+      dismiss: Скрыть
+      dismissed: Подсказка скрыта
+      new: Новое
+      undo: Отменить
+    feed:
+      header: Последние
+      header_new: Новые
+      view_all: Все подсказки
+    figures:
+      days_overdue:
+        one: "%{count} день просрочки"
+        few: "%{count} дня просрочки"
+        many: "%{count} дней просрочки"
+        other: "%{count} дня просрочки"
+      idle_days:
+        one: без активности %{count} день
+        few: без активности %{count} дня
+        many: без активности %{count} дней
+        other: без активности %{count} дня
+      of_budget: бюджета
+      on_pace: текущий темп
+      today: сегодня
+      vs_previous: к прошлому месяцу
+    index:
+      empty:
+        description: Подсказки появятся здесь, когда на счетах будет достаточно активности. Они обновляются автоматически каждую ночь.
+        title: Пока нет подсказок
+      refresh: Проверить новые подсказки
+      subtitle: Что происходит с вашими финансами. Обновляется каждую ночь.
+      title: Аналитика
+    meta:
+      date_range: "%{from} — %{to}"
+      last_n_days:
+        one: Последний день
+        few: Последние %{count} дня
+        many: Последние %{count} дней
+        other: Последние %{count} дня
+      next_n_days:
+        one: Следующий день
+        few: Следующие %{count} дня
+        many: Следующие %{count} дней
+        other: Следующие %{count} дня
+    refresh:
+      checking: Проверяем…
+      queued: Генерируем свежую аналитику. Загляните через минуту.
+    templates:
+      budget_at_risk:
+        near: "%{categories} близки к лимитам в этом месяце. Вы уже использовали %{budget_spent_pct}% общего бюджета."
+        over: "%{categories} превысили бюджет в этом месяце. Вы уже использовали %{budget_spent_pct}% общего бюджета."
+      budget_on_track: Вы потратили %{spent} из бюджета %{budgeted} (%{budget_spent_pct}%), всё в пределах лимитов.
+      cash_flow_warning:
+        low: С учётом предстоящих регулярных операций и обычных расходов остаток денежных средств может снизиться до %{projected_low} примерно %{projected_low_date}.
+        negative: С учётом предстоящих регулярных операций и обычных расходов остаток денежных средств может упасть до %{projected_low} примерно %{projected_low_date}.
+      idle_cash: "%{account}: %{balance} без активности за последние %{idle_days} дней."
+      net_worth_milestone: Ваш капитал преодолел отметку %{milestone} и теперь составляет %{net_worth}.
+      savings_rate_change:
+        down: В %{month} вы сберегли %{current_rate}% дохода — на %{change_pp} п. п. меньше, чем %{previous_rate}% месяцем ранее.
+        down_negative: "В %{month} вы потратили больше, чем заработали: норма сбережений снизилась до %{current_rate}% с %{previous_rate}% месяцем ранее."
+        up: В %{month} вы сберегли %{current_rate}% дохода — на %{change_pp} п. п. больше, чем %{previous_rate}% месяцем ранее.
+      spending_anomaly:
+        above: По текущему темпу вы потратите %{projected_spend} на категорию «%{category}» в этом месяце — примерно на %{deviation_pct}% больше недавнего среднемесячного значения %{baseline_spend}.
+        below: По текущему темпу вы потратите %{projected_spend} на категорию «%{category}» в этом месяце — примерно на %{deviation_pct}% меньше недавнего среднемесячного значения %{baseline_spend}.
+      subscription_audit: "%{name} (%{amount}) не появлялся после ожидаемой даты %{expected_on}. Возможно, подписка отменена или списание перенесено."
+    titles:
+      budget_at_risk:
+        one: Одна категория бюджета требует внимания
+        few: "%{count} категории бюджета требуют внимания"
+        many: "%{count} категорий бюджета требуют внимания"
+        other: "%{count} категории бюджета требуют внимания"
+      budget_on_track: Бюджет в порядке
+      cash_flow_warning:
+        low: Остаток денежных средств может стать низким
+        negative: Остаток денежных средств может уйти в минус
+      idle_cash: Неиспользуемые деньги на счёте %{account}
+      net_worth_milestone: "Веха капитала: %{milestone}"
+      savings_rate_change:
+        down: Норма сбережений снизилась в %{month}
+        up: Норма сбережений выросла в %{month}
+      spending_anomaly:
+        above: Расходы в категории «%{category}» растут
+        below: Расходы в категории «%{category}» снижаются
+      subscription_audit: "%{name} всё ещё активна?"
+    types:
+      budget_at_risk: Бюджет
+      budget_on_track: Бюджет
+      cash_flow_warning: Денежный поток
+      idle_cash: Неиспользуемые деньги
+      net_worth_milestone: Капитал
+      savings_rate_change: Норма сбережений
+      spending_anomaly: Расходы
+      subscription_audit: Подписки
