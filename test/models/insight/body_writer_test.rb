@@ -61,6 +61,7 @@ class Insight::BodyWriterTest < ActiveSupport::TestCase
       "idle_cash" => { account: "Emergency fund", balance: "$28,400.00", idle_days: 60 },
       "budget_at_risk.over" => { categories: "Food & Drink and Travel", count: 2, budget_spent_pct: 84 },
       "budget_at_risk.near" => { categories: "Shopping", count: 1, budget_spent_pct: 72 },
+      "budget_unplanned_spending" => { covered_amount: "$50.00", unallocated_left: "$25.00" },
       "budget_on_track" => { spent: "$2,948.00", budgeted: "$5,200.00", budget_spent_pct: 57 }
     }.freeze
 

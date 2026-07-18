@@ -66,6 +66,9 @@
           <span class="tufte-metric-card-label"><%= t("reports.print.summary.budget") %></span>
           <span class="tufte-metric-card-value"><%= @summary_metrics[:budget_percent] %>%</span>
           <span class="tufte-metric-card-change text-secondary"><%= t("reports.print.summary.used") %></span>
+          <% if @summary_metrics[:unplanned_budget_used]&.amount&.positive? %>
+            <span class="tufte-metric-card-change text-secondary"><%= t("reports.print.summary.unplanned_budget_used", amount: @summary_metrics[:unplanned_budget_used].format) %></span>
+          <% end %>
         </div>
       <% end %>
     </div>

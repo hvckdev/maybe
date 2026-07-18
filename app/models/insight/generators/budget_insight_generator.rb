@@ -3,7 +3,7 @@
 # is at least half over, a quiet positive signal that everything is on track.
 # Reuses BudgetCategory's own health checks rather than re-deriving pace math.
 class Insight::Generators::BudgetInsightGenerator < Insight::Generator
-  produces "budget_at_risk", "budget_on_track"
+  produces "budget_at_risk", "budget_unplanned_spending", "budget_on_track"
 
   NEAR_LIMIT_MIN_ELAPSED = 0.0 # near-limit/over warnings fire any time
   ON_TRACK_MIN_ELAPSED = 0.5   # positive signal only once the month is half over
@@ -17,13 +17,16 @@ class Insight::Generators::BudgetInsightGenerator < Insight::Generator
     over = parent_categories.select(&:over_budget_with_budget?)
     near = parent_categories.select { |bc| bc.budgeted? && bc.near_limit? }
 
+    insights = []
+    insights << unplanned_spending_insight(budget) if budget.unplanned_spending_covered_by_unallocated.positive?
+
     if over.any? || near.any?
-      [ at_risk_insight(budget, over, near) ]
-    elsif on_track_eligible?(budget, parent_categories)
-      [ on_track_insight(budget) ]
-    else
-      []
+      insights << at_risk_insight(budget, over, near)
+    elsif insights.empty? && on_track_eligible?(budget, parent_categories)
+      insights << on_track_insight(budget)
     end
+
+    insights
   end
 
   private
@@ -57,6 +60,27 @@ class Insight::Generators::BudgetInsightGenerator < Insight::Generator
         },
         period: budget.period,
         dedup_key: "budget_at_risk:#{month_token(budget.start_date)}"
+      )
+    end
+
+    def unplanned_spending_insight(budget)
+      covered_amount = budget.unplanned_spending_covered_by_unallocated
+
+      build_insight(
+        insight_type: "budget_unplanned_spending",
+        priority: "medium",
+        title: I18n.t("insights.titles.budget_unplanned_spending"),
+        template_key: "budget_unplanned_spending",
+        facts: {
+          covered_amount: format_money(covered_amount),
+          unallocated_left: format_money(budget.unallocated_after_unplanned_spending)
+        },
+        metadata: {
+          covered_amount: round(covered_amount),
+          unallocated_left: round(budget.unallocated_after_unplanned_spending)
+        },
+        period: budget.period,
+        dedup_key: "budget_unplanned_spending:#{month_token(budget.start_date)}"
       )
     end
 

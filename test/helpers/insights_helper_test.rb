@@ -195,6 +195,17 @@ class InsightsHelperTest < ActionView::TestCase
     end
   end
 
+  test "budget unplanned spending insight exposes covered amount" do
+    insight = build_insight(
+      "budget_unplanned_spending",
+      facts: { "covered_amount" => "$50.00", "unallocated_left" => "$25.00" }
+    )
+
+    assert_equal "Unallocated budget covered overspending", insight_title(insight)
+    assert_equal [ "$50.00", "from unallocated" ], insight_key_figure(insight)
+    assert_equal :warning, insight_sentiment(insight)
+  end
+
   test "localized rendering falls back to stored prose when required data is missing" do
     insight = build_insight("spending_anomaly", metadata: { "direction" => "above" })
 

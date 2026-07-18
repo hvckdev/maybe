@@ -43,6 +43,7 @@ ru:
       income_minus_expenses: Доход минус расходы
       of_budget_used: от бюджета использовано
       no_budget_data: Нет данных о бюджете за этот период
+      unplanned_budget_used: "%{amount} покрыто из нераспределённого бюджета"
     budget_performance:
       title: Выполнение бюджета
       spent: Потрачено
@@ -214,6 +215,7 @@ ru:
         vs_prior: "%{percent}% по сравнению с предыдущим"
         of_income: "%{percent}% от дохода"
         used: использовано
+        unplanned_budget_used: "%{amount} из нераспределённого"
       net_worth:
         title: Чистая стоимость
         current_balance: Текущий баланс

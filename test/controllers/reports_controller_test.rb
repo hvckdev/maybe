@@ -106,6 +106,28 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
   end
 
+  test "index reports category overspending covered by unallocated budget" do
+    @family.accounts.each { |account| account.entries.destroy_all }
+    budget = Budget.find_or_bootstrap(@family, start_date: Date.current.beginning_of_month, user: @user)
+    category = @family.categories.create!(name: "Reports Unplanned", color: "#111111")
+    budget.sync_budget_categories
+    budget.update!(budgeted_spending: 300, currency: @family.currency)
+    budget.budget_categories.find_by!(category: category).update!(budgeted_spending: 100, currency: @family.currency)
+
+    create_transaction(
+      account: @family.accounts.first,
+      name: "Unplanned report expense",
+      date: Date.current,
+      amount: 150,
+      category: category
+    )
+
+    get reports_path(period_type: :monthly)
+
+    assert_response :ok
+    assert_includes @response.body, I18n.t("reports.summary.unplanned_budget_used", amount: Money.new(50, @family.currency).format)
+  end
+
   test "index calculates summary metrics correctly" do
     get reports_path(period_type: :monthly)
     assert_response :ok

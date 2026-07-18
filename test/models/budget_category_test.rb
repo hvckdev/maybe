@@ -140,14 +140,11 @@ class BudgetCategoryTest < ActiveSupport::TestCase
     @budget.stubs(:budget_category_actual_spending).with(@subcategory_with_limit_bc).returns(100)
     @budget.stubs(:budget_category_actual_spending).with(@subcategory_inheriting_bc).returns(50)
 
-    # Parent available calculation:
-    # shared_pool = 1000 (parent budget) - 300 (subcategory with limit budget) = 700
-    # shared_pool_spending = 150 (total) - 100 (subcategory with limit spending) = 50
-    # available = 700 - 50 = 650
-    assert_equal 650, @parent_budget_category.available_to_spend
+    # Parent category uses its visible budget for direct parent/inheriting spending.
+    assert_equal 850, @parent_budget_category.available_to_spend
 
-    # Inheriting subcategory shares parent's available (650)
-    assert_equal 650, @subcategory_inheriting_bc.available_to_spend
+    # Inheriting subcategory shares parent's available.
+    assert_equal 850, @subcategory_inheriting_bc.available_to_spend
 
     # Subcategory with limit: 300 (its budget) - 100 (its spending) = 200
     assert_equal 200, @subcategory_with_limit_bc.available_to_spend
@@ -185,15 +182,24 @@ class BudgetCategoryTest < ActiveSupport::TestCase
     assert_not @subcategory_inheriting_bc.blocked_by_parent_budget?
   end
 
-  test "parent over budget status still uses shared child spending" do
+  test "parent over budget status uses visible parent budget" do
     @budget.stubs(:budget_category_actual_spending).with(@parent_budget_category).returns(1_100)
     @budget.stubs(:budget_category_actual_spending).with(@subcategory_with_limit_bc).returns(0)
     @budget.stubs(:budget_category_actual_spending).with(@subcategory_inheriting_bc).returns(0)
     @parent_budget_category.stubs(:subcategories).returns([ @subcategory_with_limit_bc, @subcategory_inheriting_bc ])
 
-    assert_equal(-400, @parent_budget_category.available_to_spend)
+    assert_equal(-100, @parent_budget_category.available_to_spend)
     assert @parent_budget_category.over_budget?
     assert @parent_budget_category.any_over_budget?
+  end
+
+  test "parent planned expense uses visible parent budget" do
+    @parent_budget_category.update!(budgeted_spending: 67_000)
+    @budget.stubs(:budget_category_actual_spending).with(@parent_budget_category).returns(5_561.20)
+    @parent_budget_category.stubs(:planned_spending).returns(60_000)
+
+    assert_equal 1_438.80.to_d, @parent_budget_category.available_to_spend
+    assert_not @parent_budget_category.over_budget?
   end
 
   test "parent with no subcategories works as before" do

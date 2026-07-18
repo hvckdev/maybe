@@ -596,6 +596,140 @@ class BudgetTest < ActiveSupport::TestCase
     assert_equal expected, budget.available_to_spend
   end
 
+  test "unplanned spending is covered by available unallocated budget" do
+    family = families(:dylan_family)
+    budget = Budget.create!(
+      family: family,
+      start_date: 18.months.from_now.beginning_of_month,
+      end_date: 18.months.from_now.end_of_month,
+      budgeted_spending: 325,
+      currency: family.currency
+    )
+    first_category = family.categories.create!(name: "First overage", color: "#111111")
+    second_category = family.categories.create!(name: "Second overage", color: "#222222")
+    first_budget_category = budget.budget_categories.create!(category: first_category, budgeted_spending: 100, currency: family.currency)
+    second_budget_category = budget.budget_categories.create!(category: second_category, budgeted_spending: 100, currency: family.currency)
+
+    budget.stubs(:budget_category_actual_spending).with { |budget_category| budget_category.category_id == first_category.id }.returns(175)
+    budget.stubs(:budget_category_actual_spending).with { |budget_category| budget_category.category_id == second_category.id }.returns(200)
+
+    assert_equal 175, budget.unplanned_spending
+    assert_equal 125, budget.unplanned_spending_covered_by_unallocated
+    assert_equal 0, budget.unallocated_after_unplanned_spending
+    assert_equal 75, budget.unplanned_spending_covered_by_unallocated_for(first_budget_category)
+    assert_equal 50, budget.unplanned_spending_covered_by_unallocated_for(second_budget_category)
+  end
+
+  test "unplanned spending includes individually budgeted subcategory overages" do
+    family = families(:dylan_family)
+    budget = Budget.create!(
+      family: family,
+      start_date: 19.months.from_now.beginning_of_month,
+      end_date: 19.months.from_now.end_of_month,
+      budgeted_spending: 350,
+      currency: family.currency
+    )
+    parent_category = family.categories.create!(name: "Parent overage", color: "#111111")
+    child_category = family.categories.create!(name: "Child overage", parent: parent_category, color: "#222222")
+    budget.budget_categories.create!(category: parent_category, budgeted_spending: 200, currency: family.currency)
+    budget.budget_categories.create!(category: child_category, budgeted_spending: 100, currency: family.currency)
+    accounts(:depository).entries.create!(
+      entryable: Transaction.new(category: child_category),
+      date: budget.start_date,
+      name: "Child overage transaction",
+      amount: 175,
+      currency: family.currency
+    )
+
+    uncategorized_budget_category = budget.uncategorized_budget_category
+
+    assert_equal 75, budget.unplanned_spending
+    assert_equal 75, budget.unplanned_spending_covered_by_unallocated
+    assert_equal 75, uncategorized_budget_category.actual_spending
+    assert_equal 75, uncategorized_budget_category.available_to_spend
+  end
+
+  test "unplanned spending includes unbudgeted category actual spending" do
+    family = families(:dylan_family)
+    budget = Budget.create!(
+      family: family,
+      start_date: 20.months.from_now.beginning_of_month,
+      end_date: 20.months.from_now.end_of_month,
+      budgeted_spending: 300,
+      currency: family.currency
+    )
+    category = family.categories.create!(name: "Unbudgeted spending", color: "#111111")
+    budget.budget_categories.create!(category: category, budgeted_spending: 0, currency: family.currency)
+    accounts(:depository).entries.create!(
+      entryable: Transaction.new(category: category),
+      date: budget.start_date,
+      name: "Unbudgeted transaction",
+      amount: 500,
+      currency: family.currency
+    )
+
+    uncategorized_budget_category = budget.uncategorized_budget_category
+
+    assert_equal 500, budget.unplanned_spending
+    assert_equal 300, budget.unplanned_spending_covered_by_unallocated
+    assert_equal 300, uncategorized_budget_category.actual_spending
+    assert_equal 0, uncategorized_budget_category.available_to_spend
+  end
+
+  test "unplanned spending includes planned expenses over category budget" do
+    family = families(:dylan_family)
+    budget = Budget.create!(
+      family: family,
+      start_date: 21.months.from_now.beginning_of_month,
+      end_date: 21.months.from_now.end_of_month,
+      budgeted_spending: 300,
+      currency: family.currency
+    )
+    category = family.categories.create!(name: "Planned overage", color: "#111111")
+    budget.budget_categories.create!(category: category, budgeted_spending: 100, currency: family.currency)
+    budget.planned_expenses.create!(
+      category: category,
+      account: accounts(:depository),
+      name: "Future bill",
+      amount: 150,
+      currency: family.currency
+    )
+
+    uncategorized_budget_category = budget.uncategorized_budget_category
+
+    assert_equal 50, budget.unplanned_spending
+    assert_equal 50, budget.unplanned_spending_covered_by_unallocated
+    assert_equal 50, uncategorized_budget_category.actual_spending
+    assert_equal 150, uncategorized_budget_category.available_to_spend
+  end
+
+  test "unplanned spending includes unbudgeted category planned expenses" do
+    family = families(:dylan_family)
+    budget = Budget.create!(
+      family: family,
+      start_date: 22.months.from_now.beginning_of_month,
+      end_date: 22.months.from_now.end_of_month,
+      budgeted_spending: 300,
+      currency: family.currency
+    )
+    category = family.categories.create!(name: "Unbudgeted planned", color: "#111111")
+    budget.budget_categories.create!(category: category, budgeted_spending: 0, currency: family.currency)
+    budget.planned_expenses.create!(
+      category: category,
+      account: accounts(:depository),
+      name: "Unbudgeted future bill",
+      amount: 60,
+      currency: family.currency
+    )
+
+    uncategorized_budget_category = budget.uncategorized_budget_category
+
+    assert_equal 60, budget.unplanned_spending
+    assert_equal 60, budget.unplanned_spending_covered_by_unallocated
+    assert_equal 60, uncategorized_budget_category.actual_spending
+    assert_equal 240, uncategorized_budget_category.available_to_spend
+  end
+
   test "confirmed and cancelled expenses do not reduce available_to_spend" do
     budget = budgets(:one)
     category = categories(:food_and_drink)

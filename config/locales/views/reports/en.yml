@@ -43,6 +43,7 @@ en:
       income_minus_expenses: Income minus expenses
       of_budget_used: of budget used
       no_budget_data: No budget data for this period
+      unplanned_budget_used: "%{amount} covered by unallocated budget"
     budget_performance:
       title: Budget Performance
       spent: Spent
@@ -207,6 +208,7 @@ en:
         vs_prior: "%{percent}% vs prior"
         of_income: "%{percent}% of income"
         used: used
+        unplanned_budget_used: "%{amount} from unallocated"
       # Net Worth section
       net_worth:
         title: Net Worth
