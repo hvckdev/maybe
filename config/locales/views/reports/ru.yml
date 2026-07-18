@@ -148,6 +148,7 @@ ru:
         title: Сводка
         used: использовано
         vs_prior: "%{percent}% по сравнению с предыдущим"
+        unplanned_budget_used: "%{amount} из нераспределённого"
       trends:
         title: Ежемесячные тренды
         month: Месяц
@@ -166,6 +167,7 @@ ru:
       total_expenses: Общие расходы
       total_income: Общий доход
       vs_previous: по сравнению с предыдущим периодом
+      unplanned_budget_used: "%{amount} покрыто из нераспределённого бюджета"
     transactions_breakdown:
       export:
         csv: CSV

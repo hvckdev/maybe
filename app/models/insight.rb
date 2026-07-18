@@ -25,6 +25,7 @@ class Insight < ApplicationRecord
     savings_rate_change
     idle_cash
     budget_at_risk
+    budget_unplanned_spending
     budget_on_track
     maintained_goal_depleted
   ].freeze
