@@ -7,6 +7,7 @@ module InsightsHelper
     "savings_rate_change" => "piggy-bank",
     "idle_cash" => "wallet",
     "budget_at_risk" => "alert-triangle",
+    "budget_unplanned_spending" => "wallet",
     "budget_on_track" => "circle-check",
     # Same shield the reserve panel uses on the goal page, so the two read as
     # the same object seen from two places.
@@ -105,6 +106,8 @@ module InsightsHelper
       facts["amount"] && [ facts["amount"], t("insights.figures.fee_charges", count: facts["count"].to_i) ]
     when "fixed_commitments_ratio"
       facts["current_ratio"] && [ "#{facts["current_ratio"]}%", t("insights.figures.of_income") ]
+    when "budget_unplanned_spending"
+      facts["covered_amount"] && [ facts["covered_amount"], t("insights.figures.from_unallocated") ]
     end
   end
 
@@ -142,7 +145,7 @@ module InsightsHelper
         href: transactions_path(q: { start_date: insight.period_start.to_s, end_date: insight.period_end.to_s }) }
     when "net_worth_milestone"
       { text: t("insights.actions.net_worth_milestone"), href: reports_path }
-    when "budget_at_risk", "budget_on_track"
+    when "budget_at_risk", "budget_unplanned_spending", "budget_on_track"
       return nil unless insight.period_start
       { text: t("insights.actions.budget"), href: budget_path(Budget.date_to_param(insight.period_start)) }
     when "maintained_goal_depleted"
@@ -217,7 +220,7 @@ module InsightsHelper
       :negative
     when "loan_payment_change"
       metadata["new_payment"].to_f < metadata["previous_payment"].to_f ? :positive : :warning
-    when "budget_at_risk", "maintained_goal_depleted", "bank_fees", "fixed_commitments_ratio"
+    when "budget_at_risk", "budget_unplanned_spending", "maintained_goal_depleted", "bank_fees", "fixed_commitments_ratio"
       # Warning, not negative: the reserve is short, not overdrawn, and red is
       # reserved here for money actually going the wrong side of zero.
       :warning
@@ -266,6 +269,8 @@ module InsightsHelper
         return unless count.to_i.positive?
 
         [ "insights.titles.budget_at_risk", { count: count.to_i } ]
+      when "budget_unplanned_spending"
+        [ "insights.titles.budget_unplanned_spending", {} ]
       when "budget_on_track"
         [ "insights.titles.budget_on_track", {} ]
       end
@@ -280,7 +285,7 @@ module InsightsHelper
         "spending_anomaly.#{direction}" if direction.in?(%w[above below])
       when "cash_flow_warning"
         metadata["negative"] ? "cash_flow_warning.negative" : "cash_flow_warning.low"
-      when "net_worth_milestone", "subscription_audit", "idle_cash", "budget_on_track"
+      when "net_worth_milestone", "subscription_audit", "idle_cash", "budget_unplanned_spending", "budget_on_track"
         insight.insight_type
       when "savings_rate_change"
         return unless metadata.key?("current_rate") && metadata.key?("previous_rate")
@@ -298,7 +303,8 @@ module InsightsHelper
     def localized_insight_text(key, args, fallback:)
       return fallback unless key && I18n.exists?(key)
 
-      I18n.t(key, **args.symbolize_keys)
+      text = I18n.t(key, **args.symbolize_keys)
+      text.match?(/%\{[^}]+\}/) ? fallback : text
     rescue I18n::MissingInterpolationArgument, I18n::InvalidPluralizationData
       fallback
     end

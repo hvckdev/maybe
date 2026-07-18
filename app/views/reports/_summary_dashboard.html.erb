@@ -121,6 +121,12 @@
           <p class="text-sm text-subdued">
             <%= t("reports.summary.of_budget_used") %>
           </p>
+
+          <% if metrics[:unplanned_budget_used]&.amount&.positive? %>
+            <p class="text-sm text-warning privacy-sensitive">
+              <%= t("reports.summary.unplanned_budget_used", amount: metrics[:unplanned_budget_used].format) %>
+            </p>
+          <% end %>
         </div>
       <% else %>
         <p class="text-base text-subdued">
