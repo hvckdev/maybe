@@ -291,7 +291,7 @@ class ReportsController < ApplicationController
       expense_change = calculate_percentage_change(previous_expenses, current_expenses)
 
       # Get budget performance for current period
-      budget_percent = calculate_budget_performance
+      budget_metrics = calculate_budget_metrics
 
       {
         current_income: current_income,
@@ -299,7 +299,8 @@ class ReportsController < ApplicationController
         current_expenses: current_expenses,
         expense_change: expense_change,
         net_savings: net_savings,
-        budget_percent: budget_percent
+        budget_percent: budget_metrics[:percent],
+        unplanned_budget_used: budget_metrics[:unplanned_budget_used]
       }
     end
 
@@ -309,16 +310,19 @@ class ReportsController < ApplicationController
       ((current_value - previous_value) / previous_value * 100).round(1)
     end
 
-    def calculate_budget_performance
+    def calculate_budget_metrics
       # Only calculate if we're looking at current month
-      return nil unless @period_type == :monthly && @start_date.beginning_of_month.to_date == Date.current.beginning_of_month.to_date
+      return { percent: nil, unplanned_budget_used: nil } unless @period_type == :monthly && @start_date.beginning_of_month.to_date == Date.current.beginning_of_month.to_date
 
       budget = Budget.find_or_bootstrap(Current.family, start_date: @start_date.beginning_of_month.to_date, user: Current.user)
-      return 0 if budget.nil? || budget.allocated_spending.zero?
+      return { percent: 0, unplanned_budget_used: nil } if budget.nil?
 
-      (budget.actual_spending / budget.allocated_spending * 100).round(1)
+      {
+        percent: budget.allocated_spending.zero? ? 0 : (budget.actual_spending / budget.allocated_spending * 100).round(1),
+        unplanned_budget_used: Money.new(budget.unplanned_spending_covered_by_unallocated, Current.family.currency)
+      }
     rescue StandardError
-      nil
+      { percent: nil, unplanned_budget_used: nil }
     end
 
     def build_trends_data(income_statement:)

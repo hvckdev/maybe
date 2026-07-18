@@ -30,6 +30,7 @@ ru:
         many: без активности %{count} дней
         other: без активности %{count} дня
       of_budget: бюджета
+      from_unallocated: из нераспределённого
       on_pace: текущий темп
       today: сегодня
       vs_previous: к прошлому месяцу
@@ -59,6 +60,7 @@ ru:
       budget_at_risk:
         near: "%{categories} близки к лимитам в этом месяце. Вы уже использовали %{budget_spent_pct}% общего бюджета."
         over: "%{categories} превысили бюджет в этом месяце. Вы уже использовали %{budget_spent_pct}% общего бюджета."
+      budget_unplanned_spending: В этом месяце %{covered_amount} перерасхода по категориям покрыто из нераспределённого бюджета. Осталось нераспределённого бюджета — %{unallocated_left}.
       budget_on_track: Вы потратили %{spent} из бюджета %{budgeted} (%{budget_spent_pct}%), всё в пределах лимитов.
       cash_flow_warning:
         low: С учётом предстоящих регулярных операций и обычных расходов остаток денежных средств может снизиться до %{projected_low} примерно %{projected_low_date}.
@@ -80,6 +82,7 @@ ru:
         many: "%{count} категорий бюджета требуют внимания"
         other: "%{count} категории бюджета требуют внимания"
       budget_on_track: Бюджет в порядке
+      budget_unplanned_spending: Нераспределённый бюджет покрыл перерасход
       cash_flow_warning:
         low: Остаток денежных средств может стать низким
         negative: Остаток денежных средств может уйти в минус
@@ -94,6 +97,7 @@ ru:
       subscription_audit: "%{name} всё ещё активна?"
     types:
       budget_at_risk: Бюджет
+      budget_unplanned_spending: Бюджет
       budget_on_track: Бюджет
       cash_flow_warning: Денежный поток
       idle_cash: Неиспользуемые деньги

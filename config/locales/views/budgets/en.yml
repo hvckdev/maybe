@@ -91,6 +91,7 @@ en:
       monthly_average: "%{amount}/m avg"
       rollover_label: Rollover
       rollover_title: Keep this category's unspent money from one month to the next
+      spent_from_unallocated: "%{amount} spent from unallocated budget"
       shared_placeholder: Shared
       shared_title: Leave empty to share parent's budget
     confirm_button:

@@ -450,7 +450,9 @@ source_budget.planned_expenses.recurring.group_by { |planned_expense| planned_ex
     key = budget_category.category_id || stable_synthetic_key(budget_category.category)
     expense = expense_totals_by_category[key]&.total || 0
     refund = income_totals_by_category[key]&.total || 0
-    [ expense - refund, 0 ].max
+    actual = [ expense - refund, 0 ].max
+    actual += unplanned_spending_covered_by_unallocated if key == :uncategorized
+    actual
   end
 
   def category_median_monthly_expense(category)
@@ -505,6 +507,39 @@ source_budget.planned_expenses.recurring.group_by { |planned_expense| planned_ex
   # every non-inheriting category counts each amount once.
   def total_rolled_over
     budget_categories.reject(&:inherits_parent_budget?).sum(&:rolled_over_amount)
+  end
+
+  def unplanned_spending
+    budget_categories.sum { |budget_category| unplanned_spending_for(budget_category) }
+  end
+
+  def unplanned_spending_covered_by_unallocated
+    [ unplanned_spending, [ available_to_allocate, 0 ].max ].min
+  end
+
+  def unallocated_after_unplanned_spending
+    [ available_to_allocate - unplanned_spending, 0 ].max
+  end
+
+  def unplanned_spending_for(budget_category)
+    return 0 if budget_category.subcategory? && budget_category.inherits_parent_budget?
+
+    [ budget_category.actual_spending + budget_category.planned_spending - (budget_category[:budgeted_spending] || 0), 0 ].max
+  end
+
+  def unplanned_spending_covered_by_unallocated_for(budget_category)
+    return 0 unless budget_category && !budget_category.subcategory?
+
+    remaining_unallocated = [ available_to_allocate, 0 ].max
+    budget_categories.reject(&:subcategory?).each do |current_budget_category|
+      current_unplanned = unplanned_spending_for(current_budget_category)
+      current_covered = [ current_unplanned, remaining_unallocated ].min
+      return current_covered if current_budget_category.id == budget_category.id
+
+      remaining_unallocated -= current_covered
+    end
+
+    0
   end
 
   def allocations_valid?

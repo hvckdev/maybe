@@ -32,6 +32,7 @@ en:
       savings_rate_change: Savings rate
       idle_cash: Idle cash
       budget_at_risk: Budget
+      budget_unplanned_spending: Budget
       budget_on_track: Budget
       maintained_goal_depleted: Reserve
     meta:
@@ -48,6 +49,7 @@ en:
       on_pace: on pace
       of_budget: of budget
       need_attention: need attention
+      from_unallocated: from unallocated
       days_overdue:
         one: "%{count} day overdue"
         other: "%{count} days overdue"
@@ -81,6 +83,7 @@ en:
         one: One category needs attention in your budget
         other: "%{count} categories need attention in your budget"
       budget_on_track: Your budget is on track
+      budget_unplanned_spending: Unallocated budget covered overspending
     templates:
       spending_anomaly:
         above: You're on pace to spend %{projected_spend} on %{category} this month, about %{deviation_pct}% more than your recent monthly average of %{baseline_spend}.
@@ -99,4 +102,5 @@ en:
       budget_at_risk:
         over: "%{categories} went over budget this month. You've used %{budget_spent_pct}% of your total budget so far."
         near: "%{categories} are close to their limits this month. You've used %{budget_spent_pct}% of your total budget so far."
+      budget_unplanned_spending: "%{covered_amount} of category overspending was covered by your unallocated budget this month. You still have %{unallocated_left} unallocated."
       budget_on_track: You've spent %{spent} of your %{budgeted} budget (%{budget_spent_pct}%) and everything is within its limit.

@@ -73,6 +73,7 @@ ru:
       percent_set: "%{percent} распределено"
     budget_category_form:
       monthly_average: "%{amount}/мес. в среднем"
+      spent_from_unallocated: "%{amount} потрачено из нераспределённого бюджета"
       shared_placeholder: Общий
       shared_title: Оставьте пустым, чтобы использовать бюджет родительской категории
     confirm_button:
