@@ -169,6 +169,41 @@ class InsightsHelperTest < ActionView::TestCase
     assert_includes rendered, %(<span class="privacy-sensitive">$1,200.50</span>)
   end
 
+  test "localized title and body are derived from stored facts" do
+    insight = build_insight(
+      "budget_at_risk",
+      metadata: { "over_category_ids" => [ SecureRandom.uuid ] },
+      facts: { "categories" => "Еда", "count" => 2, "budget_spent_pct" => 110 }
+    )
+
+    I18n.with_locale(:ru) do
+      assert_equal "2 категории бюджета требуют внимания", insight_title(insight)
+      assert_includes insight_body(insight), "Еда превысили бюджет"
+      assert_includes insight_body(insight), "110% общего бюджета"
+    end
+  end
+
+  test "budget title can be localized from metadata when facts are sparse" do
+    insight = build_insight(
+      "budget_at_risk",
+      metadata: { "over_category_ids" => [ SecureRandom.uuid ], "near_category_ids" => [ SecureRandom.uuid ] }
+    )
+
+    I18n.with_locale(:ru) do
+      assert_equal "2 категории бюджета требуют внимания", insight_title(insight)
+      assert_equal "b", insight_body(insight)
+    end
+  end
+
+  test "localized rendering falls back to stored prose when required data is missing" do
+    insight = build_insight("spending_anomaly", metadata: { "direction" => "above" })
+
+    I18n.with_locale(:ru) do
+      assert_equal "t", insight_title(insight)
+      assert_equal "b", insight_body(insight)
+    end
+  end
+
   test "action link resolves the stored subject and disappears when it cannot" do
     account = families(:dylan_family).accounts.visible.first
     resolvable = build_insight("idle_cash", metadata: { "account_id" => account.id })

@@ -54,21 +54,23 @@ class GenerateInsightsJob < ApplicationJob
     end
 
     def broadcast_feed(family)
-      insights = family.insights.visible.ordered.to_a
-      unread_ids = insights.select(&:active?).map(&:id).to_set
+      I18n.with_locale(family.locale) do
+        insights = family.insights.visible.ordered.to_a
+        unread_ids = insights.select(&:active?).map(&:id).to_set
 
-      Turbo::StreamsChannel.broadcast_replace_to(
-        [ family, :insights ],
-        target: "insights-list",
-        partial: "insights/list",
-        locals: { insights: insights, unread_ids: unread_ids }
-      )
-      Turbo::StreamsChannel.broadcast_replace_to(
-        [ family, :insights ],
-        target: "insights-refresh",
-        partial: "insights/refresh_button",
-        locals: { pending: false }
-      )
+        Turbo::StreamsChannel.broadcast_replace_to(
+          [ family, :insights ],
+          target: "insights-list",
+          partial: "insights/list",
+          locals: { insights: insights, unread_ids: unread_ids }
+        )
+        Turbo::StreamsChannel.broadcast_replace_to(
+          [ family, :insights ],
+          target: "insights-refresh",
+          partial: "insights/refresh_button",
+          locals: { pending: false }
+        )
+      end
     end
 
     # A visible insight whose generator ran successfully but did not re-emit

@@ -41,6 +41,18 @@ module InsightsHelper
     )
   end
 
+  def insight_title(insight)
+    key, args = insight_title_translation(insight)
+    localized_insight_text(key, args, fallback: insight.title)
+  end
+
+  def insight_body(insight)
+    template_key = insight_template_key(insight)
+    return insight.body unless template_key
+
+    localized_insight_text("insights.templates.#{template_key}", insight.facts || {}, fallback: insight.body)
+  end
+
   # "Savings rate · June" / "Cash flow · Next 30 days" — the card's meta line.
   # Uses the insight's stored period; falls back to the subject (account or
   # merchant name from facts) for insights without one.
@@ -168,6 +180,78 @@ module InsightsHelper
   end
 
   private
+    def insight_title_translation(insight)
+      metadata = insight.metadata || {}
+      facts = insight.facts || {}
+
+      case insight.insight_type
+      when "spending_anomaly"
+        direction = metadata["direction"]
+        return unless direction.in?(%w[above below]) && facts["category"].present?
+
+        [ "insights.titles.spending_anomaly.#{direction}", { category: facts["category"] } ]
+      when "cash_flow_warning"
+        severity = metadata["negative"] ? "negative" : "low"
+        [ "insights.titles.cash_flow_warning.#{severity}", {} ]
+      when "net_worth_milestone"
+        return unless facts["milestone"].present?
+
+        [ "insights.titles.net_worth_milestone", { milestone: facts["milestone"] } ]
+      when "subscription_audit"
+        return unless facts["name"].present?
+
+        [ "insights.titles.subscription_audit", { name: facts["name"] } ]
+      when "savings_rate_change"
+        return unless facts["month"].present? && metadata.key?("current_rate") && metadata.key?("previous_rate")
+
+        direction = metadata["current_rate"].to_f >= metadata["previous_rate"].to_f ? "up" : "down"
+        [ "insights.titles.savings_rate_change.#{direction}", { month: facts["month"] } ]
+      when "idle_cash"
+        return unless facts["account"].present?
+
+        [ "insights.titles.idle_cash", { account: facts["account"] } ]
+      when "budget_at_risk"
+        count = facts["count"].presence || Array(metadata["over_category_ids"]).size + Array(metadata["near_category_ids"]).size
+        return unless count.to_i.positive?
+
+        [ "insights.titles.budget_at_risk", { count: count.to_i } ]
+      when "budget_on_track"
+        [ "insights.titles.budget_on_track", {} ]
+      end
+    end
+
+    def insight_template_key(insight)
+      metadata = insight.metadata || {}
+
+      case insight.insight_type
+      when "spending_anomaly"
+        direction = metadata["direction"]
+        "spending_anomaly.#{direction}" if direction.in?(%w[above below])
+      when "cash_flow_warning"
+        metadata["negative"] ? "cash_flow_warning.negative" : "cash_flow_warning.low"
+      when "net_worth_milestone", "subscription_audit", "idle_cash", "budget_on_track"
+        insight.insight_type
+      when "savings_rate_change"
+        return unless metadata.key?("current_rate") && metadata.key?("previous_rate")
+
+        if metadata["current_rate"].to_f < metadata["previous_rate"].to_f
+          metadata["current_rate"].to_f.negative? ? "savings_rate_change.down_negative" : "savings_rate_change.down"
+        else
+          "savings_rate_change.up"
+        end
+      when "budget_at_risk"
+        metadata["over_category_ids"].present? ? "budget_at_risk.over" : "budget_at_risk.near"
+      end
+    end
+
+    def localized_insight_text(key, args, fallback:)
+      return fallback unless key && I18n.exists?(key)
+
+      I18n.t(key, **args.symbolize_keys)
+    rescue I18n::MissingInterpolationArgument, I18n::InvalidPluralizationData
+      fallback
+    end
+
     # "June" for month-aligned periods, "Next 30 days" / "Last 30 days" for
     # rolling windows, an explicit range otherwise; subject name (account,
     # merchant) for insights without a period.
