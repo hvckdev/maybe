@@ -54,29 +54,31 @@ class GenerateInsightsJob < ApplicationJob
     end
 
     def broadcast_feed(family)
-      insights = family.insights.visible.ordered.to_a
-      unread_ids = insights.select(&:active?).map(&:id).to_set
+      I18n.with_locale(family.locale) do
+        insights = family.insights.visible.ordered.to_a
+        unread_ids = insights.select(&:active?).map(&:id).to_set
 
-      Turbo::StreamsChannel.broadcast_replace_to(
-        [ family, :insights ],
-        target: "insights-list",
-        partial: "insights/list",
-        locals: { insights: insights, unread_ids: unread_ids }
-      )
-      Turbo::StreamsChannel.broadcast_replace_to(
-        [ family, :insights ],
-        target: "insights-refresh",
-        partial: "insights/refresh_button",
-        locals: { pending: false }
-      )
-      # The lightbulb lives in the layout, so it goes on the family stream every
-      # page subscribes to, not just the /insights one.
-      Turbo::StreamsChannel.broadcast_replace_to(
-        family,
-        targets: "[data-insights-badge]",
-        partial: "layouts/shared/insights_badge",
-        locals: { count: unread_ids.size }
-      )
+        Turbo::StreamsChannel.broadcast_replace_to(
+          [ family, :insights ],
+          target: "insights-list",
+          partial: "insights/list",
+          locals: { insights: insights, unread_ids: unread_ids }
+        )
+        Turbo::StreamsChannel.broadcast_replace_to(
+          [ family, :insights ],
+          target: "insights-refresh",
+          partial: "insights/refresh_button",
+          locals: { pending: false }
+        )
+        # The lightbulb lives in the layout, so it goes on the family stream every
+        # page subscribes to, not just the /insights one.
+        Turbo::StreamsChannel.broadcast_replace_to(
+          family,
+          targets: "[data-insights-badge]",
+          partial: "layouts/shared/insights_badge",
+          locals: { count: unread_ids.size }
+        )
+      end
     end
 
     # A visible insight whose generator ran successfully but did not re-emit
