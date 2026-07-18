@@ -18,7 +18,7 @@ module InsightsHelper
     INSIGHT_ICONS.fetch(insight.insight_type, "lightbulb")
   end
 
-  # Matches the numeric fragments inside insight prose: currency amounts
+# Matches the numeric fragments inside insight prose: currency amounts
   # ("€288.59", "1 234,56 €"), percentages ("142%"), and bare counts. Digit
   # groups may be separated by ".", ",", or the (narrow) no-break spaces some
   # locales format with, but must start and end on a digit so sentence
@@ -41,7 +41,6 @@ module InsightsHelper
       end
     )
   end
-
   def insight_title(insight)
     key, args = insight_title_translation(insight)
     localized_insight_text(key, args, fallback: insight.title)
