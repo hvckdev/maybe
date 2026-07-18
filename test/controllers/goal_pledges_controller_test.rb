@@ -11,13 +11,12 @@ class GoalPledgesControllerTest < ActionDispatch::IntegrationTest
     ensure_tailwind_build
   end
 
-  test "redirects users without preview access" do
+  test "new renders without preview access" do
     @user.update!(preferences: (@user.preferences || {}).merge("preview_features_enabled" => false))
 
     get new_goal_pledge_url(@goal), headers: { "Turbo-Frame" => "modal" }
 
-    assert_redirected_to root_path
-    assert_match(/preview/i, flash[:alert])
+    assert_response :success
   end
 
   test "new renders the pledge form inside a turbo frame" do
