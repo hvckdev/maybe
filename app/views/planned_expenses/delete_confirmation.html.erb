@@ -1,0 +1,43 @@
+<%= turbo_frame_tag "drawer" do %>
+  <%= render DS::Dialog.new(variant: :drawer) do |dialog| %>
+    <% dialog.with_header title: t("planned_expenses.delete_confirmation.title") %>
+
+    <% dialog.with_body do %>
+      <%= form_with url: budget_planned_expense_path(@budget, @planned_expense), method: :delete, class: "space-y-4" do %>
+        <p class="text-sm text-secondary">
+          <%= t("planned_expenses.delete_confirmation.description", name: @planned_expense.name) %>
+        </p>
+
+        <div class="space-y-2 rounded-lg border border-secondary p-3">
+          <label class="block text-sm font-medium text-primary" for="occurrence_count">
+            <%= t("planned_expenses.delete_confirmation.current_budget_label") %>
+          </label>
+          <input id="occurrence_count"
+                 name="occurrence_count"
+                 type="number"
+                 min="1"
+                 max="<%= @occurrence_count %>"
+                 value="<%= @occurrence_count %>"
+                 required
+                 class="w-full rounded-md border border-secondary bg-container px-3 py-2 text-primary">
+          <p class="text-xs text-subdued">
+            <%= t("planned_expenses.delete_confirmation.current_budget_hint", count: @occurrence_count) %>
+          </p>
+          <%= button_tag t("planned_expenses.delete_confirmation.current_budget"),
+                name: "delete_scope",
+                value: "current_budget",
+                class: "w-full rounded-md bg-destructive px-3 py-2 text-sm font-medium text-primary" %>
+        </div>
+
+        <div class="space-y-2 rounded-lg border border-secondary p-3">
+          <p class="text-sm font-medium text-primary"><%= t("planned_expenses.delete_confirmation.forever_label") %></p>
+          <p class="text-xs text-subdued"><%= t("planned_expenses.delete_confirmation.forever_hint") %></p>
+          <%= button_tag t("planned_expenses.delete_confirmation.forever"),
+                name: "delete_scope",
+                value: "forever",
+                class: "w-full rounded-md border border-destructive px-3 py-2 text-sm font-medium text-destructive" %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

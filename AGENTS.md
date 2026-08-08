@@ -40,4 +40,5 @@ Adding or modifying `app/controllers/api/v1/` endpoints requires Minitest behavi
 
 - Read [provider sync guidance](docs/llm-guides/providers.md) when changing imports, pending transactions, FX metadata or diagnostics. Use `DebugLogEntry.capture(...)` for support-relevant failures and partial responses, with provider/source metadata and family/account-provider context where available.
 - For securities providers, follow [adding a securities provider](docs/llm-guides/adding-a-securities-provider.md).
+- Before changing planned or expected expenses or their recurrence, read the [planned expenses guide](docs/llm-guides/planned-expenses.md). Recurrence is a cross-budget `PlannedExpense` series keyed by `recurrence_series_id`; deleting one occurrence does not stop future materialization.
 - For feature rollout, follow [preview-feature gating](docs/llm-guides/gating-a-preview-feature.md); for goals, read the [Goals guide](docs/llm-guides/goals.md).

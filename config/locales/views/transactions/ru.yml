@@ -226,6 +226,7 @@ ru:
       settings: Настройки
       tab_transactions: Операции
       tab_upcoming: Предстоящие
+      tab_planned: Запланированные
       tags_label: Теги
       transfer: Перевод
       transfer_matcher_description: Свяжите эту операцию с ее аналогом на другом счете.

@@ -2,7 +2,7 @@
 
 class PlannedExpensesController < ApplicationController
   before_action :set_budget
-  before_action :set_planned_expense, only: %i[edit update destroy confirm do_confirm cancel reopen]
+  before_action :set_planned_expense, only: %i[edit update destroy confirm do_confirm cancel reopen delete_confirmation]
 
   def new
     @planned_expense = @budget.planned_expenses.build(
@@ -47,13 +47,26 @@ class PlannedExpensesController < ApplicationController
     end
   end
 
+  def delete_confirmation
+    @occurrence_count = @planned_expense.pending_occurrences_in_budget.count
+  end
+
   def destroy
-    @planned_expense.destroy!
+    if params[:delete_scope] == "forever" && @planned_expense.recurring?
+      @planned_expense.stop_recurrence!
+    elsif params[:delete_scope] == "current_budget" && @planned_expense.recurring?
+      @planned_expense.delete_pending_occurrences_in_budget!(occurrence_count_param)
+    else
+      @planned_expense.destroy!
+    end
 
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to budget_path(@budget) }
     end
+  rescue ArgumentError
+    @occurrence_count = @planned_expense.pending_occurrences_in_budget.count
+    render :delete_confirmation, status: :unprocessable_entity
   end
 
   def confirm
@@ -98,6 +111,10 @@ class PlannedExpensesController < ApplicationController
         :recurrence_day_of_month, :recurrence_count_per_month,
         :notes
       )
+    end
+
+    def occurrence_count_param
+      Integer(params[:occurrence_count], exception: false) || 0
     end
 
     def set_budget

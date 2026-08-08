@@ -106,6 +106,7 @@ en:
       tags_label: Tags
       tab_transactions: Transactions
       tab_upcoming: Upcoming
+      tab_planned: Planned
       uncategorized: "(uncategorized)"
       additional_details: "Additional details"
       payee: "Payee"

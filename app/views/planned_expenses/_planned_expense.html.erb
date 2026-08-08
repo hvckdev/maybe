@@ -52,12 +52,7 @@
                 class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.edit.title"), data: { turbo_frame: "drawer" } do %>
             <%= icon "pencil-line", size: "xs" %>
           <% end %>
-          <%= button_to budget_planned_expense_path(planned_expense.budget, planned_expense),
-                method: :delete,
-                form: { data: { turbo_confirm: t("planned_expenses.destroy_confirm") } },
-                class: "p-1 text-secondary hover:text-destructive", title: t("planned_expenses.planned_expense.delete") do %>
-            <%= icon "trash-2", size: "xs" %>
-          <% end %>
+          <%= render "planned_expenses/delete_action", planned_expense: planned_expense %>
         </div>
       <% else %>
         <div class="hidden sm:flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
@@ -70,12 +65,7 @@
                 class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.edit.title"), data: { turbo_frame: "drawer" } do %>
             <%= icon "pencil-line", size: "xs" %>
           <% end %>
-          <%= button_to budget_planned_expense_path(planned_expense.budget, planned_expense),
-                method: :delete,
-                form: { data: { turbo_confirm: t("planned_expenses.destroy_confirm") } },
-                class: "p-1 text-secondary hover:text-destructive", title: t("planned_expenses.planned_expense.delete") do %>
-            <%= icon "trash-2", size: "xs" %>
-          <% end %>
+          <%= render "planned_expenses/delete_action", planned_expense: planned_expense %>
         </div>
       <% end %>
 
@@ -90,7 +80,11 @@
           <% end %>
           <% menu.with_item(variant: "link", text: t("planned_expenses.edit.title"), href: edit_budget_planned_expense_path(planned_expense.budget, planned_expense), icon: "pencil-line", data: { turbo_frame: "drawer" }) %>
           <% menu.with_item(variant: "divider") %>
-          <% menu.with_item(variant: "button", text: t("planned_expenses.planned_expense.delete"), href: budget_planned_expense_path(planned_expense.budget, planned_expense), method: :delete, icon: "trash-2", confirm: t("planned_expenses.destroy_confirm")) %>
+          <% if planned_expense.recurring? %>
+            <% menu.with_item(variant: "link", text: t("planned_expenses.planned_expense.delete"), href: delete_confirmation_budget_planned_expense_path(planned_expense.budget, planned_expense), icon: "trash-2", data: { turbo_frame: "drawer" }) %>
+          <% else %>
+            <% menu.with_item(variant: "button", text: t("planned_expenses.planned_expense.delete"), href: budget_planned_expense_path(planned_expense.budget, planned_expense), method: :delete, icon: "trash-2", confirm: t("planned_expenses.destroy_confirm")) %>
+          <% end %>
         <% end %>
       </div>
     </div>
