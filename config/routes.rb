@@ -458,6 +458,7 @@ Rails.application.routes.draw do
 
     resources :planned_expenses, only: %i[new create edit update destroy] do
       get :confirm, on: :member
+      get :delete_confirmation, on: :member
       post :confirm, action: :do_confirm, on: :member
       post :cancel, on: :member
       post :reopen, on: :member

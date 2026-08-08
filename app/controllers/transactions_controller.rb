@@ -95,12 +95,10 @@ class TransactionsController < ApplicationController
                     .to_a
     end
 
-    # Load pending planned expenses for the current budget period
-    current_budget = Current.family.budgets.find_by(
-      start_date: Date.current.beginning_of_month,
-      end_date: Date.current.end_of_month
-    )
-    @planned_expenses = current_budget ? current_budget.planned_expenses.pending.includes(:category) : PlannedExpense.none
+    # Load pending planned expenses for the current budget period.
+    budget_start, budget_end = Budget.period_for(Date.current, family: Current.family)
+    current_budget = Current.family.budgets.find_by(start_date: budget_start, end_date: budget_end)
+    @planned_expenses = current_budget ? current_budget.planned_expenses.pending.includes(:category, :account) : PlannedExpense.none
 
     @breadcrumbs = [ [ t("breadcrumbs.home"), root_path ], [ t("breadcrumbs.transactions"), nil ] ]
   end

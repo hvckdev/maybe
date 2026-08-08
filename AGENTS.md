@@ -59,6 +59,10 @@ When a PR touches `.erb`, view components, or `.css`:
 
 Reviewers escalate violations of (2)–(3) to close/rewrite; (1) and (4) are request-changes.
 
+## Planned Expenses
+
+Before changing planned/expected expenses or their recurrence, read [planned-expenses.md](./docs/llm-guides/planned-expenses.md). Recurrence is a cross-budget `PlannedExpense` series keyed by `recurrence_series_id`; deleting one occurrence does not stop future materialization.
+
 ## Securities Providers
 
 If you need to add a new securities price provider (Tiingo, EODHD, Binance-style crypto, etc.), see [adding-a-securities-provider.md](./docs/llm-guides/adding-a-securities-provider.md) for the full walkthrough — provider class, registry wiring, MIC handling, settings UI, locales, and tests.

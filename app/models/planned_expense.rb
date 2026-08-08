@@ -58,6 +58,31 @@ class PlannedExpense < ApplicationRecord
     update!(status: :pending)
   end
 
+  def delete_pending_occurrences_in_budget!(count)
+    occurrences = pending_occurrences_in_budget.limit(count)
+    raise ArgumentError, "count must select at least one pending occurrence" if count < 1 || occurrences.empty?
+
+    occurrences.destroy_all
+  end
+
+  def stop_recurrence!
+    raise ArgumentError, "planned expense is not recurring" unless recurring?
+
+    transaction do
+      series = budget.family.planned_expenses.where(recurrence_series_id: recurrence_series_id)
+      series.pending.destroy_all
+      series.where.not(status: :pending).update_all(recurring: false)
+    end
+  end
+
+  def pending_occurrences_in_budget
+    return budget.planned_expenses.pending.where(id: id) unless recurring?
+
+    budget.planned_expenses.pending
+      .where(recurrence_series_id: recurrence_series_id)
+      .order(:due_date, :created_at)
+  end
+
   def copy_to!(target_budget, due_date: next_due_date_for(target_budget))
     target_budget.planned_expenses.create!(
       category: category,

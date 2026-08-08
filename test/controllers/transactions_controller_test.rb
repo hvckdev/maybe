@@ -71,6 +71,23 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal parent_index + 1, child_index
   end
 
+  test "shows planned expenses in the planned tab" do
+    budget = Budget.find_or_bootstrap(@user.family, start_date: Date.current, user: @user)
+    budget.planned_expenses.create!(
+      category: categories(:food_and_drink),
+      account: @entry.account,
+      name: "Planned subscription",
+      amount: 100,
+      currency: budget.currency
+    )
+
+    get transactions_url(tab: "planned")
+
+    assert_response :success
+    assert_select "button[role='tab']", text: "Planned"
+    assert_select "turbo-frame#planned_expenses_list", text: /Planned subscription/
+  end
+
   test "creates with transaction details" do
     assert_difference [ "Entry.count", "Transaction.count" ], 1 do
       post transactions_url, params: {
