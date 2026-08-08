@@ -3,7 +3,7 @@
 <% end %>
 
 <%= turbo_stream.update "planned_expenses_list" do %>
-  <%= render "planned_expenses/list", planned_expenses: @planned_expense.budget.planned_expenses.pending.includes(:budget, :category, :account) %>
+<%= render "planned_expenses/list", planned_expenses: @planned_expense.budget.planned_expenses.pending.includes(:budget, :category, :account) %>
 <% end %>
 <% @planned_expense.budget.budget_categories.each do |bc| %>
   <%= turbo_stream.update dom_id(bc) do %>

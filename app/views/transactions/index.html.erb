@@ -49,7 +49,7 @@
   <%= render "summary", totals: @search.totals %>
 
   <%= render DS::Tabs.new(active_tab: params[:tab].presence || "transactions") do |tabs| %>
-    <% tabs.with_nav(classes: "w-max max-w-full table-scroll overscroll-x-contain flex-nowrap") do |nav| %>
+<% tabs.with_nav(classes: "w-max max-w-full table-scroll overscroll-x-contain flex-nowrap") do |nav| %>
       <% nav.with_btn(id: "transactions", label: t("transactions.show.tab_transactions"), classes: "!w-auto px-6 shrink-0") %>
       <% unless Current.family.recurring_transactions_disabled? %>
         <% nav.with_btn(id: "upcoming", label: t("transactions.show.tab_upcoming"), classes: "!w-auto px-6 shrink-0") %>
@@ -75,8 +75,7 @@
     <% tabs.with_panel(tab_id: "planned") do %>
       <%= render "planned_expenses/list", planned_expenses: @planned_expenses %>
     <% end %>
-
-    <% tabs.with_panel(tab_id: "receipts") do %>
+<% tabs.with_panel(tab_id: "receipts") do %>
       <%= render "transactions/receipts", receipts: @lkdr_receipts, accessible_accounts: @receipt_accounts, connection: @lkdr_connection %>
     <% end %>
   <% end %>
