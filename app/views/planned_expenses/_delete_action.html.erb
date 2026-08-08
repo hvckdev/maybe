@@ -1,0 +1,16 @@
+<%# locals: (planned_expense:) %>
+<% if planned_expense.recurring? %>
+  <%= link_to delete_confirmation_budget_planned_expense_path(planned_expense.budget, planned_expense),
+        class: "p-1 text-secondary hover:text-destructive",
+        title: t("planned_expenses.planned_expense.delete"),
+        data: { turbo_frame: "drawer" } do %>
+    <%= icon "trash-2", size: "xs" %>
+  <% end %>
+<% else %>
+  <%= button_to budget_planned_expense_path(planned_expense.budget, planned_expense),
+        method: :delete,
+        form: { data: { turbo_confirm: t("planned_expenses.destroy_confirm") } },
+        class: "p-1 text-secondary hover:text-destructive", title: t("planned_expenses.planned_expense.delete") do %>
+    <%= icon "trash-2", size: "xs" %>
+  <% end %>
+<% end %>

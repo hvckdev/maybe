@@ -48,28 +48,31 @@
 
   <%= render "summary", totals: @search.totals %>
 
-  <%= render "planned_expenses/list", planned_expenses: @planned_expenses %>
-
-  <% if Current.family.recurring_transactions_disabled? %>
-    <%= render "transactions/list", transactions: @transactions, projected_recurring: @projected_recurring, q: params[:q], pagy: @pagy %>
-  <% else %>
-    <%= render DS::Tabs.new(active_tab: params[:tab].presence || "transactions") do |tabs| %>
-      <% tabs.with_nav(classes: "max-w-fit") do |nav| %>
-        <% nav.with_btn(id: "transactions", label: t("transactions.show.tab_transactions"), classes: "px-6") %>
+  <%= render DS::Tabs.new(active_tab: params[:tab].presence || "transactions") do |tabs| %>
+    <% tabs.with_nav(classes: "max-w-fit") do |nav| %>
+      <% nav.with_btn(id: "transactions", label: t("transactions.show.tab_transactions"), classes: "px-6") %>
+      <% unless Current.family.recurring_transactions_disabled? %>
         <% nav.with_btn(id: "upcoming", label: t("transactions.show.tab_upcoming"), classes: "px-6") %>
       <% end %>
+      <% nav.with_btn(id: "planned", label: t("transactions.show.tab_planned"), classes: "px-6") %>
+    <% end %>
 
-      <% tabs.with_panel(tab_id: "transactions") do %>
-        <div class="bg-container rounded-xl shadow-border-xs">
-          <%= render "transactions/list", transactions: @transactions, projected_recurring: @projected_recurring, q: params[:q], pagy: @pagy %>
-        </div>
-      <% end %>
+    <% tabs.with_panel(tab_id: "transactions") do %>
+      <div class="bg-container rounded-xl shadow-border-xs">
+        <%= render "transactions/list", transactions: @transactions, projected_recurring: @projected_recurring, q: params[:q], pagy: @pagy %>
+      </div>
+    <% end %>
 
+    <% unless Current.family.recurring_transactions_disabled? %>
       <% tabs.with_panel(tab_id: "upcoming") do %>
         <div class="bg-container rounded-xl shadow-border-xs">
           <%= render "transactions/upcoming" %>
         </div>
       <% end %>
+    <% end %>
+
+    <% tabs.with_panel(tab_id: "planned") do %>
+      <%= render "planned_expenses/list", planned_expenses: @planned_expenses %>
     <% end %>
   <% end %>
 </div>

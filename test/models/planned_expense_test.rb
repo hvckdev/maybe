@@ -168,6 +168,40 @@ class PlannedExpenseTest < ActiveSupport::TestCase
     assert_equal 400, source.reload.planned_spending
   end
 
+  test "delete_pending_occurrences_in_budget! deletes only the selected number of current budget occurrences" do
+    source = Budget.create!(family: @budget.family, start_date: Date.new(2026, 2, 1), end_date: Date.new(2026, 2, 28), currency: "USD")
+    pe = PlannedExpense.create!(
+      budget: source, category: @category, account: @account,
+      name: "Weekly lessons", amount: 100, currency: "USD", recurring: true,
+      due_date: Date.new(2026, 2, 2), recurrence_interval: 1, recurrence_unit: "weeks"
+    )
+    pe.materialize_multiple_occurrences_in_budget!
+
+    pe.delete_pending_occurrences_in_budget!(2)
+
+    assert_equal [ Date.new(2026, 2, 16), Date.new(2026, 2, 23) ], source.planned_expenses.order(:due_date).pluck(:due_date)
+  end
+
+  test "stop_recurrence! removes expected occurrences and prevents future budgets from recreating them" do
+    source = Budget.create!(family: @budget.family, start_date: Date.new(2026, 1, 1), end_date: Date.new(2026, 1, 31), currency: "USD")
+    future = Budget.create!(family: @budget.family, start_date: Date.new(2026, 2, 1), end_date: Date.new(2026, 2, 28), currency: "USD")
+    later = Budget.create!(family: @budget.family, start_date: Date.new(2026, 3, 1), end_date: Date.new(2026, 3, 31), currency: "USD")
+    [ source, future, later ].each { |budget| budget.budget_categories.create!(category: @category, budgeted_spending: 0, currency: "USD") }
+    pe = PlannedExpense.create!(
+      budget: source, category: @category, account: @account,
+      name: "Subscription", amount: 100, currency: "USD", recurring: true,
+      due_date: Date.new(2026, 1, 5), recurrence_interval: 1, recurrence_unit: "months"
+    )
+    pe.copy_to!(future, due_date: Date.new(2026, 2, 5))
+
+    pe.stop_recurrence!
+    later.populate_recurring_planned_expenses!
+
+    assert_equal 0, source.planned_expenses.count
+    assert_equal 0, future.planned_expenses.count
+    assert_empty later.planned_expenses
+  end
+
   test "group_for_display collapses pending short interval occurrences" do
     source = Budget.create!(family: @budget.family, start_date: Date.new(2026, 2, 1), end_date: Date.new(2026, 2, 28), currency: "USD")
     source.budget_categories.create!(category: @category, budgeted_spending: 0, currency: "USD")

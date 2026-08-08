@@ -72,6 +72,17 @@ en:
         one: "%{count} left"
         other: "%{count} left"
     destroy_confirm: "Delete this expected expense?"
+    delete_confirmation:
+      title: "Delete repeating expense"
+      description: "Choose how to delete %{name}."
+      current_budget_label: "Occurrences to delete from this month"
+      current_budget_hint:
+        one: "There is %{count} expected occurrence in this month."
+        other: "There are %{count} expected occurrences in this month."
+      current_budget: "Delete selected occurrences"
+      forever_label: "Stop this repeating expense"
+      forever_hint: "Removes all expected occurrences and prevents it from appearing in future months."
+      forever: "Delete forever"
     resolved:
       one: "%{count} resolved"
       other: "%{count} resolved"
