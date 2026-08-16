@@ -1,0 +1,33 @@
+---
+en:
+  lkdr_connections:
+    create:
+      title: Connect My Receipts Online
+      description: Enter the phone number used in the FNS service. We will send it only to LKDR to request an SMS verification code.
+      phone: Phone number
+      submit: Send SMS code
+      captcha_unavailable: Could not load the captcha. Disable content blockers or try again later.
+      success: SMS code sent. Enter it to complete the connection.
+      failure: "Could not start LKDR verification: %{message}"
+    verify:
+      title: Confirm phone number
+      description: Enter the SMS code from My Receipts Online. The code is not stored.
+      code: SMS code
+      submit: Connect
+      success: My Receipts Online connected
+      failure: "Could not confirm LKDR code: %{message}"
+    connected:
+      title: My Receipts Online is connected
+      description: "Connected phone: %{phone}"
+      last_synced: "Last updated: %{time}"
+      reauth_required: The LKDR session has expired. Disconnect and connect it again.
+    sync:
+      submit: Update receipts
+      queued: Receipt update has started in the background.
+    disconnect: Disconnect
+    disconnect_confirm: Disconnect My Receipts Online? Existing imported receipts will remain available.
+    destroy:
+      success: My Receipts Online disconnected
+    admin_only:
+      title: An administrator can connect the service
+      description: Ask a family administrator to connect My Receipts Online.
