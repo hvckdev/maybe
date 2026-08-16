@@ -105,6 +105,11 @@ class TransactionsController < ApplicationController
                     .where(id: projected_recurring_ids).includes(:merchant).to_a
     end
 
+
+    @lkdr_receipts = Current.family.lkdr_receipts.ordered
+    @lkdr_connection = Current.family.lkdr_connection
+    @receipt_accounts = Current.user.accessible_accounts.visible.alphabetically
+
     @breadcrumbs = [ [ t("breadcrumbs.home"), root_path ], [ t("breadcrumbs.transactions"), nil ] ]
   end
 
