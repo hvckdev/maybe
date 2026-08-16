@@ -79,6 +79,8 @@ module Assistant
         Function::GetBalanceSheet,
         Function::GetIncomeStatement,
         Function::GetBudget,
+        Function::AnalyzeBudget,
+        Function::UpdateBudget,
         Function::ImportBankStatement,
         Function::SearchFamilyFiles,
         Function::CreateGoal,
