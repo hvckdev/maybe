@@ -551,6 +551,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :lkdr_connection, only: %i[create destroy] do
+    post :verify
+    post :sync
+  end
+
+  resources :lkdr_receipts, only: [] do
+    post :import, on: :member
+  end
+
   resources :transactions, only: %i[index new create show update destroy] do
     resource :split, only: %i[new create edit update destroy]
     resource :transfer_match, only: %i[new create]

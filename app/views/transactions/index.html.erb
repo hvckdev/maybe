@@ -55,6 +55,7 @@
         <% nav.with_btn(id: "upcoming", label: t("transactions.show.tab_upcoming"), classes: "px-6") %>
       <% end %>
       <% nav.with_btn(id: "planned", label: t("transactions.show.tab_planned"), classes: "px-6") %>
+      <% nav.with_btn(id: "receipts", label: t("lkdr_receipts.tab"), classes: "px-6") %>
     <% end %>
 
     <% tabs.with_panel(tab_id: "transactions") do %>
@@ -73,6 +74,10 @@
 
     <% tabs.with_panel(tab_id: "planned") do %>
       <%= render "planned_expenses/list", planned_expenses: @planned_expenses %>
+    <% end %>
+
+    <% tabs.with_panel(tab_id: "receipts") do %>
+      <%= render "transactions/receipts", receipts: @lkdr_receipts, accessible_accounts: @receipt_accounts, connection: @lkdr_connection %>
     <% end %>
   <% end %>
 </div>
