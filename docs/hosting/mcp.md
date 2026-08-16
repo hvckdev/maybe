@@ -141,7 +141,8 @@ At the time of writing, `tools/list` includes:
 | `get_holdings` | Query investment holdings |
 | `get_balance_sheet` | Net worth, assets and liabilities with a configurable history period and interval |
 | `get_income_statement` | Income and expenses for a period, with optional monthly series, prior-period comparison and account filtering |
-| `get_budget` | Budget summary for a month, with optional prior months |
+| `get_budget` | Current or historical monthly budget, category status, and budget trend |
+| `analyze_budget` | Deterministic, data-backed budget recommendations; does not modify data |
 | `get_merchants` | Merchants with the ids `update_transaction` accepts and the exact names `get_transactions` filters on |
 | `get_tags` | Tags with pagination |
 | `get_categories` | Categories with hierarchy and pagination |
@@ -149,10 +150,11 @@ At the time of writing, `tools/list` includes:
 | `create_tag` / `update_tag` | Manage tags |
 | `create_category` / `update_category` | Manage categories |
 | `update_transaction` | Edit a transaction's metadata (name, notes, category, merchant, tags) |
-| `update_budget` | Update budget allocations for a month |
+| `update_budget` | Set approved monthly limits, expected income, and category allocations |
 | `import_bank_statement` | Import bank statement data |
 | `search_family_files` | Search documents uploaded through the import flow. Note this is the vector-store document index, not the Statement Vault — statements archived via `upload_account_statement` are not searchable through it |
 
+`update_budget` changes planning data only when an MCP client explicitly calls it with concrete amounts. Agents should call `get_budget` or `analyze_budget`, show the proposed changes to the user, and call `update_budget` only after confirmation.
 ### Preview Tools
 
 These additional tools appear only when the MCP user has opted into preview

@@ -3,100 +3,33 @@
 <%= turbo_frame_tag "planned_expenses_list" do %>
   <% grouped_planned_expenses = PlannedExpense.group_for_display(planned_expenses) %>
   <% if grouped_planned_expenses.any? %>
-    <details open class="bg-container rounded-xl shadow-border-xs">
-    <summary class="flex items-center gap-2 px-4 py-3 cursor-pointer hover:bg-alpha-black-5 rounded-t-xl">
-      <%= icon "chevron-right", size: "sm", class: "text-secondary open:rotate-90 transition-transform" %>
-      <span class="text-sm font-medium text-secondary uppercase"><%= t("planned_expenses.title") %></span>
-      <span class="text-xs text-subdued">(<%= grouped_planned_expenses.count %>)</span>
-    </summary>
+    <div id="planned-expenses" class="flex flex-col bg-container rounded-xl shadow-border-xs px-3 py-4 lg:p-4">
+      <div class="grid grid-cols-12 items-center mb-4 rounded-xl bg-container-inset px-5 py-3 text-xs font-medium uppercase text-secondary">
+        <div class="col-span-8 pl-0.5"><p><%= t("transactions.list.transaction") %></p></div>
+        <p class="hidden col-span-2 md:block"><%= t("transactions.form.category_label") %></p>
+        <p class="col-span-2 col-start-11 justify-self-end md:col-start-auto"><%= t("transactions.show.amount") %></p>
+      </div>
 
-    <div class="px-1 pb-1">
-      <% grouped_planned_expenses.each do |group| %>
-        <% pe = group[:planned_expense] %>
-        <% occurrence_count = group[:occurrence_count] %>
-        <% total_amount = group[:total_amount] %>
-        <div class="py-2 px-3 sm:px-4 group overflow-hidden">
-          <%# Row 1: icon + name + actions %>
-          <div class="flex items-center gap-2 sm:gap-3 min-w-0">
-            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex justify-center items-center shrink-0"
-                 style="background-color: color-mix(in oklab, <%= pe.category.color %> 10%, transparent);
-                        color: <%= pe.category.color %>;">
-              <% if pe.category.lucide_icon %>
-                <%= icon pe.category.lucide_icon, size: "sm", color: "current" %>
-              <% else %>
-                <%= render DS::FilledIcon.new(variant: :text, hex_color: pe.category.color, text: pe.category.name, size: "md", rounded: true) %>
-              <% end %>
+      <div class="space-y-6">
+        <% grouped_planned_expenses.group_by { |group| group[:planned_expense].due_date || group[:planned_expense].budget.start_date }.sort.each do |date, groups| %>
+          <div id="planned-expenses-group-<%= date %>" class="w-full rounded-xl bg-container-inset p-1">
+            <div class="flex items-center justify-between px-4 py-2 text-xs font-medium text-secondary">
+              <p class="space-x-1.5 uppercase">
+                <%= tag.span I18n.l(date, format: :long) %>
+                <span>&middot;</span>
+                <%= tag.span groups.size %>
+              </p>
             </div>
 
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-1.5 min-w-0">
-                <span class="text-sm font-medium text-primary truncate"><%= pe.name %></span>
-                <% if pe.recurring? %>
-                  <span class="text-xs bg-alpha-black-5 text-secondary px-1.5 py-0.5 rounded shrink-0"><%= pe.recurrence_description %></span>
-                <% end %>
-                <% if occurrence_count > 1 %>
-                  <span class="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded shrink-0"><%= t("planned_expenses.planned_expense.occurrences_left", count: occurrence_count) %></span>
-                <% end %>
-              </div>
-            </div>
-
-            <%# Desktop: inline buttons %>
-            <div class="hidden sm:flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
-              <%= link_to confirm_budget_planned_expense_path(pe.budget, pe),
-                    class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.planned_expense.confirm_title"), data: { turbo_frame: "drawer" } do %>
-                <%= icon "check", size: "xs" %>
-              <% end %>
-              <%= button_to cancel_budget_planned_expense_path(pe.budget, pe),
-                    method: :post, class: "p-1 text-secondary hover:text-destructive", title: t("planned_expenses.planned_expense.cancel_title") do %>
-                <%= icon "x", size: "xs" %>
-              <% end %>
-              <%= link_to edit_budget_planned_expense_path(pe.budget, pe),
-                    class: "p-1 text-secondary hover:text-primary", title: t("planned_expenses.edit.title"), data: { turbo_frame: "drawer" } do %>
-                <%= icon "pencil-line", size: "xs" %>
-              <% end %>
-              <%= render "planned_expenses/delete_action", planned_expense: pe %>
-            </div>
-
-            <%# Mobile: dropdown %>
-            <div class="sm:hidden shrink-0 max-w-fit">
-              <%= render DS::Menu.new(variant: "icon_sm") do |menu| %>
-                <% menu.with_item(variant: "link", text: t("planned_expenses.planned_expense.confirm"), href: confirm_budget_planned_expense_path(pe.budget, pe), icon: "check", data: { turbo_frame: "drawer" }) %>
-                <% menu.with_item(variant: "button", text: t("planned_expenses.planned_expense.cancel"), href: cancel_budget_planned_expense_path(pe.budget, pe), method: :post, icon: "x") %>
-                <% menu.with_item(variant: "link", text: t("planned_expenses.edit.title"), href: edit_budget_planned_expense_path(pe.budget, pe), icon: "pencil-line", data: { turbo_frame: "drawer" }) %>
-                <% menu.with_item(variant: "divider") %>
-                <% if pe.recurring? %>
-                  <% menu.with_item(variant: "link", text: t("planned_expenses.planned_expense.delete"), href: delete_confirmation_budget_planned_expense_path(pe.budget, pe), icon: "trash-2", data: { turbo_frame: "drawer" }) %>
-                <% else %>
-                  <% menu.with_item(variant: "button", text: t("planned_expenses.planned_expense.delete"), href: budget_planned_expense_path(pe.budget, pe), method: :delete, icon: "trash-2", confirm: t("planned_expenses.destroy_confirm")) %>
-                <% end %>
+            <div class="rounded-lg bg-container shadow-border-xs">
+              <% groups.each do |group| %>
+                <%= render "planned_expenses/transaction", planned_expense: group[:planned_expense], occurrence_count: group[:occurrence_count], total_amount: group[:total_amount] %>
               <% end %>
             </div>
           </div>
-
-          <%# Row 2: category · account | amount + status %>
-          <div class="flex items-center gap-2 mt-1 pl-10 sm:pl-12">
-            <div class="flex-1 min-w-0 text-secondary text-xs truncate">
-              <%= pe.category.name %>
-              <% if pe.account.present? %>
-                <span>&middot;</span> <%= pe.account.name %>
-              <% end %>
-              <% if pe.due_date.present? %>
-                <span>&middot;</span> <%= l(pe.due_date, format: :default) %>
-              <% end %>
-            </div>
-            <div class="flex items-center gap-1.5 shrink-0">
-              <span class="text-xs font-medium text-primary privacy-sensitive">
-                <%= format_money(-Money.new(total_amount, pe.currency)) %>
-              </span>
-              <span class="text-xs px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">
-                <%= t("planned_expenses.planned_expense.pending") %>
-              </span>
-            </div>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
-  </details>
   <% else %>
     <%= render DS::EmptyState.new(
       icon: "calendar-clock",
