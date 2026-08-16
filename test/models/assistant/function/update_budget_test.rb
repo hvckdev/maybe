@@ -46,6 +46,23 @@ class Assistant::Function::UpdateBudgetTest < ActiveSupport::TestCase
     assert_equal 9000, @budget.expected_income
   end
 
+  test "updates total, expected income, and category allocation" do
+    @budget.sync_budget_categories
+    food = @budget.budget_categories.find_by!(category: categories(:food_and_drink))
+
+    result = @function.call(
+      "budgeted_spending" => 2000,
+      "expected_income" => 3000,
+      "category_allocations" => [ { "category_id" => food.category_id, "amount" => 450 } ]
+    )
+
+    assert result[:success]
+    assert_equal 2000, @budget.reload.budgeted_spending
+    assert_equal 3000, @budget.expected_income
+    assert_equal 450, food.reload.budgeted_spending
+    assert_equal "2000.0", result[:budget][:budgeted_spending][:amount]
+  end
+
   test "sets a category allocation by case-insensitive name" do
     @budget.sync_budget_categories
 
