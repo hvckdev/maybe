@@ -49,13 +49,13 @@
   <%= render "summary", totals: @search.totals %>
 
   <%= render DS::Tabs.new(active_tab: params[:tab].presence || "transactions") do |tabs| %>
-    <% tabs.with_nav(classes: "max-w-fit") do |nav| %>
-      <% nav.with_btn(id: "transactions", label: t("transactions.show.tab_transactions"), classes: "px-6") %>
+    <% tabs.with_nav(classes: "w-max max-w-full table-scroll overscroll-x-contain flex-nowrap") do |nav| %>
+      <% nav.with_btn(id: "transactions", label: t("transactions.show.tab_transactions"), classes: "!w-auto px-6 shrink-0") %>
       <% unless Current.family.recurring_transactions_disabled? %>
-        <% nav.with_btn(id: "upcoming", label: t("transactions.show.tab_upcoming"), classes: "px-6") %>
+        <% nav.with_btn(id: "upcoming", label: t("transactions.show.tab_upcoming"), classes: "!w-auto px-6 shrink-0") %>
       <% end %>
-      <% nav.with_btn(id: "planned", label: t("transactions.show.tab_planned"), classes: "px-6") %>
-      <% nav.with_btn(id: "receipts", label: t("lkdr_receipts.tab"), classes: "px-6") %>
+      <% nav.with_btn(id: "planned", label: t("transactions.show.tab_planned"), classes: "!w-auto px-6 shrink-0") %>
+      <% nav.with_btn(id: "receipts", label: t("lkdr_receipts.tab"), classes: "!w-auto px-6 shrink-0") %>
     <% end %>
 
     <% tabs.with_panel(tab_id: "transactions") do %>
