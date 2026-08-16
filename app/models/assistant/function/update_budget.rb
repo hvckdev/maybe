@@ -9,7 +9,9 @@ class Assistant::Function::UpdateBudget < Assistant::Function
     def description
       <<~INSTRUCTIONS
         Updates the user's monthly budget after the user has explicitly approved the amounts:
-        total budgeted spending, expected income, and/or per-category allocations.
+        total budgeted spending, expected income, and/or per-category allocations. This tool
+        changes financial planning data; call get_budget or analyze_budget first and confirm
+        the proposed amounts with the user.
 
         Call get_budget first to see current amounts and exact category names. Amounts are
         plain non-negative numbers in the family's currency. Only the fields and categories
@@ -183,6 +185,14 @@ class Assistant::Function::UpdateBudget < Assistant::Function
       }
     end
 
+    def format_money(value)
+      Money.new(value || 0, family.currency).format
+    end
+
+    def money(amount)
+      { amount: amount.to_d.to_s("F"), formatted: format_money(amount) }
+    end
+
     def serialize(budget)
       {
         month: budget.to_param,
@@ -192,14 +202,6 @@ class Assistant::Function::UpdateBudget < Assistant::Function
         allocated_spending: money(budget.allocated_spending),
         available_to_allocate: money(budget.available_to_allocate)
       }
-    end
-
-    def format_money(value)
-      Money.new(value || 0, family.currency).format
-    end
-
-    def money(amount)
-      { amount: amount.to_d.to_s("F"), formatted: format_money(amount) }
     end
 
     def error(key, message)
