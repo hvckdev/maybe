@@ -20,12 +20,14 @@ class Assistant::Function::UpdateBudgetTest < ActiveSupport::TestCase
     refute @function.strict_mode?
   end
 
-  test "params_schema declares month totals and categories as optional" do
+  test "params_schema declares month totals and both category allocation formats as optional" do
     schema = @function.params_schema
+
     assert schema[:properties].key?(:month)
     assert schema[:properties].key?(:budgeted_spending)
     assert schema[:properties].key?(:expected_income)
     assert schema[:properties].key?(:categories)
+    assert schema[:properties].key?(:category_allocations)
     assert_empty schema[:required]
   end
 
@@ -37,6 +39,7 @@ class Assistant::Function::UpdateBudgetTest < ActiveSupport::TestCase
 
     assert_equal true, result[:success]
     assert_equal @budget.to_param, result[:month]
+    assert_equal "6500.0", result[:budget][:budgeted_spending][:amount]
 
     @budget.reload
     assert_equal 6500, @budget.budgeted_spending
@@ -59,7 +62,19 @@ class Assistant::Function::UpdateBudgetTest < ActiveSupport::TestCase
     assert_equal 450, budget_category.reload.budgeted_spending
   end
 
-  test "sets a category allocation by id and keeps a subcategory's parent in sync" do
+  test "sets a category allocation by ID-only alias" do
+    @budget.sync_budget_categories
+    budget_category = @budget.budget_categories.find_by!(category: categories(:food_and_drink))
+
+    result = @function.call(
+      "category_allocations" => [ { "category_id" => budget_category.category_id, "amount" => 450 } ]
+    )
+
+    assert_equal true, result[:success]
+    assert_equal 450, budget_category.reload.budgeted_spending
+  end
+
+  test "sets a category allocation by ID and keeps a subcategory's parent in sync" do
     @budget.sync_budget_categories
     subcategory = categories(:subcategory)
     parent = subcategory.parent
