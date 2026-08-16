@@ -21,19 +21,21 @@
       </div>
 
       <div class="min-w-0 flex-1">
-        <div class="flex min-w-0 items-center gap-1">
-          <span class="truncate"><%= planned_expense.name %></span>
-          <%= render DS::Pill.new(
-                label: t("planned_expenses.planned_expense.pending"),
-                tone: :info,
-                icon: "calendar-clock",
-                marker: false) %>
-          <% if occurrence_count > 1 %>
+        <div class="flex min-w-0 flex-col items-start gap-1 sm:flex-row sm:items-center">
+          <span class="order-2 w-full truncate sm:order-1 sm:w-auto sm:flex-1"><%= planned_expense.name %></span>
+          <div class="order-1 flex shrink-0 items-center gap-1 sm:order-2">
             <%= render DS::Pill.new(
-                  label: t("planned_expenses.planned_expense.occurrences_left", count: occurrence_count),
-                  tone: :neutral,
+                  label: t("planned_expenses.planned_expense.pending"),
+                  tone: :info,
+                  icon: "calendar-clock",
                   marker: false) %>
-          <% end %>
+            <% if occurrence_count > 1 %>
+              <%= render DS::Pill.new(
+                    label: t("planned_expenses.planned_expense.occurrences_left", count: occurrence_count),
+                    tone: :neutral,
+                    marker: false) %>
+            <% end %>
+          </div>
         </div>
         <div class="mt-0.5 truncate text-xs font-normal text-secondary">
           <%= planned_expense.account.name %>
