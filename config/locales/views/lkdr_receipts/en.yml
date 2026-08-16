@@ -1,0 +1,13 @@
+---
+en:
+  lkdr_receipts:
+    tab: Receipts
+    account: Account
+    account_prompt: Select an account
+    import_button: Import expense
+    imported: Imported
+    inn: "INN: %{inn}"
+    empty_title: No receipts yet
+    empty_description: Receipts from My Receipts Online will appear here after the service is connected.
+    import:
+      success: Receipt imported as an expense

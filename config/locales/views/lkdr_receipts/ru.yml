@@ -1,0 +1,13 @@
+---
+ru:
+  lkdr_receipts:
+    tab: Чеки
+    account: Счёт
+    account_prompt: Выберите счёт
+    import_button: Импортировать в траты
+    imported: Импортирован
+    inn: "ИНН: %{inn}"
+    empty_title: Чеков пока нет
+    empty_description: Чеки из сервиса «Мои чеки онлайн» появятся здесь после подключения сервиса.
+    import:
+      success: Чек импортирован как расход

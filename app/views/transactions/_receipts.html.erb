@@ -1,0 +1,97 @@
+<%# locals: (receipts:, accessible_accounts:, connection:) %>
+<div class="space-y-4">
+  <section class="bg-container rounded-xl shadow-border-xs p-4">
+    <% if connection&.challenge_pending? %>
+      <h2 class="font-medium text-primary"><%= t("lkdr_connections.verify.title") %></h2>
+      <p class="text-sm text-secondary mt-1"><%= t("lkdr_connections.verify.description") %></p>
+      <%= styled_form_with url: verify_lkdr_connection_path, method: :post, class: "mt-4 flex flex-col gap-2 sm:flex-row sm:items-end" do |form| %>
+        <%= form.text_field :code, label: t("lkdr_connections.verify.code"), autocomplete: "one-time-code", required: true %>
+        <%= render DS::Button.new(text: t("lkdr_connections.verify.submit"), type: :submit, variant: :primary) %>
+      <% end %>
+    <% elsif connection&.connected? || connection&.syncing? || connection&.requires_reauth? %>
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 class="font-medium text-primary"><%= t("lkdr_connections.connected.title") %></h2>
+          <p class="text-sm text-secondary mt-1"><%= t("lkdr_connections.connected.description", phone: connection.phone) %></p>
+          <% if connection.last_synced_at.present? %>
+            <p class="text-sm text-secondary mt-1"><%= t("lkdr_connections.connected.last_synced", time: l(connection.last_synced_at, format: :short)) %></p>
+          <% end %>
+          <% if connection.requires_reauth? %>
+            <p class="text-sm text-danger mt-1"><%= t("lkdr_connections.connected.reauth_required") %></p>
+          <% end %>
+        </div>
+        <% if Current.user.admin? %>
+          <div class="flex gap-2">
+            <%= render DS::Button.new(text: t("lkdr_connections.sync.submit"), href: sync_lkdr_connection_path, variant: :outline, data: { turbo_method: :post }, disabled: connection.syncing?) %>
+            <%= render DS::Button.new(text: t("lkdr_connections.disconnect"), href: lkdr_connection_path, variant: :ghost, data: { turbo_method: :delete, turbo_confirm: t("lkdr_connections.disconnect_confirm") }) %>
+          </div>
+        <% end %>
+      </div>
+    <% elsif Current.user.admin? %>
+      <h2 class="font-medium text-primary"><%= t("lkdr_connections.create.title") %></h2>
+      <p class="text-sm text-secondary mt-1"><%= t("lkdr_connections.create.description") %></p>
+      <%= styled_form_with url: lkdr_connection_path,
+            method: :post,
+            class: "mt-4 space-y-3",
+            data: {
+              controller: "lkdr-captcha",
+              lkdr_captcha_site_key_value: "hfU4TD7fJUI7XcP5qRphKWgnIR5t9gXAxTRqdQJk",
+              lkdr_captcha_error_message_value: t("lkdr_connections.create.captcha_unavailable")
+            } do |form| %>
+        <%= form.telephone_field :phone, label: t("lkdr_connections.create.phone"), autocomplete: "tel", required: true %>
+        <%= form.hidden_field :captcha_token, data: { lkdr_captcha_target: "token" } %>
+        <div data-lkdr-captcha-target="widget"></div>
+        <p class="hidden text-sm text-danger" data-lkdr-captcha-target="error"></p>
+        <%= render DS::Button.new(
+          text: t("lkdr_connections.create.submit"),
+          type: :submit,
+          variant: :primary,
+          disabled: true,
+          data: { lkdr_captcha_target: "submit" }
+        ) %>
+      <% end %>
+    <% else %>
+      <%= render DS::EmptyState.new(icon: "lock", title: t("lkdr_connections.admin_only.title"), description: t("lkdr_connections.admin_only.description")) %>
+    <% end %>
+  </section>
+
+  <div class="bg-container rounded-xl shadow-border-xs">
+    <% if receipts.any? %>
+      <div class="divide-y divide-secondary">
+        <% receipts.each do |receipt| %>
+          <article class="p-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <h2 class="font-medium text-primary truncate"><%= receipt.merchant_name %></h2>
+                <% if receipt.imported? %>
+                  <%= render DS::Pill.new(label: t("lkdr_receipts.imported"), tone: :neutral, marker: false, icon: "check") %>
+                <% end %>
+              </div>
+              <p class="text-sm text-secondary mt-1">
+                <%= I18n.l(receipt.purchased_at, format: :long) %>
+                <% if receipt.merchant_inn.present? %>
+                  <span aria-hidden="true"> · </span><%= t("lkdr_receipts.inn", inn: receipt.merchant_inn) %>
+                <% end %>
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <p class="font-medium text-primary privacy-sensitive text-right"><%= format_money(Money.from_amount(receipt.total_amount, receipt.currency)) %></p>
+              <% unless receipt.imported? %>
+                <%= styled_form_with url: import_lkdr_receipt_path(receipt), method: :post, class: "flex items-end gap-2" do |form| %>
+                  <%= form.select :account_id,
+                      accessible_accounts.map { |account| [ account.name, account.id ] },
+                      { label: t("lkdr_receipts.account"), include_blank: t("lkdr_receipts.account_prompt") },
+                      required: true %>
+                  <%= render DS::Button.new(text: t("lkdr_receipts.import_button"), type: :submit, variant: :primary, size: :sm) %>
+                <% end %>
+              <% end %>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <%= render DS::EmptyState.new(icon: "receipt-text", title: t("lkdr_receipts.empty_title"), description: t("lkdr_receipts.empty_description")) %>
+    <% end %>
+  </div>
+</div>
