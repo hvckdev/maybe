@@ -313,6 +313,7 @@ class McpControllerTest < ActionDispatch::IntegrationTest
       tool_names = tools.map { |t| t["name"] }
       assert_includes tool_names, "get_transactions"
       assert_includes tool_names, "get_accounts"
+      assert_includes tool_names, "get_categories"
       assert_includes tool_names, "get_holdings"
       assert_includes tool_names, "set_opening_balance"
       assert_includes tool_names, "get_balance_sheet"
@@ -321,6 +322,7 @@ class McpControllerTest < ActionDispatch::IntegrationTest
       assert_includes tool_names, "analyze_budget"
       assert_includes tool_names, "update_budget"
       assert_includes tool_names, "update_transaction"
+      assert_includes tool_names, "create_transaction"
       assert_includes tool_names, "update_budget"
 
       # Each tool has required fields
