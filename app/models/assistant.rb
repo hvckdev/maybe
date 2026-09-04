@@ -75,6 +75,7 @@ module Assistant
         Function::UpdateCategory,
         Function::GetMerchants,
         Function::UpdateTransaction,
+        Function::CreateTransaction,
         Function::UpdateBudget
       ]
 
