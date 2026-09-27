@@ -315,8 +315,7 @@ class Assistant::Function::CreateTransaction < Assistant::Function
     def existing_idempotent_entry(attributes)
       attributes[:account].entries.find_by(
         external_id: attributes[:external_id],
-        source: attributes[:source],
-        user_modified: attributes[:user_modified]
+        source: attributes[:source]
       )
     end
 
