@@ -69,6 +69,7 @@ ru:
       confirm_changes: Подтвердить изменения
     actions:
       value_placeholder: Введите значение
+      to_label: на
     update:
       success: Правило обновлено
     destroy:
@@ -116,6 +117,20 @@ ru:
       confirm_button: Сбросить кэш
       success: Кэш ИИ очищается. Это может занять несколько минут.
     condition_filters:
+      and: "и"
+      value_placeholder: "Введите значение"
+      operators:
+        contains: Содержит
+        does_not_contain: Не содержит
+        equal_to: Равно
+        is_equal_to: Равно
+        not_equal_to: Не равно
+        is_empty: Пусто
+        is_not_empty: Не пусто
+        greater_than: Больше
+        greater_or_equal_to: Больше или равно
+        less_than: Меньше
+        less_than_or_equal_to: Меньше или равно
       transaction_type:
         income: Доход
         expense: Расход
@@ -123,6 +138,8 @@ ru:
         equal_to: Равно
   rule:
     conditions:
+      condition:
+        value_placeholder: Введите значение
       condition_group:
         and_prefix: и
         match: совпадение
