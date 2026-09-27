@@ -99,9 +99,6 @@ class TransactionsController < ApplicationController
     budget_start, budget_end = Budget.period_for(Date.current, family: Current.family)
     current_budget = Current.family.budgets.find_by(start_date: budget_start, end_date: budget_end)
     @planned_expenses = current_budget ? current_budget.planned_expenses.pending.includes(:budget, :category, :account) : PlannedExpense.none
-    @lkdr_receipts = Current.family.lkdr_receipts.ordered
-    @lkdr_connection = Current.family.lkdr_connection
-    @receipt_accounts = Current.user.accessible_accounts.visible.alphabetically
 
     @breadcrumbs = [ [ t("breadcrumbs.home"), root_path ], [ t("breadcrumbs.transactions"), nil ] ]
   end

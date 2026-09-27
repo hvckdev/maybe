@@ -721,7 +721,6 @@ ru:
           веб-вход только для чтения.
         questrade: Синхронизируйте инвестиционные счета Questrade напрямую через Questrade
           API.
-        tinkoff: Синхронизация банковских счетов и транзакций Тинькофф.
       up_panel:
         step_1_html: Перейдите по ссылке %{link} и создайте персональный токен доступа.
         step_2: Скопируйте персональный токен доступа.
@@ -903,7 +902,6 @@ ru:
         snaptrade_title: SnapTrade (бета)
         indexa_capital_title: Indexa Capital (альфа)
         sophtron_title: Sophtron (альфа)
-        tinkoff_title: Тинькофф
       mercury_panel:
         setup_instructions: 'Инструкция по настройке:'
         step1_html: Перейдите на <a href="https://mercury.com" target="_blank" rel="noopener
