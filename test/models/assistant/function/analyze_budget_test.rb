@@ -8,7 +8,7 @@ class Assistant::Function::AnalyzeBudgetTest < ActiveSupport::TestCase
   end
 
   test "recommends setting a budget when the month is uninitialized" do
-    result = @function.call({})
+    result = @function.call("month" => Date.current.next_month.strftime("%Y-%m"))
 
     assert result[:success]
     refute result[:initialized]
