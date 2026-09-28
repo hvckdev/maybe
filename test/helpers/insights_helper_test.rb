@@ -178,7 +178,7 @@ class InsightsHelperTest < ActionView::TestCase
 
     I18n.with_locale(:ru) do
       assert_equal "2 категории бюджета требуют внимания", insight_title(insight)
-      assert_includes insight_body(insight), "Еда превысили бюджет"
+      assert_includes insight_body(insight), "Превышен бюджет в этом месяце: Еда"
       assert_includes insight_body(insight), "110% общего бюджета"
     end
   end

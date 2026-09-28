@@ -226,17 +226,16 @@ class BudgetCategoryTest < ActiveSupport::TestCase
     assert_not @subcategory_inheriting_bc.blocked_by_parent_budget?
   end
 
-  test "parent over budget status uses visible parent budget" do
+  test "parent over budget status reconciles its full allocation and aggregate spending" do
     @budget.stubs(:budget_category_actual_spending).with(@parent_budget_category).returns(1_100)
     @budget.stubs(:budget_category_actual_spending).with(@subcategory_with_limit_bc).returns(0)
     @budget.stubs(:budget_category_actual_spending).with(@subcategory_inheriting_bc).returns(0)
-    @parent_budget_category.stubs(:subcategories).returns([ @subcategory_with_limit_bc, @subcategory_inheriting_bc ])
 
+    # The parent's 1000 already contains the child's 300 allocation.
     assert_equal(-100, @parent_budget_category.available_to_spend)
     assert @parent_budget_category.over_budget?
     assert @parent_budget_category.any_over_budget?
   end
-
 
   test "parent with no subcategories works as before" do
     # Create a standalone parent category without subcategories
