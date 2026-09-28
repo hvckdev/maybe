@@ -226,25 +226,24 @@ class BudgetCategoryTest < ActiveSupport::TestCase
     assert_not @subcategory_inheriting_bc.blocked_by_parent_budget?
   end
 
-  test "parent over budget status uses the remaining shared pool" do
+  test "parent over budget status reconciles its full allocation and aggregate spending" do
     @budget.stubs(:budget_category_actual_spending).with(@parent_budget_category).returns(1_100)
     @budget.stubs(:budget_category_actual_spending).with(@subcategory_with_limit_bc).returns(0)
     @budget.stubs(:budget_category_actual_spending).with(@subcategory_inheriting_bc).returns(0)
-    @parent_budget_category.stubs(:subcategories).returns([ @subcategory_with_limit_bc, @subcategory_inheriting_bc ])
 
-    assert_equal(-400, @parent_budget_category.available_to_spend)
+    # The parent's 1000 already contains the child's 300 allocation.
+    assert_equal(-100, @parent_budget_category.available_to_spend)
     assert @parent_budget_category.over_budget?
     assert @parent_budget_category.any_over_budget?
   end
 
-  test "parent planned expense uses the remaining shared pool" do
+  test "parent planned expense is deducted from its full allocation" do
     @parent_budget_category.update!(budgeted_spending: 67_000)
     @budget.stubs(:budget_category_actual_spending).with(@parent_budget_category).returns(5_561.20)
-    @budget.stubs(:budget_category_actual_spending).with(@subcategory_with_limit_bc).returns(0)
     @parent_budget_category.stubs(:planned_spending).returns(60_000)
 
-    # The individually limited subcategory reserves 300 from the parent total.
-    assert_equal 1_138.80.to_d, @parent_budget_category.available_to_spend
+    # The ring-fenced child's 300 is already included in the parent's 67,000.
+    assert_equal 1_438.80.to_d, @parent_budget_category.available_to_spend
     assert_not @parent_budget_category.over_budget?
   end
   test "parent with no subcategories works as before" do

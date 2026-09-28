@@ -77,7 +77,8 @@ class BudgetsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select "a[href=?]", budget_budget_category_path(budget, parent_budget_category), text: /Over by:\s*\$91\.90/
-    assert_select "a[href=?]", budget_budget_category_path(budget, shared_budget_category), count: 0
+    assert_select "a[href=?]", budget_budget_category_path(budget, shared_budget_category), text: /Parent Budget Spent/
+    assert_select "a[href=?]", budget_budget_category_path(budget, shared_budget_category), text: /Over by:/, count: 0
   end
 
   test "show displays ring-fenced child carry on the parent card" do

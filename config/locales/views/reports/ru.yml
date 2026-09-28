@@ -81,9 +81,6 @@ ru:
         few: "%{count} продажи"
         many: "%{count} продаж"
         other: "%{count} продажи"
-      holdings: Активы
-      sell_trades: Продажи
-      and_more: "+%{count} ещё"
     net_worth:
       assets_vs_liabilities: Активы против обязательств
       current_net_worth: Текущая чистая стоимость
