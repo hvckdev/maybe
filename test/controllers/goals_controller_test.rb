@@ -13,13 +13,13 @@ class GoalsControllerTest < ActionDispatch::IntegrationTest
     ensure_tailwind_build
   end
 
-  test "index renders without preview access" do
+  test "index redirects without preview access" do
     @user.update!(preferences: (@user.preferences || {}).merge("preview_features_enabled" => false))
 
     get goals_url
 
-    assert_response :success
-    assert_match(/Goals/i, response.body)
+    assert_redirected_to root_path
+    assert_match(/preview/i, flash[:alert])
   end
 
   test "index renders with active filter by default" do
