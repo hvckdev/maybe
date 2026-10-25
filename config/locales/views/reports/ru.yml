@@ -1,36 +1,6 @@
 ---
 ru:
   reports:
-    budget_performance:
-      budgeted: Запланировано
-      no_budgets: Нет категорий бюджета на этот месяц
-      over_by: Превышение на
-      remaining: Остаток
-      shared: общий
-      spent: Потрачено
-      status:
-        good: В норме
-        over: Превышение бюджета
-        warning: Близко к лимиту
-      suggested_daily: "%{amount} рекомендовано в день на оставшиеся %{days} дней"
-      title: Выполнение бюджета
-    empty_state:
-      add_account: Добавить счёт
-      add_transaction: Добавить операцию
-      description: Начните отслеживать свои финансы, добавив операции или подключив
-        свои счета, чтобы увидеть полные отчёты
-      title: Нет доступных данных
-    google_sheets_instructions:
-      close: Понятно
-      example: Пример
-      go_to_api_keys: Перейти к API-ключам
-      need_key: Чтобы импортировать данные в Google Sheets, вам нужен API-ключ.
-      step1: Перейдите в Настройки → API-ключи
-      step2: Создайте новый API-ключ с разрешением "чтение"
-      step3: Скопируйте API-ключ
-      step4: 'Добавьте его в этот URL как: &api_key=YOUR_KEY'
-      then_use: Затем используйте полный URL с =IMPORTDATA() в Google Sheets.
-      title_no_key: "Требуется API-ключ"
     index:
       title: Отчёты
       subtitle: Полный анализ вашего финансового состояния
@@ -134,7 +104,7 @@ ru:
       step1: Перейдите в Настройки → API-ключи
       step2: Создайте новый API-ключ с разрешением "чтение"
       step3: Скопируйте API-ключ
-      step4: 'Добавьте его в этот URL как: ?api_key=YOUR_KEY'
+      step4: 'Добавьте его в этот URL как: &api_key=YOUR_KEY'
       example: Пример
       then_use: Затем используйте полный URL с =IMPORTDATA() в Google Sheets.
       open_sheets: Открыть Google Sheets
