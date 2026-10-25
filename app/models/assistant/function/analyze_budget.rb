@@ -151,7 +151,6 @@ class Assistant::Function::AnalyzeBudget < Assistant::Function
         amounts: {
           budgeted: money(category.display_budgeted_spending),
           actual: money(category.actual_spending),
-
           available_to_spend: money(category.available_to_spend)
         }
       )

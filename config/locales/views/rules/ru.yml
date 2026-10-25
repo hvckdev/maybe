@@ -136,18 +136,6 @@ ru:
         expense: Расход
         transfer: Перевод
         equal_to: Равно
-      operators:
-        contains: Содержит
-        does_not_contain: Не содержит
-        equal_to: Равно
-        is_equal_to: Равно
-        not_equal_to: Не равно
-        is_empty: Пусто
-        is_not_empty: Не пусто
-        greater_than: Больше
-        greater_or_equal_to: Больше или равно
-        less_than: Меньше
-        less_than_or_equal_to: Меньше или равно
   rule:
     conditions:
       condition:
@@ -159,5 +147,3 @@ ru:
         any: любые
         of_the_following_conditions: из следующих условий
         add_condition: Добавить условие
-      condition:
-        value_placeholder: Введите значение

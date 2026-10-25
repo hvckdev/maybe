@@ -155,7 +155,8 @@ class Budget < ApplicationRecord
   end
 
   def uncategorized_budget_category
-    budget_categories.uncategorized.tap do |bc|
+    BudgetCategory.uncategorized.tap do |bc|
+      bc.association(:budget).target = self
       bc.budgeted_spending = [ available_to_allocate, 0 ].max
       bc.currency = family.currency
     end
@@ -305,9 +306,9 @@ class Budget < ApplicationRecord
         expected_income: source_budget.expected_income
       )
 
-      target_by_category = budget_categories.index_by(&:category_id)
+      target_by_category = budget_categories.reload.index_by(&:category_id)
 
-      source_budget.budget_categories.each do |source_bc|
+      source_budget.budget_categories.reload.each do |source_bc|
         target_bc = target_by_category[source_bc.category_id]
         next unless target_bc
 
@@ -416,7 +417,7 @@ class Budget < ApplicationRecord
   end
 
   def budget_category_actual_spending(budget_category)
-    key = budget_category.category_id || stable_synthetic_key(budget_category.category)
+    key = budget_category.category_id || :uncategorized
     expense = expense_totals_by_category[key]&.total || 0
     refund = income_totals_by_category[key]&.total || 0
     actual = [ expense - refund, 0 ].max
@@ -475,7 +476,7 @@ class Budget < ApplicationRecord
   end
 
   def unplanned_spending
-    budget_categories.sum { |budget_category| unplanned_spending_for(budget_category) }
+    budget_categories.where.not(category_id: nil).sum { |budget_category| unplanned_spending_for(budget_category) }
   end
 
   def unplanned_spending_covered_by_unallocated
@@ -496,7 +497,7 @@ class Budget < ApplicationRecord
     return 0 unless budget_category && !budget_category.subcategory?
 
     remaining_unallocated = [ available_to_allocate, 0 ].max
-    budget_categories.reject(&:subcategory?).each do |current_budget_category|
+    budget_categories.where.not(category_id: nil).reject(&:subcategory?).each do |current_budget_category|
       current_unplanned = unplanned_spending_for(current_budget_category)
       current_covered = [ current_unplanned, remaining_unallocated ].min
       return current_covered if current_budget_category.id == budget_category.id
@@ -585,11 +586,11 @@ class Budget < ApplicationRecord
     end
 
     def expense_totals_by_category
-      @expense_totals_by_category ||= expense_totals.category_totals.index_by { |ct| ct.category.id || stable_synthetic_key(ct.category) }
+      @expense_totals_by_category ||= expense_totals.category_totals.index_by { |ct| stable_synthetic_key(ct.category) || ct.category.id }
     end
 
     def income_totals_by_category
-      @income_totals_by_category ||= income_totals.category_totals.index_by { |ct| ct.category.id || stable_synthetic_key(ct.category) }
+      @income_totals_by_category ||= income_totals.category_totals.index_by { |ct| stable_synthetic_key(ct.category) || ct.category.id }
     end
 
     def stable_synthetic_key(category)

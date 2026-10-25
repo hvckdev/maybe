@@ -678,5 +678,4 @@ class BudgetTest < ActiveSupport::TestCase
     assert_equal 300, uncategorized_budget_category.actual_spending
     assert_equal 0, uncategorized_budget_category.available_to_spend
   end
-
 end
